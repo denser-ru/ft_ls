@@ -1,30 +1,42 @@
 
-## Created by Anjuta
+## Created by cayako
 
+NAME = ft_ls
 CC = gcc
-CFLAGS = -g -Wall
-OBJECTS = ft_ls.o
-INCFLAGS = 
-LDFLAGS = -Wl,-rpath,/usr/local/lib
-LIBS = 
+CFLAGS = -Wall -Wextra -Werror
 
-all: ft_ls
+SRCDIR  = ./src/
+INCDIR  = ./inc/
+OBJDIR  = ./obj/
+FTDIR   = ./libft/
 
-ft_ls: $(OBJECTS)
-	$(CC) -o ft_ls $(OBJECTS) $(LDFLAGS) $(LIBS)
+SRC = ft_ls.c
+OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
+LIBFT = $(FTDIR)libft.a
 
-.SUFFIXES:
-.SUFFIXES:	.c .cc .C .cpp .o
+all: obj $(LIBFT) $(NAME)
 
-.c.o :
-	$(CC) -o $@ -c $(CFLAGS) $< $(INCFLAGS)
+obj:
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)%.o: $(SRCDIR)%.c
+	$(CC) $(CFLAGS) -I $(INCDIR) -I $(FTDIR) -o $@ -c $<
+
+$(LIBFT):
+	make -C $(FTDIR)
+
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 
 count:
-	wc *.c *.cc *.C *.cpp *.h *.hpp
+	wc *.c *.h
 
 clean:
-	rm -f *.o
+	rm -f $(OBJDIR)*.o
+	make -C $(FTDIR) clean
 
-.PHONY: all
-.PHONY: count
-.PHONY: clean
+fclean: clean
+	rm -f $(NAME)
+	make -C $(FTDIR) fclean
+
+re: fclean all
