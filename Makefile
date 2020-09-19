@@ -14,12 +14,14 @@ SRC = ft_ls.c
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 LIBFT = $(FTDIR)libft.a
 
+.PHONY: all clean fclean count
+
 all: obj $(LIBFT) $(NAME)
 
 obj:
 	mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o: $(SRCDIR)%.c
+$(OBJDIR)%.o: $(SRCDIR)%.c $(INCDIR)%.h
 	$(CC) $(CFLAGS) -I $(INCDIR) -I $(FTDIR) -o $@ -c $<
 
 $(LIBFT):
