@@ -3,7 +3,6 @@
  */
 
 #include "ft_ls.h"
-#include <stdio.h>
 
 /*int		ft_get_atr(t_ls *ls, t_dirent *dirp, size_t start)
 {
@@ -44,7 +43,6 @@ int		main(int argc, char **argv)
 	ls->buf = (void*)malloc(sizeof(void) * BUF);
 	ls->rootdir = argv[1];
 	ls->dirlist = ft_lstnew(ls->rootdir, ft_strlen(ls->rootdir));
-	printf("List %s dir:\n", ls->rootdir);
 	ft_ls_rec(ls, ls->dirlist);
 	return (0);
 }
