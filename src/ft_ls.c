@@ -1,26 +1,50 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
 /*
- * main.c
- * Copyright (C) 2020 
- * 
- * ft_ls is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * ft_ls is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * main.c by cayako
  */
 
+#include "ft_ls.h"
 #include <stdio.h>
-int main()
+
+/*int		ft_get_atr(t_ls *ls, t_dirent *dirp, size_t start)
 {
-	printf("This si FT_LS project\n");
+	int		i;
+	t_stat	*stat;
+	//dirp->d_reclen, ft_strlen(dirp->d_name), dirp->d_name
+
+	i = 0;
+	return(i);
+}*/
+
+void	ft_ls_rec(t_ls *ls, t_list *dirlist)
+{
+//	DIR		*dir;
+//	t_dirent	*dirp;
+	size_t		i;
+
+	i = dirlist->content_size;
+	ft_memcpy(ls->buf, dirlist->content, i);
+	ft_memcpy(ls->buf + i, ":\0", 2);
+//	dir = opendir(ls->rootdir);
+/*	while ((dirp = readdir(dir)) != NULL)
+	{
+		i += ft_get_atr(ls, dirp, i);
+	}*/
+	ft_putnstr(ls->buf, i);
+	ft_putchar('\n');
+/*	printf("%d\t%ld\t%s\n", (char*)ls->buf);*/
+}
+
+int		main(int argc, char **argv)
+{
+	t_ls	*ls;
+
+	if (argc <2)
+		return (0);
+	ls = (t_ls*)malloc(sizeof(t_ls));
+	ls->buf = (void*)malloc(sizeof(void) * BUF);
+	ls->rootdir = argv[1];
+	ls->dirlist = ft_lstnew(ls->rootdir, ft_strlen(ls->rootdir));
+	printf("List %s dir:\n", ls->rootdir);
+	ft_ls_rec(ls, ls->dirlist);
 	return (0);
-	
 }

@@ -1,12 +1,18 @@
 [Anjuta]
-Geometry=1396x767+166+135
+Maximized=1
+Geometry=1920x1019+0+29
+
+[Execution]
+Program arguments=./
+Program uri=../../ft_ls
+Run in terminal=2
+Working directories=../../.
+
+[File Loader]
+Files=../../src/ft_ls.c#26%%%../../inc/ft_ls.h#43
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
-
-[Execution]
-Run in terminal=2
-Working directories=../../.
 
 [Build]
 Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
