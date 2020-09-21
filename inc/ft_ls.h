@@ -41,12 +41,21 @@ typedef struct group	t_group;
 
 typedef struct		s_ls
 {
-//	t_dirent		dirp;
 	char			*rootdir;
 	t_list			*dirlist;
 	void			*bufdir;
 	void			*buffile;
 	int				*i;
 }					t_ls;
+
+typedef struct		s_file
+{
+	void			*adr;
+	int				size[6];
+	struct s_file	*prev;
+	struct s_file	*next;
+}					t_file;
+
+void	ft_read_file(t_ls *ls, t_dirent	*dirp, DIR *dir);
 
 #endif

@@ -3,7 +3,7 @@
 
 NAME = ft_ls
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRCDIR  = ./src/
 INCDIR  = ./inc/
@@ -21,7 +21,7 @@ all: obj $(LIBFT) $(NAME)
 obj:
 	mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o: $(SRCDIR)%.c $(INCDIR)%.h
+$(OBJDIR)%.o: $(SRCDIR)%.c
 	$(CC) $(CFLAGS) -I $(INCDIR) -I $(FTDIR) -o $@ -c $<
 
 $(LIBFT):
@@ -31,7 +31,7 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 
 count:
-	wc *.c *.h
+	wc ./src/*.c ./inc/*.h
 
 clean:
 	rm -f $(OBJDIR)*.o
