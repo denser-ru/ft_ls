@@ -8,6 +8,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <time.h>
 
 /*
 ** -a (LS_A) to display hidden files, current folder and previous folder,
@@ -30,8 +31,8 @@
 # define LS_ONE		128
 # define LS_SS		256
 # define LS_S		512
-# define BUF		65535
-# define MAX_NAME	255
+# define BUF		65536
+# define MAX_NAME	256
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
@@ -43,7 +44,9 @@ typedef struct		s_ls
 //	t_dirent		dirp;
 	char			*rootdir;
 	t_list			*dirlist;
-	void			*buf;
+	void			*bufdir;
+	void			*buffile;
+	int				*i;
 }					t_ls;
 
 #endif
