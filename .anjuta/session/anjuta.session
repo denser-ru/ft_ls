@@ -9,7 +9,7 @@ Run in terminal=2
 Working directories=../../.
 
 [File Loader]
-Files=../../src/ft_ls.c#26%%%../../inc/ft_ls.h#43
+Files=../../src/ft_ls.c#1%%%../../inc/ft_ls.h#28%%%../../Makefile#34%%%../../src/ft_file_u.c#4%%%../../src/ft_filelist.c#6
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n

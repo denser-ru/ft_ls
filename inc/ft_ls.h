@@ -39,23 +39,35 @@ typedef struct dirent	t_dirent;
 typedef struct passwd	t_passwd;
 typedef struct group	t_group;
 
-typedef struct		s_ls
-{
-	char			*rootdir;
-	t_list			*dirlist;
-	void			*bufdir;
-	void			*buffile;
-	int				*i;
-}					t_ls;
-
 typedef struct		s_file
 {
 	void			*adr;
 	int				size[6];
+	int				max_size[5];
+	time_t			ctime;
+	mode_t			mode;
 	struct s_file	*prev;
 	struct s_file	*next;
 }					t_file;
 
-void	ft_read_file(t_ls *ls, t_dirent	*dirp, DIR *dir);
+typedef struct		s_ls
+{
+	char			*rootdir;
+	t_list			*dirlist;
+	t_file			*filelist;
+	void			*bufdir;
+	void			*buffile;
+	void			*i;
+	char			fname[MAX_NAME];
+	off_t			dirsize;
+	t_list			*prevdir;
+	t_list			*curdir;
+	t_list			*nextdir;
+	t_file			*curfile;
+}					t_ls;
+
+void				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir);
+void				ft_add_file(t_ls *ls);
+void				ft_print_dir(t_ls *ls);
 
 #endif
