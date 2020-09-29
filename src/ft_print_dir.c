@@ -2,12 +2,16 @@
 
 #include "ft_ls.h"
 
-void	ft_print_size(void **in, void **out, t_file *file, int *i)
+int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 {
+	ft_memset(*in, ' ', ls->f_max_size[4] - file->size[4]);
+	*in += ls->f_max_size[4] - file->size[4];
 	ft_memcpy(*in, *out, file->size[4]);
 	*in += file->size[4];
 	*out += file->size[4];
-	*i += file->size[4] + 1;
+	ft_memcpy(*in, " ", 1);
+	(*in)++;
+	return (file->size[4] + 1 + ls->f_max_size[4] - file->size[4]);
 }
 
 void	ft_print_dir(t_ls *ls)
@@ -23,8 +27,7 @@ void	ft_print_dir(t_ls *ls)
 	while (file)
 	{
 		out = file->adr + file->size[5];
-		ft_print_size(&in, &out, file, &i);
-		ft_memcpy(in++, " ", 1);
+		i += ft_print_size(ls, &in, &out, file);
 		ft_memcpy(in, file->adr, file->size[5]);
 		in += file->size[5];
 		ft_memcpy(in++, "\n", 1);

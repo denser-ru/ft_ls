@@ -43,7 +43,6 @@ typedef struct		s_file
 {
 	void			*adr;
 	int				size[6];
-	int				max_size[5];
 	time_t			ctime;
 	mode_t			mode;
 	struct s_file	*prev;
@@ -64,6 +63,7 @@ typedef struct		s_ls
 	t_list			*curdir;
 	t_list			*nextdir;
 	t_file			*curfile;
+	int				f_max_size[5];
 }					t_ls;
 
 void				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir);

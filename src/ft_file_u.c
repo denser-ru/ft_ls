@@ -12,8 +12,8 @@ static int		ft_get_size(t_ls *ls, t_stat *stat)
 	ft_memcpy(ls->i, ls->bufdir, size);
 	ls->i += size;
 	ls->curfile->size[4] = size;
-	if (ls->curfile->max_size[4] < size)
-		ls->curfile->size[4] = size;
+	if (ls->f_max_size[4] < size)
+		ls->f_max_size[4] = size;
 	if (S_ISREG(stat->st_mode) || S_ISDIR(stat->st_mode))
 		ls->curdir->content_size += stat->st_size / 1024;
 	return (size);
@@ -40,11 +40,18 @@ static void		ft_get_fname(t_ls *ls, t_dirent *dirp,
 	ls->curfile->size[5] = size;
 }
 
+void			ft_init_max_size(t_ls *ls, int i)
+{
+	while (i < 6)
+		ls->f_max_size[i++] = 0;
+}
+
 void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir)
 {
 	t_stat	stat;
 
 	ls->i = ls->buffile;
+	ft_init_max_size(ls, 0);
 	while ((dirp = readdir(dir)) != NULL)
 	{
 		ft_add_file(ls);
