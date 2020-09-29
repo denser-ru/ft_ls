@@ -51,7 +51,7 @@ typedef struct		s_file
 
 typedef struct		s_ls
 {
-	char			*rootdir;
+	char			**rootdir;
 	t_list			*dirlist;
 	t_file			*filelist;
 	void			*bufdir;
@@ -69,5 +69,6 @@ typedef struct		s_ls
 void				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir);
 void				ft_add_file(t_ls *ls);
 void				ft_print_dir(t_ls *ls);
+void				ft_del_filelist(t_file *file);
 
 #endif

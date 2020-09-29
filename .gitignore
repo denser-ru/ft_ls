@@ -54,3 +54,4 @@ dkms.conf
 # Anjuta
 *.c~
 *~
+ft_ls

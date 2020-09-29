@@ -34,5 +34,8 @@ void	ft_print_dir(t_ls *ls)
 		i += file->size[5] + 1;
 		file = file->next;
 	}
+	ft_putnstr("total: ", 7);
+	ft_putnbr(ls->dirsize >> 10);
+	ft_putchar('\n');
 	ft_putnstr(ls->bufdir, i);
 }
