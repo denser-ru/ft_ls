@@ -81,6 +81,6 @@ void					ft_get_size(t_ls *ls, t_stat *stat);
 void					ft_get_ctime(t_ls *ls, t_stat *stat);
 
 int						ft_print_mod(void **in, void **out);
-void					ft_print_dir(t_ls *ls);
+void					ft_print_dir(t_ls *ls, t_file	*file, int i);
 
 #endif

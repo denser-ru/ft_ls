@@ -50,16 +50,12 @@ int		ft_print_time(void **in, void **out)
 	return (12);
 }
 
-void	ft_print_dir(t_ls *ls)
+void	ft_print_dir(t_ls *ls, t_file	*file, int i)
 {
-	t_file	*file;
 	void	*in;
 	void	*out;
-	int		i;
 
-	file = ls->filelist;
 	in = ls->bufdir;
-	i = 0;
 	while (file)
 	{
 		out = file->adr + file->size[5];
