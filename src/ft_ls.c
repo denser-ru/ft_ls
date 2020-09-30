@@ -15,7 +15,7 @@ void			ft_ls_rec(t_ls *ls)
 	closedir(dir);
 }
 
-void			*ft_dirlist_init(t_ls *ls, int size)
+static void		*ft_dirlist_init(t_ls *ls, int size)
 {
 	t_list	*dirlist;
 	char	*rootdir_name;

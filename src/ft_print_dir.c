@@ -2,7 +2,7 @@
 
 #include "ft_ls.h"
 
-int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
+static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 {
 	ft_memset(*in, ' ', ls->f_max_size[4] - file->size[4]);
 	*in += ls->f_max_size[4] - file->size[4];

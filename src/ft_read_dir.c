@@ -21,7 +21,7 @@ static void		ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname)
 	ls->curfile->size[5] = size;
 }
 
-void			ft_init_max_size(t_ls *ls, int i)
+static void			ft_init_max_size(t_ls *ls, int i)
 {
 	while (i < 6)
 		ls->f_max_size[i++] = 0;
