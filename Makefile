@@ -10,7 +10,7 @@ INCDIR  = ./inc/
 OBJDIR  = ./obj/
 FTDIR   = ./libft/
 
-SRC = ft_ls.c ft_file_u.c ft_filelist.c ft_print_dir.c
+SRC = ft_ls.c ft_file_u.c ft_filelist.c ft_print_dir.c ft_read_dir.c
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 LIBFT = $(FTDIR)libft.a
 
