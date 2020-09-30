@@ -64,6 +64,7 @@ void	ft_print_dir(t_ls *ls, t_file	*file, int i)
 		i += ft_print_pwd(ls, &in, &out, file);
 		i += ft_print_size(ls, &in, &out, file);
 		i += ft_print_time(&in, &out);
+//		ft_putnendl(file->adr, file->size[5]);
 		ft_memcpy(in, file->adr, file->size[5]);
 		in += file->size[5];
 		ft_memcpy(in++, "\n", 1);

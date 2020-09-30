@@ -4,26 +4,16 @@
 
 #include "ft_ls.h"
 
-void			ft_ls_rec(t_ls *ls)
-{
-	DIR			*dir;
-	t_dirent	*dirp;
-
-	dirp = NULL;
-	dir = opendir(*(ls->rootdir));
-	ft_read_dir(ls, dirp, dir);
-	closedir(dir);
-}
-
 static void		*ft_dirlist_init(t_ls *ls, int size)
 {
 	t_list	*dirlist;
 	char	*rootdir_name;
 
 	rootdir_name = *(ls->rootdir);
-	if(rootdir_name[size - 1] == '/')
+	if(rootdir_name[size - 1] == '/' && size > 1 && rootdir_name[size] != '\0')
 		--size;
 	dirlist = ft_lstnew(rootdir_name, size);
+	ls->curdir = dirlist;
 	return (dirlist);
 }
 
@@ -34,10 +24,7 @@ static void		ft_ls_init(t_ls *ls, char **argv)
 	ls->bufdir = (void*)malloc(sizeof(void) * BUF);
 	ls->buffile = (void*)malloc(sizeof(void) * BUF);
 	ls->i = ls->buffile;
-	ls->prevdir = NULL;
-	ls->curdir = ls->dirlist;
 	ls->nextdir = NULL;
-	ls->curfile = NULL;
 	ls->filelist = NULL;
 }
 

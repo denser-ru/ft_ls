@@ -11,7 +11,8 @@ static void		ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname)
 	size = ls->curdir->content_size;
 	ft_memcpy(fname, ls->curdir->content, size);
 	fname += size;
-	ft_memcpy(fname++, "/", 1);
+	if (*(fname - 1) != '/')
+		ft_memcpy(fname++, "/", 1);
 	size = ft_strlen(dirp->d_name);
 	ft_memcpy(fname, dirp->d_name, size);
 	ft_memcpy(ls->i, dirp->d_name, size);
@@ -21,10 +22,23 @@ static void		ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname)
 	ls->curfile->size[5] = size;
 }
 
-static void			ft_init_max_size(t_ls *ls, int i)
+static void		ft_init_max_size(t_ls *ls, int i)
 {
 	while (i < 6)
 		ls->f_max_size[i++] = 0;
+}
+
+/*static t_list		*ft_lstend(t_list *list)
+{
+	if (list)
+		while (list->next)
+			list = list->next;
+	return (list);
+}*/
+
+void	ft_lstprint(t_list *list)
+{
+	ft_putnendl(list->content, list->content_size);
 }
 
 void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir)
@@ -39,12 +53,17 @@ void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir)
 		ft_add_file(ls);
 		ft_get_fname(ls, dirp, ls->fname);
 		lstat(ls->fname, &stat);
+		if ((stat.st_mode & S_IFDIR) && ft_strcmp(dirp->d_name, ".") &&
+				ft_strcmp(dirp->d_name, ".."))
+			ft_lstpushb(&(ls->curdir), ls->fname, ft_strlen(ls->fname));
 		ft_get_mode(ls, &stat);
 		ft_get_nlink(ls, &stat);
 		ft_get_pwd(ls, &stat);
 		ft_get_size(ls, &stat);
 		ft_get_ctime(ls, &stat);
 	}
+//	ft_lstiter(ls->curdir, &ft_lstprint);
 	ft_print_dir(ls, ls->filelist, 0);
-	ft_del_filelist(ls->filelist);
+	ft_del_filelist(&(ls->filelist));
+	ls->curfile = NULL;
 }

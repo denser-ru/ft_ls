@@ -27,9 +27,10 @@ void			ft_add_file(t_ls *ls)
 	}
 }
 
-void			ft_del_filelist(t_file *file)
+void			ft_del_filelist(t_file **file)
 {
-	if (file->next)
-		ft_del_filelist(file->next);
-	free(file);
+	if ((*file)->next)
+		ft_del_filelist(&((*file)->next));
+	free(*file);
+	*file = NULL;
 }

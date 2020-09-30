@@ -35,8 +35,8 @@
 # define LS_SS		256
 # define LS_S		512
 
-# define BUF		65536
-# define MAX_NAME	256
+# define BUF		1048576
+# define MAX_NAME	512
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
@@ -63,7 +63,6 @@ typedef struct		s_ls
 	void			*i;
 	char			fname[MAX_NAME];
 	off_t			dirsize;
-	t_list			*prevdir;
 	t_list			*curdir;
 	t_list			*nextdir;
 	t_file			*curfile;
@@ -71,16 +70,17 @@ typedef struct		s_ls
 }					t_ls;
 
 void				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir);
+void				ft_ls_rec(t_ls *ls);
 void				ft_add_file(t_ls *ls);
-void				ft_del_filelist(t_file *file);
+void				ft_del_filelist(t_file **file);
 
-void					ft_get_mode(t_ls *ls, t_stat *stat);
-void					ft_get_nlink(t_ls *ls, t_stat *stat);
-void					ft_get_pwd(t_ls *ls, t_stat *stat);
-void					ft_get_size(t_ls *ls, t_stat *stat);
-void					ft_get_ctime(t_ls *ls, t_stat *stat);
+void				ft_get_mode(t_ls *ls, t_stat *stat);
+void				ft_get_nlink(t_ls *ls, t_stat *stat);
+void				ft_get_pwd(t_ls *ls, t_stat *stat);
+void				ft_get_size(t_ls *ls, t_stat *stat);
+void				ft_get_ctime(t_ls *ls, t_stat *stat);
 
-int						ft_print_mod(void **in, void **out);
-void					ft_print_dir(t_ls *ls, t_file	*file, int i);
+int					ft_print_mod(void **in, void **out);
+void				ft_print_dir(t_ls *ls, t_file	*file, int i);
 
 #endif
