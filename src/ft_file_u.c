@@ -4,7 +4,7 @@
 
 #include "ft_ls.h"
 
-int		ft_get_size(t_ls *ls, t_stat *stat)
+void		ft_get_size(t_ls *ls, t_stat *stat)
 {
 	int		size;
 
@@ -17,7 +17,5 @@ int		ft_get_size(t_ls *ls, t_stat *stat)
 	ls->curfile->size[4] = size;
 	if (ls->f_max_size[4] < size)
 		ls->f_max_size[4] = size;
-//	if (S_ISREG(stat->st_mode) || S_ISDIR(stat->st_mode))
-		ls->dirsize += stat->st_blocks << 9;
-	return (size);
+	ls->dirsize += stat->st_blocks << 9;
 }

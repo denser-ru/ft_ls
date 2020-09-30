@@ -14,6 +14,14 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	return (file->size[4] + 1 + ls->f_max_size[4] - file->size[4]);
 }
 
+int		ft_print_mod(void **in, void **out)
+{
+	ft_memcpy(*in, *out, 11);
+	*in += 11;
+	*out += 11;
+	return (11);
+}
+
 void	ft_print_dir(t_ls *ls)
 {
 	t_file	*file;
@@ -27,6 +35,7 @@ void	ft_print_dir(t_ls *ls)
 	while (file)
 	{
 		out = file->adr + file->size[5];
+		i += ft_print_mod(&in, &out);
 		i += ft_print_size(ls, &in, &out, file);
 		ft_memcpy(in, file->adr, file->size[5]);
 		in += file->size[5];

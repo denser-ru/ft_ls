@@ -72,6 +72,7 @@ void				ft_add_file(t_ls *ls);
 void				ft_print_dir(t_ls *ls);
 void				ft_del_filelist(t_file *file);
 
-int					ft_get_size(t_ls *ls, t_stat *stat);
+void					ft_get_size(t_ls *ls, t_stat *stat);
+void					ft_get_mode(t_ls *ls, t_stat *stat);
 
 #endif
