@@ -43,6 +43,7 @@ void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir)
 		ft_get_nlink(ls, &stat);
 		ft_get_pwd(ls, &stat);
 		ft_get_size(ls, &stat);
+		ft_get_ctime(ls, &stat);
 	}
 	ft_print_dir(ls);
 	ft_del_filelist(ls->filelist);

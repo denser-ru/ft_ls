@@ -59,3 +59,11 @@ void		ft_get_mode(t_ls *ls, t_stat *stat)
 	ls->i += 11;
 	ls->curfile->mode = stat->st_mode;
 }
+
+int		ft_print_mod(void **in, void **out)
+{
+	ft_memcpy(*in, *out, 11);
+	*in += 11;
+	*out += 11;
+	return (11);
+}

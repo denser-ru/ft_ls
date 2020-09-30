@@ -47,8 +47,20 @@ void		ft_get_size(t_ls *ls, t_stat *stat)
 	else
 		ft_memcpy(ls->i, ls->bufdir, size);
 	ls->i += size;
-	ls->curfile->size[4] = size;
-	if (ls->f_max_size[4] < size)
-		ls->f_max_size[4] = size;
+	ls->curfile->size[3] = size;
+	if (ls->f_max_size[3] < size)
+		ls->f_max_size[3] = size;
 	ls->dirsize += stat->st_blocks << 9;
+}
+
+void		ft_get_ctime(t_ls *ls, t_stat *stat)
+{
+	int		size;
+	char	*time;
+
+	time = ctime(&(stat->st_ctime));
+	size = ft_strlen(time);
+	ft_memcpy(ls->i, time, size);
+	ls->i += ++size;
+	ls->curfile->size[4] = size;
 }
