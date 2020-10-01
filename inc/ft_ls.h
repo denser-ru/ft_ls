@@ -49,13 +49,12 @@ typedef struct		s_file
 	int				size[6];
 	time_t			ctime;
 	mode_t			mode;
-	struct s_file	*prev;
 	struct s_file	*next;
 }					t_file;
 
 typedef struct		s_ls
 {
-	char			**rootdir;
+	char			**argv;
 	t_list			*dirlist;
 	t_file			*filelist;
 	void			*bufdir;
@@ -64,12 +63,12 @@ typedef struct		s_ls
 	char			fname[MAX_NAME];
 	off_t			dirsize;
 	t_list			*curdir;
-	t_list			*nextdir;
 	t_file			*curfile;
 	int				f_max_size[5];
 }					t_ls;
 
-void				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir);
+void				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
+								t_list **dirlist);
 void				ft_ls_rec(t_ls *ls);
 void				ft_add_file(t_ls *ls);
 void				ft_del_filelist(t_file **file);

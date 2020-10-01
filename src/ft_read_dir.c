@@ -28,42 +28,37 @@ static void		ft_init_max_size(t_ls *ls, int i)
 		ls->f_max_size[i++] = 0;
 }
 
-/*static t_list		*ft_lstend(t_list *list)
-{
-	if (list)
-		while (list->next)
-			list = list->next;
-	return (list);
-}*/
-
 void	ft_lstprint(t_list *list)
 {
 	ft_putnendl(list->content, list->content_size);
 }
 
-void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir)
+void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, t_list **dirlist)
 {
 	t_stat	stat;
 
 	ls->i = ls->buffile;
 	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;
+	ls->curfile = ls->filelist;
 	while ((dirp = readdir(dir)) != NULL)
 	{
-		ft_add_file(ls);
+		ls->curfile->adr = ls->i;
 		ft_get_fname(ls, dirp, ls->fname);
 		lstat(ls->fname, &stat);
 		if ((stat.st_mode & S_IFDIR) && ft_strcmp(dirp->d_name, ".") &&
 				ft_strcmp(dirp->d_name, ".."))
-			ft_lstpushb(&(ls->curdir), ls->fname, ft_strlen(ls->fname));
+			ft_lstpushb(dirlist, ls->fname, ft_strlen(ls->fname));
 		ft_get_mode(ls, &stat);
 		ft_get_nlink(ls, &stat);
 		ft_get_pwd(ls, &stat);
 		ft_get_size(ls, &stat);
 		ft_get_ctime(ls, &stat);
+		if (!(ls->curfile->next))
+			ft_add_file(ls);
+		else
+			ls->curfile = ls->curfile->next;
 	}
-//	ft_lstiter(ls->curdir, &ft_lstprint);
+	ls->curfile->adr = NULL;
 	ft_print_dir(ls, ls->filelist, 0);
-	ft_del_filelist(&(ls->filelist));
-	ls->curfile = NULL;
 }
