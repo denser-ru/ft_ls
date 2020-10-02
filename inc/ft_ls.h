@@ -59,11 +59,12 @@ typedef struct		s_ls
 {
 	char			**argv;
 	t_file			*filelist;
-//	char			*bufls;
+	char			*bufls;
 	void			*bufdir;
 	void			*buffile;
 	void			*bufrec;
 	void			*i;
+	void			*j;
 	char			cur_dirname[MAX_FNAME];
 	char			fname[MAX_FNAME];
 	off_t			dirsize;
@@ -74,6 +75,8 @@ typedef struct		s_ls
 
 int					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, char *buf);
 void				ft_ls_rec(t_ls *ls, char *buf);
+void				ft_tobuf(t_ls *ls, char *s, size_t size);
+void				ft_nbrtobuf(t_ls *ls, int n);
 int					ft_strcpyn(char *dst, const char *src);
 void				ft_add_file(t_ls *ls);
 void				ft_del_filelist(t_file **file);

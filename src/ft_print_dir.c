@@ -70,8 +70,8 @@ void	ft_print_dir(t_ls *ls, t_file	*file, int i)
 		i += file->size[5] + 1;
 		file = file->next;
 	}
-	ft_putnstr("total: ", 7);
-	ft_putnbr(ls->dirsize >> 10);
-	ft_putchar('\n');
-	ft_putnstr(ls->bufdir, i);
+	ft_tobuf(ls, "total: ", 7);
+	ft_nbrtobuf(ls, ls->dirsize >> 10);
+	ft_tobuf(ls, "\n", 1);
+	ft_tobuf(ls, ls->bufdir, i);
 }
