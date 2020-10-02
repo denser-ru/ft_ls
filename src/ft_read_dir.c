@@ -8,8 +8,7 @@ static void		ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname)
 {
 	size_t	size;
 
-	size = ls->curdir->content_size;
-	ft_memcpy(fname, ls->curdir->content, size);
+	size = ft_strcpyn(fname, ls->cur_dirname);
 	fname += size;
 	if (*(fname - 1) != '/')
 		ft_memcpy(fname++, "/", 1);
@@ -33,10 +32,12 @@ void	ft_lstprint(t_list *list)
 	ft_putnendl(list->content, list->content_size);
 }
 
-void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, t_list **dirlist)
+int				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, char *start)
 {
 	t_stat	stat;
+	char	*buf;
 
+	buf = start;
 	ls->i = ls->buffile;
 	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;
@@ -48,7 +49,10 @@ void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, t_list **dirlist)
 		lstat(ls->fname, &stat);
 		if ((stat.st_mode & S_IFDIR) && ft_strcmp(dirp->d_name, ".") &&
 				ft_strcmp(dirp->d_name, ".."))
-			ft_lstpushb(dirlist, ls->fname, ft_strlen(ls->fname));
+		{
+			buf += ft_strcpyn(buf, ls->fname) + 1;
+			ft_memset(buf, '\0', 1);
+		}
 		ft_get_mode(ls, &stat);
 		ft_get_nlink(ls, &stat);
 		ft_get_pwd(ls, &stat);
@@ -59,6 +63,8 @@ void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, t_list **dirlist)
 		else
 			ls->curfile = ls->curfile->next;
 	}
+	*(++buf) = '\0';
 	ls->curfile->adr = NULL;
 	ft_print_dir(ls, ls->filelist, 0);
+	return (buf - start);
 }

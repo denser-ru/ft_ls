@@ -4,29 +4,36 @@
 
 #include "ft_ls.h"
 
-void			ft_ls_rec(t_ls *ls)
+int				ft_strcpyn(char *dst, const char *src)
+{
+	int i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		++i;
+	}
+	dst[i] = '\0';
+	return (i);
+}
+
+void			ft_ls_rec(t_ls *ls, char *buf)
 {
 	DIR			*dir;
 	t_dirent	*dirp;
-	t_list		*dirlist;
-	t_list		*curlist;
+	int			size;
 
 	dirp = NULL;
-	ft_memcpy(ls->fname, ls->curdir->content, ls->curdir->content_size);
-	ft_memset(ls->fname + ls->curdir->content_size, '\0', 1);
-	dirlist = NULL;
-	dir = opendir(ls->fname);
-	ft_putstr(ls->fname);
+	dir = opendir(ls->cur_dirname);
+	ft_putstr(ls->cur_dirname);
 	ft_putstr(":\n");
-	ft_read_dir(ls, dirp, dir, &dirlist);
+	size = ft_read_dir(ls, dirp, dir, buf);
 	closedir(dir);
-	curlist = dirlist;
-	while (curlist)
+	while (*(buf + 1))
 	{
 		ft_putchar('\n');
-		ls->curdir = curlist;
-		ft_ls_rec(ls);
-		curlist = curlist->next;
+		buf += ft_strcpyn(ls->cur_dirname, buf) + 1;
+		ft_ls_rec(ls, buf + size);
 	}
-	ft_lstdel(&dirlist, &ft_lstdelcontent);
 }

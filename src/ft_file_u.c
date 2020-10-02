@@ -8,7 +8,7 @@ void		ft_get_nlink(t_ls *ls, t_stat *stat)
 {
 	int		size;
 
-	size = ft_itoa_mem_d(ls->bufdir, stat->st_nlink);
+	size = ft_itoa_mem_d(ls->i, stat->st_nlink);
 	ft_memcpy(ls->i, ls->bufdir, size);
 	ls->i += size;
 	ls->curfile->size[0] = size;

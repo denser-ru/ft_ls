@@ -36,7 +36,10 @@
 # define LS_S		512
 
 # define BUF		1048576
+# define BUF_LS		1048576
+# define BUF_REC	1048576
 # define MAX_NAME	512
+# define MAX_FNAME	1024
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
@@ -55,21 +58,23 @@ typedef struct		s_file
 typedef struct		s_ls
 {
 	char			**argv;
-	t_list			*dirlist;
 	t_file			*filelist;
+//	char			*bufls;
 	void			*bufdir;
 	void			*buffile;
+	void			*bufrec;
 	void			*i;
-	char			fname[MAX_NAME];
+	char			cur_dirname[MAX_FNAME];
+	char			fname[MAX_FNAME];
 	off_t			dirsize;
 	t_list			*curdir;
 	t_file			*curfile;
 	int				f_max_size[5];
 }					t_ls;
 
-void				ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
-								t_list **dirlist);
-void				ft_ls_rec(t_ls *ls);
+int					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, char *buf);
+void				ft_ls_rec(t_ls *ls, char *buf);
+int					ft_strcpyn(char *dst, const char *src);
 void				ft_add_file(t_ls *ls);
 void				ft_del_filelist(t_file **file);
 

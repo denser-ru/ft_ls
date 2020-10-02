@@ -4,36 +4,25 @@
 
 #include "ft_ls.h"
 
-static void		*ft_dirlist_init(t_ls *ls, int size)
-{
-	t_list	*dirlist;
-	char	*rootdir_name;
-
-	rootdir_name = *(ls->argv);
-	if(rootdir_name[size - 1] == '/' && size > 1 && rootdir_name[size] != '\0')
-		--size;
-	dirlist = ft_lstnew(rootdir_name, size);
-	ls->curdir = dirlist;
-	return (dirlist);
-}
-
 static void		ft_ls_init(t_ls *ls, char **argv)
 {
 	ls->argv = ++argv;
-	ls->dirlist = ft_dirlist_init(ls, ft_strlen(*(ls->argv)));
+//	ls->bufls = (void*)malloc(sizeof(void) * BUF_LS);
 	ls->bufdir = (void*)malloc(sizeof(void) * BUF);
 	ls->buffile = (void*)malloc(sizeof(void) * BUF);
+	ls->bufrec = (char*)malloc(sizeof(char) * BUF_REC);
+	ft_strcpy(ls->cur_dirname, *(ls->argv));
 	ls->i = ls->buffile;
 	ls->filelist = NULL;
 	ft_add_file(ls);
 }
 
-void			ft_freemem(t_ls *ls, t_list **list)
+static void			ft_freemem(t_ls *ls)
 {
 	ft_del_filelist(&(ls->filelist));
-	ft_lstdel(list, ft_lstdelcontent);
 	free(ls->bufdir);
 	free(ls->buffile);
+	free(ls->bufrec);
 	free(ls);
 }
 
@@ -45,7 +34,7 @@ int				main(int argc, char **argv)
 		return (0);
 	ls = (t_ls*)malloc(sizeof(t_ls));
 	ft_ls_init(ls, argv);
-	ft_ls_rec(ls);
-	ft_freemem(ls, &(ls->dirlist));
+	ft_ls_rec(ls, ls->bufrec);
+	ft_freemem(ls);
 	return (0);
 }
