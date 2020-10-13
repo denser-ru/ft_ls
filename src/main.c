@@ -3,11 +3,33 @@
 //#include <stdlib.h>
 #include "ft_ls.h"
 
-void				print_err(char c)
+
+# define LS_UU		32
+# define LS_ONE		64
+# define LS_I		128
+
+
+
+
+int		ft_one_argument(char **argv, unsigned long long fl)
 {
-	printf("ls: illegal option -- %c\n", c);
-	printf("usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
-	exit (0);
+	t_stat stat;
+
+	errno = 0;
+	if ((lstat(*argv, &stat)) == -1)
+		print_error(*argv, 1);
+
+	//Вызов ft_ls (main cayako)
+
+	if (S_ISDIR(stat.st_mode))
+		printf("ISDIR\n");
+	else
+		ft_putendl("No");
+//		ft_ls(1, argv, fl, 1);
+
+//		ft_ls(1, argv, fl, 0);
+
+	return (0);
 }
 
 int					flags_f(char c, unsigned long long *fl)
@@ -22,19 +44,27 @@ int					flags_f(char c, unsigned long long *fl)
 		*(fl) = *fl | LS_R;
 	else if (c == 't')
 		*(fl) = *fl | LS_T;
+	else if (c == 'U')
+		*(fl) = *fl | LS_UU;
+	else if (c == '1')
+		*(fl) = *fl | LS_ONE;
+	else if (c == 'i')
+		*(fl) = *fl | LS_I;
 	else
-		print_err(c);
+		print_ls_error_ls(c);
 	return (0);
 }
 
-unsigned long long	flags(int argc, char ** argv, unsigned long long fl)
+unsigned long long	flags(int *argc, char ***argv_orig, unsigned long long fl)
 {
 	int		i;
 	int		j;
+	char	**argv;
 
 	i = 1;
+	argv = *argv_orig;
 	*(argv[0]) = '\0';
-	while (i < argc && *(argv[i]) == '-')
+	while (i < *argc && *(argv[i]) == '-')
 	{
 		j = 1;
 		while (argv[i][j])
@@ -42,6 +72,8 @@ unsigned long long	flags(int argc, char ** argv, unsigned long long fl)
 		*(argv[i]) = '\0';
 		i++;
 	}
+	*argc -= i;
+	* argv_orig = argv + i;
 	return (fl);
 }
 
@@ -49,7 +81,13 @@ int					main(int argc, char **argv)
 {
 	unsigned long long	fl;
 
-	fl = flags(argc, argv, 0);
+	fl = flags(&argc, &argv, 0);
+
+	if (argc == 1)
+		ft_one_argument(argv, fl);
+	else
+		ft_arguments(argc, argv, fl);
+
 
 	//Вызов ft_ls (main cayako)
 
