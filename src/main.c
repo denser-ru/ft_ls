@@ -1,38 +1,37 @@
 
 #include <stdio.h>
-//#include <stdlib.h>
-#include "ft_ls.h"
+#include "ft_ls_gsinged.h"
 
 
-# define LS_UU		32
-# define LS_ONE		64
-# define LS_I		128
+/*
+ *
+ * void	ft_ls(char *fname, char d, t_ls *ls);
+ * fname - filename
+ * d - является ли filename каталогом. 0 (нет) или 1 (да)
+ * ls - структура ls
+ * В ls->filelist есть уже листы
+ *
+ */
 
+static void	ft_ls(char *fname, char d, t_ls *ls)
+{
 
+}
 
-
-int		ft_one_argument(char **argv, unsigned long long fl)
+void		ft_one_argument(char **argv, t_ls *ls)
 {
 	t_stat stat;
 
 	errno = 0;
 	if ((lstat(*argv, &stat)) == -1)
 		print_error(*argv, 1);
-
-	//Вызов ft_ls (main cayako)
-
 	if (S_ISDIR(stat.st_mode))
-		printf("ISDIR\n");
+		ft_ls(*argv, 1, ls);
 	else
-		ft_putendl("No");
-//		ft_ls(1, argv, fl, 1);
-
-//		ft_ls(1, argv, fl, 0);
-
-	return (0);
+		ft_ls(*argv, 0, ls);
 }
 
-int					flags_f(char c, unsigned long long *fl)
+static int			flags_f(char c, unsigned long long *fl)
 {
 	if (c == 'a')
 		*fl = *fl | LS_A;
@@ -80,16 +79,19 @@ unsigned long long	flags(int *argc, char ***argv_orig, unsigned long long fl)
 int					main(int argc, char **argv)
 {
 	unsigned long long	fl;
+	t_ls				*ls;
 
 	fl = flags(&argc, &argv, 0);
-
+	if (!(ls = (t_ls*)malloc(sizeof(t_ls))))
+		print_error(NULL, 1);
+	ft_bzero(ls, sizeof(t_ls));
+	ls->fl = fl;
 	if (argc == 1)
-		ft_one_argument(argv, fl);
+		ft_one_argument(argv, ls);
 	else
-		ft_arguments(argc, argv, fl);
+		ft_arguments(argc, argv, ls);
 
-
-	//Вызов ft_ls (main cayako)
-
+//	void			ft_freemem(t_ls *ls, t_list **list)
+//	ft_freemem(t_*ls, t_list **list);
 	return (0);
 }

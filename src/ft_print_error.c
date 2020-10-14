@@ -1,7 +1,7 @@
 
 
 
-#include "ft_ls.h"
+# include "ft_ls_gsinged.h"
 
 void				print_ls_error_ls(char c)
 {

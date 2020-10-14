@@ -1,39 +1,13 @@
 
 
-#include "ft_ls.h"
+# include "ft_ls_gsinged.h"
 #include <stdio.h>
 
 /*
  * size[0] - i in char **argv. argv[i].
  * size[1] - number errno
  *
- * f->size[2] - количество списков
  */
-
-void	ft_arg_add_file(t_file *f, int i, t_stat *stat, char **argv)
-{
-	t_file		*file;
-
-	if (!(file = (t_file *)malloc(sizeof(t_file))))
-		print_error(NULL, 1);
-	ft_bzero(file, sizeof(t_file));
-	file->size[0] = i;
-	if (stat)
-		file->ctime = stat->st_mtime;
-	file->adr = argv[i];
-	if (!f[0].next)
-	{
-		f[0].next = file;
-		f[0 + 3].next = file;
-		f[0].size[0] = 1;
-	}
-	else
-	{
-		(f[0 + 3].next)->next = file;
-		f[0 + 3].next = (f[0 + 3].next)->next;
-		f[0].size[0]++;
-	}
-}
 
 void	ft_get_stat(char **argv, int i, t_file *f)
 {
@@ -51,149 +25,16 @@ void	ft_get_stat(char **argv, int i, t_file *f)
 		ft_arg_add_file(&(f[1]), i, &stat, argv);
 }
 
-char	ft_arg_r(unsigned long long r)
-{
-	r = r & LS_R;
-	if (r > 0)
-		return (1);
-	else
-		return (0);
-}
-
-void	ft_change(t_file *f)
-{
-	t_file		*c;
-
-	c = f->next;
-	f->next = f->next->next;
-	c->next = f->next->next;
-	f->next->next = c;
-}
-
-int		ft_arg_sort_lexicographical_r_b(t_file *f)
-{
-	int		n;
-
-	n = 0;
-	while (f->next->next)
-	{
-		if ((ft_strcmp(f->next->adr, f->next->next->adr)) < 0)
-			ft_change(f);
-		f = f->next;
-		n++;
-	}
-	return (n);
-}
-
-int 	ft_arg_sort_lexicographical_r(t_file *f0)
-{
-	int		i;
-	t_file	*f;
-	int		n;
-
-	if (!f0->next || !f0->next->next)
-		return (0);
-	f = f0;
-	n = ft_arg_sort_lexicographical_r_b(f0) - 1;
-	while (n > 0)
-	{
-		i = 0;
-		f = f0;
-		while (i++ < n)
-		{
-			if ((ft_strcmp(f->next->adr, f->next->next->adr)) < 0)
-				ft_change(f);
-			f = f->next;
-		}
-		n--;
-	}
-	return (0);
-}
-
-int		ft_arg_sort_lexicographical_b(t_file *f)
-{
-	int		n;
-
-	n = 0;
-	while (f->next->next)
-	{
-		if ((ft_strcmp(f->next->adr, f->next->next->adr)) > 0)
-			ft_change(f);
-		f = f->next;
-		n++;
-	}
-	return (n);
-}
-
-
-
-int 	ft_arg_sort_lexicographical(t_file *f0, unsigned long long r)
-{
-	int		i;
-	t_file	*f;
-	int		n;
-
-	if (!f0->next || !f0->next->next)
-		return (0);
-	if (ft_arg_r(r))
-		return (ft_arg_sort_lexicographical_r(f0));
-	f = f0;
-	n = ft_arg_sort_lexicographical_b(f0) - 1;
-	while (n > 0)
-	{
-		i = 0;
-		f = f0;
-		while (i++ < n)
-		{
-			if ((ft_strcmp(f->next->adr, f->next->next->adr)) > 0)
-				ft_change(f);
-			f = f->next;
-		}
-		n--;
-	}
-	return (0);
-}
-
-int			ft_arg_sort_modified(t_file *f0)
-{
-	t_file		*f;
-	int			n;
-	int			i;
-
-	if (!f0->next || !f0->next->next)
-		return (0);
-	n = 0;
-	f = f0;
-	while (f->next->next)
-	{
-		if (f->next->ctime < f->next->next->ctime)
-			ft_change(f);
-		f = f->next;
-		n++;
-	}
-	n--;
-	while (n > 0)
-	{
-		i = 0;
-		f = f0;
-		while (i++ < n)
-		{
-			if (f->next->ctime < f->next->next->ctime)
-				ft_change(f);
-			f = f->next;
-		}
-		n--;
-	}
-	return (0);
-}
-
 void	ft_arg_gl_sort(t_file *f, unsigned long long fl)
 {
 	ft_arg_sort_lexicographical(&(f[0]), 0);
 	ft_arg_sort_lexicographical(&(f[1]), fl);
 	ft_arg_sort_lexicographical(&(f[2]), fl);
-	ft_arg_sort_modified(&(f[1]));
-	ft_arg_sort_modified(&(f[2]));
+	if (fl & LS_T)
+	{
+		ft_arg_sort_modified(&(f[1]));
+		ft_arg_sort_modified(&(f[2]));
+	}
 }
 
 void	ft_arg_print_f1(t_file *f, char **argv)
@@ -209,44 +50,63 @@ void	ft_arg_print_f1(t_file *f, char **argv)
 	}
 }
 
-void	ft_arg_print_test(t_file *f, char **argv)
+void	ft_arg_print_test(t_file *f)
 {
-	while (f)
-	{
 		ft_putstr(f->adr);
 		ft_putchar(' ');
 		ft_putstr(ctime(&f->ctime));
-//		printf(" %s!\n", ctime(&f->ctime));
-//		ft_putchar('\n');
-		f = f->next;
+}
+
+static void	ft_ls(char *fname, char d, t_ls *ls)
+{
+
+}
+
+void	ft_arg_put_b(t_file *fsix, t_ls *ls, int n, char d)
+{
+	t_file		*f;
+	t_file		*c;
+
+	ls->filelist = fsix[0].next;
+	if ((f = fsix[n].next))
+	{
+		while (f->next)
+		{
+			ft_ls(f->adr, d, ls);
+
+//			ft_arg_print_test(f);
+//			тестово использовать вместо ft_ls - выводит fname
+			c = f;
+			f = f->next;
+			c->next = ls->filelist;
+			ls->filelist = c;
+		}
+		ft_ls(f->adr, d, ls);
+
+//		ft_arg_print_test(f);
+//		тестово использовать вместо ft_ls - выводит fname
+
+		f->next = ls->filelist;
+		ls->filelist = f;
 	}
 }
 
-void	ft_arg_put(t_file *f, char **argv)
-{
-	ft_arg_print_f1(f[0].next, argv);
-	//		ft_ls(1, argv, fl, 1);
-	ft_arg_print_test(f[1].next, argv);
-	ft_putchar('\n');
-	//		ft_ls(1, argv, fl, 1);
-	ft_arg_print_test(f[2].next, argv);
-
-}
-
-void	ft_arguments(int argc, char **argv, unsigned long long fl)
+void	ft_arguments(int argc, char **argv, t_ls *ls)
 {
 	int		i;
-	t_file	f[6];
+	t_file	fsix[6];
 
-	ft_bzero(f, sizeof(f));
+	ft_bzero(fsix, sizeof(fsix));
 	i = 0;
 	while (i < argc)
 	{
-		ft_get_stat(argv, i, f);
+		ft_get_stat(argv, i, fsix);
 		i++;
 	}
-	ft_arg_gl_sort(f, fl);
-	ft_arg_put(f, argv);
+	ft_arg_gl_sort(fsix, ls->fl);
+	ft_arg_print_f1(fsix[0].next, argv);
+	ft_arg_put_b(fsix, ls, 1, 0);
+	ft_arg_put_b(fsix, ls, 2, 1);
 }
 
 //../src/main.c ../libft ../src/ft_arguments.c
