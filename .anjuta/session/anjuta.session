@@ -2,17 +2,17 @@
 Maximized=1
 Geometry=1920x1019+0+29
 
-[File Loader]
-Files=../../src/ft_ls.c#30%%%../../src/ft_filelist.c#10%%%../../src/ft_print_dir.c#50%%%../../src/ft_read_dir.c#36%%%../../src/ft_file_u.c#11%%%../../inc/ft_ls.h#79%%%../../src/ft_filemode.c#60%%%../../src/ft_ls_rec.c#32
-
-[Document Manager]
-bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
-
 [Execution]
 Program arguments=./
 Program uri=../../ft_ls
 Run in terminal=2
 Working directories=../../.
+
+[File Loader]
+Files=../../src/ft_ls.c#30%%%../../src/ft_filelist.c#10%%%../../src/ft_print_dir.c#50%%%../../src/ft_read_dir.c#36%%%../../src/ft_file_u.c#11%%%../../inc/ft_ls.h#79%%%../../src/ft_filemode.c#60%%%../../src/ft_ls_rec.c#32
+
+[Document Manager]
+bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 
 [Build]
 Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
