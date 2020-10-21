@@ -1,6 +1,4 @@
 
-
-
 #include "ft_ls_gsinged.h"
 
 void	ft_change(t_file *f)
