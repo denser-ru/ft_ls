@@ -46,7 +46,7 @@ void			ft_freemem(t_ls *ls, t_list **list)
 
 void			ft_ls(char *fname, char d, t_ls *ls)
 {
-	if (d && fname)
+	if (d)
 	{
 		ft_ls_init(ls, fname);
 		ft_ls_rec(ls);

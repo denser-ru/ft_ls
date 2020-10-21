@@ -56,7 +56,7 @@ static int			flags_f(char c, unsigned long long *fl)
 	else if (c == 'U')
 		*(fl) = *fl | LS_UU;
 	else if (c == '1')
-		*(fl) = *fl | FTLS_ONE;
+		*(fl) = *fl | LS_ONE;
 	else if (c == 'i')
 		*(fl) = *fl | LS_I;
 	else
