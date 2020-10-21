@@ -46,10 +46,12 @@ void			ft_freemem(t_ls *ls, t_list **list)
 
 void			ft_ls(char *fname, char d, t_ls *ls)
 {
-	if (d && fname)
+	if (d && fname && *fname)
 	{
-		ft_ls_init(ls, fname);
+		if (!(ls->bufdir))
+			ft_ls_init(ls, fname);
 		ft_ls_rec(ls);
+	ft_del_filelist(&(ls->filelist));
+	ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	}
-//	ft_freemem(ls, &(ls->dirlist));
 }

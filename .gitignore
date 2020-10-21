@@ -50,14 +50,20 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Anjuta
+*.c~
+*~
+ft_ls
 .anjuta
 .anjuta_sym_db.db
+src/Makefile.am
 AUTHORS
-autogen.sh
-ChangeLog
-configure.ac
 COPYING
-ft_ls.anjuta
+ChangeLog
 Makefile.am
 NEWS
 README
+autogen.sh
+configure.ac
+ft_ls.anjuta
