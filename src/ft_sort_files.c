@@ -42,7 +42,7 @@ void	ft_sort_files(t_ls *ls)
 	if(!(ls->fl))
 		while(file && file->adr && file->next && file->next->adr)
 		{
-			i = ft_strncmp(file->adr, file->next->adr, file->size[5] >
+			i = ft_strncmp(file->adr, file->next->adr, file->size[5] <
 				file->next->size[5] ? file->next->size[5] : file->size[5]);
 			if (!i && file->size[5] != file->next->size[5])
 				ft_swap_files(ls, &file);
