@@ -67,3 +67,8 @@ README
 autogen.sh
 configure.ac
 ft_ls.anjuta
+
+# CLion
+.idea/
+CMakeLists.txt
+cmake-build-debug/

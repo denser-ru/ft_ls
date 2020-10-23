@@ -21,12 +21,14 @@ void			ft_add_file(t_ls *ls)
 	{
 		ls->curfile->next = file;
 		file->adr = ls->i;
+		file->prev = ls->curfile ;
 		file->next = NULL;
 		ls->curfile = file;
 	}
 	else
 	{
 		file->adr = ls->i;
+		file->prev = NULL;
 		file->next = NULL;
 		ls->curfile = file;
 		ls->filelist = file;
