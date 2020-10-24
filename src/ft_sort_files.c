@@ -16,18 +16,25 @@ void	ft_swap_files(t_ls *ls, t_file **curfile)
 {
 	t_file	*file;
 
-	file = (*curfile);
-	if (!(file->prev))
-	{
-		ls->filelist = file->next;
-		file->next = file;
 
+	file = (*curfile)->next;
+	if (!((*curfile)->prev))
+	{
+		ls->filelist = file;
+		(*curfile)->next = file->next;
+		(*curfile)->next->prev = *curfile;
+		(*curfile)->prev = file;
+		file->prev = NULL;
+		file->next = *curfile;
 	}
 	else
 	{
-		file->prev->next = file->next;
-		file->next = file->next->next;
-		file->prev->next = file;
+		file->prev = (*curfile)->prev;
+		(*curfile)->next = file->next;
+		(*curfile)->next->prev = *curfile;
+		(*curfile)->prev->next = file;
+		(*curfile)->prev = file;
+		file->next = *curfile;
 	}
 	*curfile = ls->filelist;
 }
@@ -40,12 +47,13 @@ void	ft_sort_files(t_ls *ls)
 	i = 0;
 	file = ls->filelist;
 	if(!(ls->fl))
-		while(file && file->adr && file->next && file->next->adr)
+		while(file && file->adr && file->next->adr)
 		{
-			i = ft_strncmp(file->adr, file->next->adr, file->size[5] <
+			i = ft_strncmp(file->adr, file->next->adr, file->size[5] > 
 				file->next->size[5] ? file->next->size[5] : file->size[5]);
-			if (!i && file->size[5] != file->next->size[5])
+			if (i > 0 || (!i && file->size[5] > file->next->size[5]))
 				ft_swap_files(ls, &file);
-			file = file->next;
+			else
+				file = file->next;
 		}
 }
