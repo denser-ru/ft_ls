@@ -42,16 +42,16 @@ static int		ft_print_pwd(t_ls *ls, void **in, void **out, t_file *file)
 	*in += file->size[1];
 	*out += file->size[1];
 	ft_memset(*in, ' ', ls->f_max_size[1] - file->size[1] + 1);
-	*in += ls->f_max_size[1] - file->size[1] +1;
+	*in += ls->f_max_size[1] - file->size[1] + 1;
 	ft_memcpy(*in, *out, file->size[2]);
 	*in += file->size[2];
 	*out += file->size[2];
 	ft_memset(*in, ' ', ls->f_max_size[2] - file->size[2] + 1);
-	*in += ls->f_max_size[2] - file->size[2] +1;
+	*in += ls->f_max_size[2] - file->size[2] + 1;
 	return (ls->f_max_size[1] + ls->f_max_size[2] + 2);
 }
 
-int		ft_print_time(void **in, void **out)
+int				ft_print_time(void **in, void **out)
 {
 	ft_memcpy(*in, *out, 10);
 	*in += 10;
@@ -60,7 +60,7 @@ int		ft_print_time(void **in, void **out)
 	return (11);
 }
 
-void	ft_print_dir(t_ls *ls, t_file	*file, int i)
+void			ft_print_dir(t_ls *ls, t_file *file, int i)
 {
 	void	*in;
 	void	*out;

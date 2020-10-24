@@ -22,10 +22,10 @@ static void		ft_get_umode(t_ls *ls, t_stat *stat)
 		ft_memset(ls->i + 3, 'S', 1);
 	if (stat->st_mode & S_IXUSR)
 	{
-		if(stat->st_mode & S_ISUID)
+		if (stat->st_mode & S_ISUID)
 			ft_memset(ls->i + 3, 's', 1);
 		else
-		ft_memset(ls->i + 3, 'x', 1);
+			ft_memset(ls->i + 3, 'x', 1);
 	}
 }
 
@@ -39,14 +39,14 @@ static void		ft_get_gmode(t_ls *ls, t_stat *stat)
 		ft_memset(ls->i + 6, 'S', 1);
 	if (stat->st_mode & S_IXGRP)
 	{
-		if(stat->st_mode & S_ISGID)
+		if (stat->st_mode & S_ISGID)
 			ft_memset(ls->i + 6, 's', 1);
 		else
-		ft_memset(ls->i + 6, 'x', 1);
+			ft_memset(ls->i + 6, 'x', 1);
 	}
 }
 
-void		ft_get_mode(t_ls *ls, t_stat *stat)
+void			ft_get_mode(t_ls *ls, t_stat *stat)
 {
 	ft_memset(ls->i, '-', 10);
 	ft_memset(ls->i + 10, ' ', 1);
@@ -68,7 +68,7 @@ void		ft_get_mode(t_ls *ls, t_stat *stat)
 	ls->curfile->mode = stat->st_mode;
 }
 
-int		ft_print_mod(void **in, void **out)
+int				ft_print_mod(void **in, void **out)
 {
 	ft_memcpy(*in, *out, 11);
 	*in += 11;

@@ -18,7 +18,7 @@ static void		*ft_dirlist_init(t_ls *ls, int size, char *fname)
 	char	*rootdir_name;
 
 	rootdir_name = fname;
-	if(rootdir_name[size - 1] == '/' && size > 1 && rootdir_name[size] != '\0')
+	if (rootdir_name[size - 1] == '/' && size > 1 && rootdir_name[size] != '\0')
 		--size;
 	dirlist = ft_lstnew(rootdir_name, size);
 	ls->curdir = dirlist;
@@ -51,7 +51,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 		if (!(ls->bufdir))
 			ft_ls_init(ls, fname);
 		ft_ls_rec(ls);
-	ft_del_filelist(&(ls->filelist));
-	ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
+		ft_del_filelist(&(ls->filelist));
+		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	}
 }

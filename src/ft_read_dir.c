@@ -36,21 +36,22 @@ static void		ft_init_max_size(t_ls *ls, int i)
 		ls->f_max_size[i++] = 0;
 }
 
-void	ft_lstprint(t_list *list)
+void			ft_lstprint(t_list *list)
 {
 	ft_putnendl(list->content, list->content_size);
 }
 
-static void			ft_get_stat(t_ls *ls, t_stat *stat)
+static void		ft_get_stat(t_ls *ls, t_stat *stat)
 {
-		ft_get_mode(ls, stat);
-		ft_get_nlink(ls, stat);
-		ft_get_pwd(ls, stat);
-		ft_get_size(ls, stat);
-		ft_get_ctime(ls, stat);
+	ft_get_mode(ls, stat);
+	ft_get_nlink(ls, stat);
+	ft_get_pwd(ls, stat);
+	ft_get_size(ls, stat);
+	ft_get_ctime(ls, stat);
 }
 
-void			ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir, t_list **dirlist)
+void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir,
+					t_list **dirlist)
 {
 	t_stat	stat;
 
