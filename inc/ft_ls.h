@@ -70,7 +70,9 @@ typedef struct			s_ls
 {
 	t_list				*dirlist;
 	t_file				*filelist;
-	void				(*ft_ls_func)();
+	void				(*ls_func)();
+	void				(*sort_dirs)();
+	void				(*sort_files)();
 	void				*bufdir;
 	void				*buffile;
 	void				*i;
@@ -84,8 +86,6 @@ typedef struct			s_ls
 
 void					ft_ls(char *fname, char d, t_ls *ls);
 void					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
-						t_list **dirlist);
-void					ft_read_dir_lru(t_ls *ls, t_dirent	*dirp, DIR *dir,
 						t_list **dirlist);
 void					ft_sort_dirs(t_ls *ls);
 void					ft_sort_files(t_ls *ls);
@@ -102,5 +102,11 @@ void					ft_get_ctime(t_ls *ls, t_stat *stat);
 
 int						ft_print_mod(void **in, void **out);
 void					ft_print_dir(t_ls *ls, t_file	*file, int i);
+
+void					ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname);
+void					ft_init_max_size(t_ls *ls, int i);
+t_dirent				*ft_get_dirp(t_dirent *dirp, DIR *dir,
+									unsigned long long fl);
+void					ft_void_func(void);
 
 #endif
