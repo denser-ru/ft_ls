@@ -82,6 +82,7 @@ typedef struct			s_ls
 void					ft_ls(char *fname, char d, t_ls *ls);
 void					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
 						t_list **dirlist);
+void					ft_sort_dirs(t_ls *ls);
 void					ft_sort_files(t_ls *ls);
 void					ft_ls_rec(t_ls *ls);
 void					ft_add_file(t_ls *ls);

@@ -74,6 +74,7 @@ void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir,
 			ls->curfile = ls->curfile->next;
 	}
 	ls->curfile->adr = NULL;
+	ft_sort_dirs(ls);
 	ft_sort_files(ls);
 	ft_print_dir(ls, ls->filelist, 0);
 }
