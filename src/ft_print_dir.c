@@ -53,11 +53,11 @@ static int		ft_print_pwd(t_ls *ls, void **in, void **out, t_file *file)
 
 int				ft_print_time(void **in, void **out)
 {
-	ft_memcpy(*in, *out, 10);
-	*in += 10;
-	*out += 10;
+	ft_memcpy(*in, *out, 16);
+	*in += 16;
+	*out += 16;
 	ft_memset((*in)++, ' ', 1);
-	return (11);
+	return (17);
 }
 
 void			ft_print_dir(t_ls *ls, t_file *file, int i)

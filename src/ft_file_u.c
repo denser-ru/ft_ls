@@ -66,7 +66,7 @@ void		ft_get_ctime(t_ls *ls, t_stat *stat)
 	int		size;
 	char	*time;
 
-	time = ctime(&(stat->st_ctime));
+	time = ctime(&(stat->st_mtime));
 	size = ft_strlen(time);
 	ft_memcpy(ls->i, time, size);
 	ls->i += ++size;
