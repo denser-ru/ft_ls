@@ -50,6 +50,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 	{
 		if (!(ls->bufdir))
 			ft_ls_init(ls, fname);
+		ls->ft_ls_func = ft_read_dir;
 		ft_ls_rec(ls);
 		ft_del_filelist(&(ls->filelist));
 		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);

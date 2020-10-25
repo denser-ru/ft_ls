@@ -68,6 +68,7 @@ typedef struct			s_ls
 {
 	t_list				*dirlist;
 	t_file				*filelist;
+	void				(*ft_ls_func)();
 	void				*bufdir;
 	void				*buffile;
 	void				*i;
@@ -81,6 +82,8 @@ typedef struct			s_ls
 
 void					ft_ls(char *fname, char d, t_ls *ls);
 void					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
+						t_list **dirlist);
+void					ft_read_dir_lru(t_ls *ls, t_dirent	*dirp, DIR *dir,
 						t_list **dirlist);
 void					ft_sort_dirs(t_ls *ls);
 void					ft_sort_files(t_ls *ls);

@@ -26,7 +26,8 @@ void			ft_ls_rec(t_ls *ls)
 	dir = opendir(ls->fname);
 	ft_putstr(ls->fname);
 	ft_putstr(":\n");
-	ft_read_dir(ls, dirp, dir, &dirlist);
+	//ft_read_dir(ls, dirp, dir, &dirlist);
+	ls->ft_ls_func(ls, dirp, dir, &dirlist);
 	closedir(dir);
 	curlist = dirlist;
 	while (curlist)
