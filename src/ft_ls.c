@@ -44,14 +44,25 @@ void			ft_freemem(t_ls *ls, t_list **list)
 	free(ls);
 }
 
+void			ft_read_func(t_ls *ls)
+{
+	if (ls->fl & LS_UU)
+		ls->ft_ls_func = ft_read_dir_lru;
+	else
+		ls->ft_ls_func = ft_read_dir;
+	if (ls->fl & LS_RR)
+		ft_ls_rec(ls);
+	else
+		ft_ls_l(ls);
+}
+
 void			ft_ls(char *fname, char d, t_ls *ls)
 {
 	if (d && fname && *fname)
 	{
 		if (!(ls->bufdir))
 			ft_ls_init(ls, fname);
-		ls->ft_ls_func = ft_read_dir;
-		ft_ls_rec(ls);
+		ft_read_func(ls);
 		ft_del_filelist(&(ls->filelist));
 		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	}

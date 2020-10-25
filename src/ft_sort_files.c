@@ -45,16 +45,15 @@ void	ft_sort_files(t_ls *ls)
 
 	i = 0;
 	file = ls->filelist;
-	if (!(ls->fl))
-		while (file && file->adr && file->next->adr)
-		{
-			i = ft_strncmp(file->adr, file->next->adr, file->size[5] >
-				file->next->size[5] ? file->next->size[5] : file->size[5]);
-			if (i > 0 || (!i && file->size[5] > file->next->size[5]))
-				ft_swap_files(ls, &file);
-			else
-				file = file->next;
-		}
+	while (file && file->adr && file->next->adr)
+	{
+		i = ft_strncmp(file->adr, file->next->adr, file->size[5] >
+			file->next->size[5] ? file->next->size[5] : file->size[5]);
+		if (i > 0 || (!i && file->size[5] > file->next->size[5]))
+		ft_swap_files(ls, &file);
+		else
+			file = file->next;
+	}
 }
 
 void	ft_swap_dirs(t_ls *ls, t_list **curdir)

@@ -45,6 +45,8 @@
 # define LS_ONE		128
 # define LS_SS		256
 # define LS_S		512
+# define LS_UU		1024
+# define LS_I		2048
 
 # define BUF		1048576
 # define MAX_NAME	512
@@ -88,6 +90,7 @@ void					ft_read_dir_lru(t_ls *ls, t_dirent	*dirp, DIR *dir,
 void					ft_sort_dirs(t_ls *ls);
 void					ft_sort_files(t_ls *ls);
 void					ft_ls_rec(t_ls *ls);
+void					ft_ls_l(t_ls *ls);
 void					ft_add_file(t_ls *ls);
 void					ft_del_filelist(t_file **file);
 

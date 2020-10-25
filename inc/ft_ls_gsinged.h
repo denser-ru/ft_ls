@@ -6,10 +6,6 @@
 # include <errno.h>
 # include "ft_ls.h"
 
-# define LS_UU		32U
-# define FTLS_ONE		64U
-# define LS_I		128U
-
 /*
  * void	print_error(char *fname, char exit_err);
  *
