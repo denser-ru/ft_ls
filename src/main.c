@@ -96,7 +96,9 @@ int					main(int argc, char **argv)
 		print_error(NULL, 1);
 	ft_bzero(ls, sizeof(t_ls));
 	ls->fl = fl;
-	if (argc == 1)
+	if (argc == 0)
+		ft_ls(".", 1, ls);
+	else if (argc == 1)
 		ft_one_argument(argv, ls);
 	else
 		ft_arguments(argc, argv, ls);
