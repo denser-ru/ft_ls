@@ -38,22 +38,28 @@ void	ft_swap_files(t_ls *ls, t_file **curfile)
 	*curfile = ls->filelist;
 }
 
-void	ft_sort_files(t_ls *ls)
-{
-	int		i;
-	t_file	*file;
+//void	ft_sort_files(t_ls *ls)
+//{
+//	int		i;
+//	t_file	*file;
+//
+//	i = 0;
+//	file = ls->filelist;
+//	while (file && file->adr && file->next->adr)
+//	{
+//		i = ft_strncmp(file->adr, file->next->adr, file->size[5] >
+//			file->next->size[5] ? file->next->size[5] : file->size[5]);
+//		if (i > 0 || (!i && file->size[5] > file->next->size[5]))
+//		ft_swap_files(ls, &file);
+//		else
+//			file = file->next;
+//	}
+//}
 
-	i = 0;
-	file = ls->filelist;
-	while (file && file->adr && file->next->adr)
-	{
-		i = ft_strncmp(file->adr, file->next->adr, file->size[5] >
-			file->next->size[5] ? file->next->size[5] : file->size[5]);
-		if (i > 0 || (!i && file->size[5] > file->next->size[5]))
-		ft_swap_files(ls, &file);
-		else
-			file = file->next;
-	}
+int	ft_sort_files(t_ls *ls)
+{
+	ft_putendl("ok!");
+	return (!(!ls));
 }
 
 void	ft_swap_dirs(t_ls *ls, t_list **curdir)
@@ -72,7 +78,7 @@ void	ft_swap_dirs(t_ls *ls, t_list **curdir)
 	*curdir = ls->curdir;
 }
 
-void	ft_sort_dirs(t_ls *ls)
+int 	ft_sort_dirs(t_ls *ls)
 {
 	int		i;
 	t_list	*dir;
@@ -90,4 +96,5 @@ void	ft_sort_dirs(t_ls *ls)
 		else
 			dir = dir->next;
 	}
+	return (0);
 }

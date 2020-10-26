@@ -81,7 +81,7 @@ void			ft_print_dir(t_ls *ls, t_file *file, int i)
 		ft_putchar('\n');
 }
 
-void			ft_void_func(void)
+int 			ft_void_func(void)
 {
-	return ;
+	return (0);
 }
