@@ -47,7 +47,10 @@ void			ft_freemem(t_ls *ls, t_list **list)
 
 void			ft_read_func(t_ls *ls)
 {
-	ls->ls_func = ft_read_dir_l;
+	if (ls->fl & LS_L)
+			ls->ls_func = ft_read_dir_l;
+	else
+		ls->ls_func = ft_read_dir;
 	if (ls->fl & LS_UU)
 	{
 		ls->sort_files = ft_void_func;

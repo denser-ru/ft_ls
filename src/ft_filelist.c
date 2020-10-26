@@ -25,8 +25,6 @@ void			ft_get_spot(t_ls *ls, char *name)
 		if (0 > ft_strncmp(name, spot->next->adr, len))
 			break ;
 		spot = spot->next;
-		
-//	ft_putendl("ok!");
 	}
 	if (spot == ls->curfile)
 		ft_add_file(ls);
@@ -37,9 +35,6 @@ void			ft_get_spot(t_ls *ls, char *name)
 		ls->curfile = ls->endfile;
 		ft_add_file(ls);
 	}
-//	spot->adr = ls->curfile->adr;
-//	spot->size[5] = ls->curfile->size[5];
-//	ft_putendl(name);
 }
 
 void			ft_add_file(t_ls *ls)

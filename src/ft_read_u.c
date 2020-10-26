@@ -68,7 +68,7 @@ void			ft_print_dir(t_ls *ls, t_file *file, int i)
 
 	one = ls->fl & LS_ONE ? 1 : 0;
 	in = ls->bufdir;
-	while (file->adr)
+	while (file && file != ls->curfile)
 	{
 		ft_memcpy(in, file->adr, file->size[5]);
 		in += file->size[5];
