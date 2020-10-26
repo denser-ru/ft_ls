@@ -16,18 +16,14 @@ void			ft_ls_l(t_ls *ls)
 {
 	DIR			*dir;
 	t_dirent	*dirp;
-	t_list		*dirlist;
 
 	dirp = NULL;
 	ft_memcpy(ls->fname, ls->curdir->content, ls->curdir->content_size);
 	ft_memset(ls->fname + ls->curdir->content_size, '\0', 1);
-	dirlist = NULL;
 	dir = opendir(ls->fname);
-	ft_putstr(ls->fname);
-	ft_putstr(":\n");
-	ls->ls_func(ls, dirp, dir, &dirlist);
+	ls->ls_func(ls, dirp, dir, &(ls->curdir));
 	closedir(dir);
-	ft_lstdel(&dirlist, &ft_lstdelcontent);
+	ft_lstdel(&(ls->curdir), &ft_lstdelcontent);
 }
 
 void			ft_ls_rec(t_ls *ls)

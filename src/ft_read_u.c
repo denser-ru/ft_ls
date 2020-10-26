@@ -46,6 +46,41 @@ t_dirent		*ft_get_dirp(t_dirent *dirp, DIR *dir, unsigned long long fl)
 	return (NULL);
 }
 
+/*void	ft_print_dirlist(t_ls *ls, int one)
+{
+	t_list	*list;
+
+	list = ls->curdir->next;
+	while (list)
+	{
+		ft_putnstr(list->content, list->content_size);
+		ft_putchar(one ? '\n' : '\t');
+		list = list->next;
+	}
+	if (!one)
+		ft_putchar('\n');
+}*/
+
+void			ft_print_dir(t_ls *ls, t_file *file, int i)
+{
+	void	*in;
+	int		one;
+
+	one = ls->fl & LS_ONE ? 1 : 0;
+	in = ls->bufdir;
+	while (file->adr)
+	{
+		ft_memcpy(in, file->adr, file->size[5]);
+		in += file->size[5];
+		ft_memcpy(in++, one ? "\n" : "\t", 1);
+		i += file->size[5] + 1;
+		file = file->next;
+	}
+	ft_putnstr(ls->bufdir, i);
+	if (!one)
+		ft_putchar('\n');
+}
+
 void			ft_void_func(void)
 {
 	return ;

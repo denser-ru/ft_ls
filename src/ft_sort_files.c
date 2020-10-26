@@ -72,20 +72,6 @@ void	ft_swap_dirs(t_ls *ls, t_list **curdir)
 	*curdir = ls->curdir;
 }
 
-/*void	ft_print_dirlist(t_ls *ls)
-{
-	t_list	*list;
-
-	list = ls->curdir;
-	ft_putendl("dirlist:");
-	while (list)
-	{
-		ft_putnstr(list->content, list->content_size);
-		ft_putchar('\n');
-		list = list->next;
-	}
-}*/
-
 void	ft_sort_dirs(t_ls *ls)
 {
 	int		i;
@@ -93,16 +79,15 @@ void	ft_sort_dirs(t_ls *ls)
 
 	i = 0;
 	dir = ls->curdir;
-	if (!(ls->fl))
-		while (dir && dir->next)
-		{
-			i = ft_strncmp(dir->content, dir->next->content, dir->content_size >
-				dir->next->content_size ? dir->next->content_size :
-				dir->content_size);
-			if (i > 0 || (!i && dir->content_size > dir->next->content_size))
-				ft_swap_dirs(ls, &dir);
-			else
-				dir = dir->next;
-		}
-	//ft_print_dirlist(ls);
+
+	while (dir && dir->next)
+	{
+		i = ft_strncmp(dir->content, dir->next->content, dir->content_size >
+			dir->next->content_size ? dir->next->content_size :
+			dir->content_size);
+		if (i > 0 || (!i && dir->content_size > dir->next->content_size))
+			ft_swap_dirs(ls, &dir);
+		else
+			dir = dir->next;
+	}
 }

@@ -60,7 +60,7 @@ int				ft_print_time(void **in, void **out)
 	return (17);
 }
 
-void			ft_print_dir(t_ls *ls, t_file *file, int i)
+void			ft_print_dir_l(t_ls *ls, t_file *file, int i)
 {
 	void	*in;
 	void	*out;
