@@ -32,6 +32,7 @@ static void		ft_ls_init(t_ls *ls, char *fname)
 	ls->buffile = (void*)malloc(sizeof(void) * BUF);
 	ls->i = ls->buffile;
 	ls->filelist = NULL;
+	ls->curfile = NULL;
 	ft_add_file(ls);
 }
 
@@ -46,7 +47,7 @@ void			ft_freemem(t_ls *ls, t_list **list)
 
 void			ft_read_func(t_ls *ls)
 {
-	ls->ls_func = ft_read_dir;
+	ls->ls_func = ft_read_dir_l;
 	if (ls->fl & LS_UU)
 	{
 		ls->sort_files = ft_void_func;
@@ -70,7 +71,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 		if (!(ls->bufdir))
 			ft_ls_init(ls, fname);
 		ft_read_func(ls);
-		ft_del_filelist(&(ls->filelist));
+		//ft_del_filelist(&(ls->filelist));
 		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	}
 }

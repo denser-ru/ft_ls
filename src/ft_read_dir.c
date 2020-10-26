@@ -29,24 +29,20 @@ void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir,
 	ls->i = ls->buffile;
 	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;
-	ls->curfile = ls->filelist;
 	while ((dirp = ft_get_dirp(dirp, dir , ls->fl)))
 	{
 		ls->curfile->adr = ls->i;
 		ft_get_fname(ls, dirp, ls->fname);
 		lstat(ls->fname, &stat);
+		ft_get_spot(ls, dirp->d_name);
 		if ((stat.st_mode & S_IFDIR) && ft_strcmp(dirp->d_name, ".") &&
 				ft_strcmp(dirp->d_name, ".."))
 			ft_lstpushb(dirlist, ls->fname, ft_strlen(ls->fname));
 		ft_get_stat(ls, &stat);
-		if (!(ls->curfile->next))
-			ft_add_file(ls);
-		else
-			ls->curfile = ls->curfile->next;
 	}
-	ls->curfile->adr = NULL;
+/*	ls->curfile->adr = NULL;
 	ls->sort_dirs(ls);
-	ls->sort_files(ls);
+	ls->sort_files(ls);*/
 	ft_print_dir_l(ls, ls->filelist, 0);
 }
 
@@ -55,6 +51,7 @@ void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir,
 {
 	t_stat	stat;
 
+	return ;
 	ls->i = ls->buffile;
 	ls->curfile = ls->filelist;
 	while ((dirp = ft_get_dirp(dirp, dir , ls->fl)))

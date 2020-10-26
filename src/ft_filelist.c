@@ -12,6 +12,36 @@
 
 #include "ft_ls.h"
 
+void			ft_get_spot(t_ls *ls, char *name)
+{
+	t_file	*spot;
+	int		len;
+
+	len = ft_strlen(name);
+	spot = ls->filelist;
+	len = len < spot->size[5] ? spot->size[5] : len;
+	while (spot != ls->curfile)
+	{
+		if (0 > ft_strncmp(name, spot->next->adr, len))
+			break ;
+		spot = spot->next;
+		
+//	ft_putendl("ok!");
+	}
+	if (spot == ls->curfile)
+		ft_add_file(ls);
+	else
+	{
+		ls->curfile->next = spot->next;
+		spot->next = ls->curfile;
+		ls->curfile = ls->endfile;
+		ft_add_file(ls);
+	}
+//	spot->adr = ls->curfile->adr;
+//	spot->size[5] = ls->curfile->size[5];
+//	ft_putendl(name);
+}
+
 void			ft_add_file(t_ls *ls)
 {
 	t_file	*file;
@@ -20,17 +50,19 @@ void			ft_add_file(t_ls *ls)
 	if (ls->curfile)
 	{
 		ls->curfile->next = file;
-		file->adr = ls->i;
-		file->prev = ls->curfile;
+		file->adr = ls->curfile->adr;
 		file->next = NULL;
+		ls->endfile = ls->curfile;
 		ls->curfile = file;
 	}
 	else
 	{
 		file->adr = ls->i;
-		file->prev = NULL;
-		file->next = NULL;
-		ls->curfile = file;
+		ls->curfile = (t_file*)malloc(sizeof(t_file));
+		ls->curfile->next = NULL;
+		ls->curfile->adr = ls->i;
+		file->next = ls->curfile;
+		ls->endfile = file;
 		ls->filelist = file;
 	}
 }

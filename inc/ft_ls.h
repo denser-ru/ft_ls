@@ -81,6 +81,7 @@ typedef struct			s_ls
 	off_t				dirsize;
 	t_list				*curdir;
 	t_file				*curfile;
+	t_file				*endfile;
 	int					f_max_size[5];
 }						t_ls;
 
@@ -91,6 +92,7 @@ void					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
 						t_list **dirlist);
 void					ft_sort_dirs(t_ls *ls);
 void					ft_sort_files(t_ls *ls);
+void					ft_get_spot(t_ls *ls, char *name);
 void					ft_ls_rec(t_ls *ls);
 void					ft_ls_l(t_ls *ls);
 void					ft_add_file(t_ls *ls);
