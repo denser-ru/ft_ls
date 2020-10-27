@@ -66,6 +66,7 @@ void			ft_print_dir_l(t_ls *ls, t_file *file, int i)
 	void	*out;
 
 	in = ls->bufdir;
+	file = file->next;
 	while (file && file != ls->curfile)
 	{
 		out = file->adr + file->size[5];

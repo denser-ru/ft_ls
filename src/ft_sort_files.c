@@ -70,7 +70,7 @@ void	ft_sort_files_r(t_ls *ls, char *name)
 		i = ft_strncmp(name, f->next->adr, len <= f->next->size[5] ? len : f->next->size[5]);
 		if (i > 0)
 			break;
-		else if (i == 0 && len < f->next->size[5])
+		else if (i == 0 && len > f->next->size[5])
 			break;
 		f = f->next;
 	}
@@ -128,6 +128,27 @@ void	ft_swap_dirs(t_ls *ls, t_list **curdir)
 	(*curdir)->next = next->next;
 	next->next = *curdir;
 	*curdir = ls->curdir;
+}
+
+int 	ft_sort_dirs_r(t_ls *ls)
+{
+	int		i;
+	t_list	*dir;
+
+	i = 0;
+	dir = ls->curdir;
+
+	while (dir && dir->next)
+	{
+		i = ft_strncmp(dir->content, dir->next->content, dir->content_size >
+		dir->next->content_size ? dir->next->content_size :
+		dir->content_size);
+		if (i < 0 || (!i && dir->content_size < dir->next->content_size))
+			ft_swap_dirs(ls, &dir);
+		else
+			dir = dir->next;
+	}
+	return (0);
 }
 
 int 	ft_sort_dirs(t_ls *ls)

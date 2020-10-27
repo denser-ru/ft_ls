@@ -14,8 +14,8 @@
 
 void		ft_get_spot(t_ls *ls, char *name)
 {
-	t_file	*spot;
-	int		len;
+//	t_file	*spot;
+//	int		len;
 
 	ls->sort_files(ls, name);
 	ft_next_curfile(ls);

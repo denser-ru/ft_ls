@@ -92,6 +92,7 @@ void					ft_read_dir_l(t_ls *ls, t_dirent	*dirp, DIR *dir,
 void					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
 						t_list **dirlist);
 int 					ft_sort_dirs(t_ls *ls);
+int 					ft_sort_dirs_r(t_ls *ls);
 void					ft_sort_files(t_ls *ls, char *name);
 void					ft_sort_files_r(t_ls *ls, char *name);
 void					ft_get_spot(t_ls *ls, char *name);

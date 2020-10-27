@@ -61,6 +61,7 @@ t_dirent		*ft_get_dirp(t_dirent *dirp, DIR *dir, unsigned long long fl)
 		ft_putchar('\n');
 }*/
 
+/*
 static void	ft_arg_print_test(t_file *f)
 {
 
@@ -81,14 +82,14 @@ static void	ft_arg_print_test(t_file *f)
 
 //	ft_putchar(' ');
 //	ft_putstr(ctime(&f->ctime));
-}
+}*/
 
 void			ft_print_dir(t_ls *ls, t_file *file, int i)
 {
 	void	*in;
 	int		one;
 
-
+/*
 	ft_putendl("\n-----Before_print----");
 
 
@@ -96,9 +97,11 @@ void			ft_print_dir(t_ls *ls, t_file *file, int i)
 	ft_arg_print_test(file);
 
 	ft_putendl("/end");
+ */
 
 	one = ls->fl & LS_ONE ? 1 : 0;
 	in = ls->bufdir;
+	file = file->next;
 	while (file && file != ls->curfile)
 	{
 		ft_memcpy(in, file->adr, file->size[5]);

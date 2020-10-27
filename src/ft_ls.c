@@ -25,32 +25,37 @@ static void		*ft_dirlist_init(t_ls *ls, int size, char *fname)
 	return (dirlist);
 }
 
+t_file			*ft_file_new()
+{
+	t_file		*file;
+
+	if (!(file = (t_file *) malloc(sizeof(t_file))))
+		print_error(NULL, 1);
+	ft_bzero(file, sizeof(t_file));
+	return (file);
+}
 
 static void		ft_filelist_init(t_ls *ls)
 {
 	t_file		*file;
 
 	if (!(ls->filelist))
-	{
-		if (!(file = (t_file *) malloc(sizeof(t_file))))
-			print_error(NULL, 1);
-		ls->filelist = file;
-	}
-	file = ls->filelist->next;
-	ft_bzero(ls->filelist, sizeof(t_file));
-	ls->filelist->next = file;
-	if (ls->filelist->next)
-		ls->endfile = ls->filelist->next;
+		ls->filelist = ft_file_new();
 	else
 	{
-		file = NULL;
-		if (!(file = (t_file *) malloc(sizeof(t_file))))
-			print_error(NULL, 1);
-		ls->endfile = file;
+		file = ls->filelist->next;
+		ft_bzero(ls->filelist, sizeof(t_file));
+		ls->filelist->next = file;
 	}
-	file = ls->endfile->next;
-	ft_bzero(ls->endfile, sizeof(t_file));
-	ls->endfile->next = file;
+	if (ls->filelist->next)
+	{
+		ls->endfile = ls->filelist->next;
+		file = ls->endfile->next;
+		ft_bzero(ls->endfile, sizeof(t_file));
+		ls->endfile->next = file;
+	}
+	else
+		ls->endfile = ft_file_new();
 	ls->endfile->prev = ls->filelist;
 	ft_next_curfile(ls);
 }
@@ -83,6 +88,11 @@ void			ft_read_func(t_ls *ls)
 	{
 		ls->sort_files = ft_void_func;
 		ls->sort_dirs = ft_void_func_dir;
+	}
+	if (ls->fl & LS_R)
+	{
+		ls->sort_files = ft_sort_files_r;
+		ls->sort_dirs = ft_sort_dirs;
 	}
 	else
 	{
