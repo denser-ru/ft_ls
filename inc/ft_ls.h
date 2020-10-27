@@ -14,6 +14,7 @@
 # define FT_LS_H
 
 # include "libft.h"
+# include "ft_ls_error.h"
 # include <sys/types.h>
 # include <dirent.h>
 # include <unistd.h>
@@ -72,7 +73,7 @@ typedef struct			s_ls
 	t_file				*filelist;
 	void				(*ls_func)();
 	int					(*sort_dirs)();
-	int 				(*sort_files)();
+	void 				(*sort_files)();
 	void				*bufdir;
 	void				*buffile;
 	void				*i;
@@ -91,11 +92,13 @@ void					ft_read_dir_l(t_ls *ls, t_dirent	*dirp, DIR *dir,
 void					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
 						t_list **dirlist);
 int 					ft_sort_dirs(t_ls *ls);
-int						ft_sort_files(t_ls *ls);
+void					ft_sort_files(t_ls *ls, char *name);
+void					ft_sort_files_r(t_ls *ls, char *name);
 void					ft_get_spot(t_ls *ls, char *name);
 void					ft_ls_rec(t_ls *ls);
 void					ft_ls_l(t_ls *ls);
 void					ft_add_file(t_ls *ls);
+void					ft_next_curfile(t_ls *ls);
 void					ft_del_filelist(t_file **file);
 
 void					ft_get_mode(t_ls *ls, t_stat *stat);
@@ -112,7 +115,8 @@ void					ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname);
 void					ft_init_max_size(t_ls *ls, int i);
 t_dirent				*ft_get_dirp(t_dirent *dirp, DIR *dir,
 									unsigned long long fl);
-int						ft_void_func(void);
+void					ft_void_func(void);
+int						ft_void_func_dir(void);
 void					ft_print_dirlist(t_ls *ls, int one);
 
 #endif

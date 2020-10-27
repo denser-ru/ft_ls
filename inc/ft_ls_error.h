@@ -1,10 +1,15 @@
+//
+// Created by amazing_alex on 27.10.2020.
+//
 
-
-#ifndef FT_LS_GSINGED_H
-#define FT_LS_GSINGED_H
-
+#ifndef FT_LS_ERROR_H
+# define FT_LS_ERROR_H
 # include <errno.h>
-# include "ft_ls.h"
+
+/*
+ * malloc error use
+ * print_error(NULL, 1);
+ */
 
 /*
  * void	print_error(char *fname, char exit_err);
@@ -37,10 +42,8 @@
  * void	print_ls_error_ls(char c) - используется при чтении аргументов
  */
 
-void	ft_arguments(int argc, char **argv, t_ls *ls);
-void	ft_arg_add_file(t_file *f, int i, t_stat *stat, char **argv);
-int 	ft_arg_sort_lexicographical(t_file *f0, unsigned long long r);
-int		ft_arg_sort_modified(t_file *f0);
-void	ft_change(t_file *f);
+void	print_error(char *fname, char exit_err);
+void	print_ls_error_ls(char c);
+void	print_error_dir(char *fname, char print_fname);
 
 #endif

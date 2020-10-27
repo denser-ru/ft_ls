@@ -9,7 +9,7 @@
  *
  */
 
-void	ft_get_stat(char **argv, int i, t_file *f)
+void	ft_get_stat_gs(char **argv, int i, t_file *f)
 {
 	t_stat	stat;
 
@@ -95,7 +95,7 @@ void	ft_arguments(int argc, char **argv, t_ls *ls)
 	i = 0;
 	while (i < argc)
 	{
-		ft_get_stat(argv, i, fsix);
+		ft_get_stat_gs(argv, i, fsix);
 		i++;
 	}
 	ft_arg_gl_sort(fsix, ls->fl);

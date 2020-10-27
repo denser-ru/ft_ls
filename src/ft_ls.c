@@ -25,15 +25,43 @@ static void		*ft_dirlist_init(t_ls *ls, int size, char *fname)
 	return (dirlist);
 }
 
+
+static void		ft_filelist_init(t_ls *ls)
+{
+	t_file		*file;
+
+	if (!(ls->filelist))
+	{
+		if (!(file = (t_file *) malloc(sizeof(t_file))))
+			print_error(NULL, 1);
+		ls->filelist = file;
+	}
+	file = ls->filelist->next;
+	ft_bzero(ls->filelist, sizeof(t_file));
+	ls->filelist->next = file;
+	if (ls->filelist->next)
+		ls->endfile = ls->filelist->next;
+	else
+	{
+		file = NULL;
+		if (!(file = (t_file *) malloc(sizeof(t_file))))
+			print_error(NULL, 1);
+		ls->endfile = file;
+	}
+	file = ls->endfile->next;
+	ft_bzero(ls->endfile, sizeof(t_file));
+	ls->endfile->next = file;
+	ls->endfile->prev = ls->filelist;
+	ft_next_curfile(ls);
+}
+
 static void		ft_ls_init(t_ls *ls, char *fname)
 {
 	ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	ls->bufdir = (void*)malloc(sizeof(void) * BUF);
 	ls->buffile = (void*)malloc(sizeof(void) * BUF);
 	ls->i = ls->buffile;
-	ls->filelist = NULL;
-	ls->curfile = NULL;
-	ft_add_file(ls);
+	ft_filelist_init(ls);
 }
 
 void			ft_freemem(t_ls *ls, t_list **list)
@@ -54,7 +82,7 @@ void			ft_read_func(t_ls *ls)
 	if (ls->fl & LS_UU)
 	{
 		ls->sort_files = ft_void_func;
-		ls->sort_dirs = ft_void_func;
+		ls->sort_dirs = ft_void_func_dir;
 	}
 	else
 	{

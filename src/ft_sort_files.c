@@ -56,10 +56,62 @@ void	ft_swap_files(t_ls *ls, t_file **curfile)
 //	}
 //}
 
-int	ft_sort_files(t_ls *ls)
+void	ft_sort_files_r(t_ls *ls, char *name)
 {
-	ft_putendl("ok!");
-	return (!(!ls));
+	t_file		*f;
+	t_file		*c;
+	int			i;
+	int			len;
+
+	f = ls->filelist;
+	len = ft_strlen(name);
+	while (f->next != ls->curfile)
+	{
+		i = ft_strncmp(name, f->next->adr, len <= f->next->size[5] ? len : f->next->size[5]);
+		if (i > 0)
+			break;
+		else if (i == 0 && len < f->next->size[5])
+			break;
+		f = f->next;
+	}
+	if (f->next != ls->curfile)
+	{
+		ls->curfile->prev->next = ls->curfile->next;
+		ls->endfile->prev = ls->curfile->prev;
+		ls->curfile->prev = NULL;
+		c = f->next;
+		f->next = ls->curfile;
+		ls->curfile->next = c;
+	}
+}
+
+void	ft_sort_files(t_ls *ls, char *name)
+{
+	t_file		*f;
+	t_file		*c;
+	int			i;
+	int			len;
+
+	f = ls->filelist;
+	len = ft_strlen(name);
+	while (f->next != ls->curfile)
+	{
+		i = ft_strncmp(name, f->next->adr, len <= f->next->size[5] ? len : f->next->size[5]);
+		if (i < 0)
+			break;
+		else if (i == 0 && len < f->next->size[5])
+			break;
+		f = f->next;
+	}
+	if (f->next != ls->curfile)
+	{
+		ls->curfile->prev->next = ls->curfile->next;
+		ls->endfile->prev = ls->curfile->prev;
+		ls->curfile->prev = NULL;
+		c = f->next;
+		f->next = ls->curfile;
+		ls->curfile->next = c;
+	}
 }
 
 void	ft_swap_dirs(t_ls *ls, t_list **curdir)

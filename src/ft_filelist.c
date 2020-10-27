@@ -17,6 +17,9 @@ void		ft_get_spot(t_ls *ls, char *name)
 	t_file	*spot;
 	int		len;
 
+	ls->sort_files(ls, name);
+	ft_next_curfile(ls);
+	/*
 	len = ft_strlen(name);
 	spot = ls->filelist;
 	while (spot && spot->next && spot != ls->curfile && spot->next->adr)
@@ -35,6 +38,26 @@ void		ft_get_spot(t_ls *ls, char *name)
 		spot->next = ls->curfile;
 		//ls->curfile = ls->endfile;
 		ft_add_file(ls);
+	}
+	 */
+}
+
+
+static void	ft_arg_print_test(t_file *f)
+{
+
+
+	while (f)
+	{
+
+		ft_putnbr(f->size[5]);
+
+		ft_putstr(f->adr);
+
+//		write(1, f->adr, f->size[5]);
+		ft_putendl("!");
+
+		f = f->next;
 	}
 }
 
@@ -62,6 +85,36 @@ void			ft_add_file(t_ls *ls)
 		ls->endfile->adr = ls->i;
 		ls->filelist = file;
 	}
+
+	ft_putendl("\n-----add_file----");
+
+
+//	ft_putstr(file->adr);
+	ft_arg_print_test(ls->filelist);
+
+	ft_putendl("/end");
+
+}
+
+void			ft_next_curfile(t_ls *ls)
+{
+	t_file		*file;
+
+	if (ls->endfile->next)
+	{
+		file = ls->endfile->next;
+		ls->endfile->next = file->next;
+	}
+	else
+	{
+		if (!(file = (t_file *) malloc(sizeof(t_file))))
+			print_error(NULL, 1);
+	}
+	ft_bzero(file, sizeof(t_file));
+	file->prev = ls->endfile->prev;
+	ls->curfile = file;
+	ls->endfile->prev->next = file;
+	ls->endfile->prev = file;
 }
 
 void			ft_del_filelist(t_file **file)

@@ -28,6 +28,16 @@
 
 }*/
 
+/*
+ * t_file
+ * size[5] - size filename
+ */
+
+/*
+ * отредактировать ошибку в ft_print_error
+ * ft_putendl("usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
+ */
+
 void		ft_one_argument(char **argv, t_ls *ls)
 {
 	t_stat stat;
