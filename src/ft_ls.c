@@ -95,7 +95,7 @@ void			ft_read_func(t_ls *ls)
 	if (ls->fl & LS_R)
 	{
 		ls->sort_files = ft_sort_files_r;
-		ls->sort_dirs = ft_sort_dirs;
+		ls->sort_dirs = ft_sort_dirs_r;
 	}
 	else
 	{
