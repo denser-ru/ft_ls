@@ -55,7 +55,10 @@ static void		ft_filelist_init(t_ls *ls)
 		ls->endfile->next = file;
 	}
 	else
+	{
 		ls->endfile = ft_file_new();
+		ls->filelist->next = ls->endfile;
+	}
 	ls->endfile->prev = ls->filelist;
 	ft_next_curfile(ls);
 }

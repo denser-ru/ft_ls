@@ -98,6 +98,7 @@ void					ft_sort_files_r(t_ls *ls, char *name);
 void					ft_get_spot(t_ls *ls, char *name);
 void					ft_ls_rec(t_ls *ls);
 void					ft_ls_l(t_ls *ls);
+t_file					*ft_file_new();
 void					ft_add_file(t_ls *ls);
 void					ft_next_curfile(t_ls *ls);
 void					ft_del_filelist(t_file **file);

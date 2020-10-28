@@ -104,17 +104,15 @@ void			ft_next_curfile(t_ls *ls)
 	{
 		file = ls->endfile->next;
 		ls->endfile->next = file->next;
+		ft_bzero(file, sizeof(t_file));
 	}
 	else
-	{
-		if (!(file = (t_file *) malloc(sizeof(t_file))))
-			print_error(NULL, 1);
-	}
-	ft_bzero(file, sizeof(t_file));
+		file = ft_file_new();
 	file->prev = ls->endfile->prev;
-	ls->curfile = file;
+	file->next = ls->endfile;
 	ls->endfile->prev->next = file;
 	ls->endfile->prev = file;
+	ls->curfile = file;
 }
 
 void			ft_del_filelist(t_file **file)

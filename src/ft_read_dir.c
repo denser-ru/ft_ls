@@ -21,6 +21,38 @@ static void		ft_get_stat(t_ls *ls, t_stat *stat)
 	ft_get_ctime(ls, stat);
 }
 
+/*
+#include <stdio.h>
+static void	ft_arg_print_test(t_file *f)
+{
+
+
+	while (f)
+	{
+		if (!f->next)
+			ft_putendl("//");
+		ft_putnbr(f->size[5]);
+
+		if (f->adr)
+			ft_putstr(f->adr);
+
+
+		printf("|%p!!\n", f);
+//		write(1, f->adr, f->size[5]);
+//		ft_putendl("!");
+
+		if (!f->next)
+			ft_putendl("//");
+
+		f = f->next;
+	}
+
+
+//	ft_putchar(' ');
+//	ft_putstr(ctime(&f->ctime));
+}
+*/
+
 void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir,
 					t_list **dirlist)
 {
@@ -29,6 +61,22 @@ void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir,
 	ls->i = ls->buffile;
 	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;
+
+/*
+	ft_putendl("\n-----Before_print----");
+
+
+//	ft_putstr(file->adr);
+	ft_arg_print_test(ls->filelist);
+
+//	ft_putnbr(ls->curfile->size[5]);
+
+//	ft_putstr(ls->curfile->adr);
+//	ft_putendl("!");
+	printf("%p\n%p\n", ls->curfile, ls->endfile);
+	ft_putendl("/end");
+
+*/
 	while ((dirp = ft_get_dirp(dirp, dir , ls->fl)))
 	{
 		ls->curfile->adr = ls->i;

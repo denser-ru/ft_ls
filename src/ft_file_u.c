@@ -58,7 +58,7 @@ void		ft_get_size(t_ls *ls, t_stat *stat)
 	ls->curfile->size[3] = size;
 	if (ls->f_max_size[3] < size)
 		ls->f_max_size[3] = size;
-	ls->dirsize += stat->st_blocks << 9;
+	ls->dirsize += stat->st_blocks << 10;
 }
 
 void		ft_get_ctime(t_ls *ls, t_stat *stat)
