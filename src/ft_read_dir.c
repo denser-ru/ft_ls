@@ -58,6 +58,7 @@ void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir,
 {
 	t_stat	stat;
 
+	ft_filelist_init(ls);
 	ls->i = ls->buffile;
 	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;
@@ -75,8 +76,8 @@ void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir,
 //	ft_putendl("!");
 	printf("%p\n%p\n", ls->curfile, ls->endfile);
 	ft_putendl("/end");
-
 */
+
 	while ((dirp = ft_get_dirp(dirp, dir , ls->fl)))
 	{
 		ls->curfile->adr = ls->i;
@@ -96,6 +97,7 @@ void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir,
 {
 	t_stat	stat;
 
+	ft_filelist_init(ls);
 	ls->i = ls->buffile;
 	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;

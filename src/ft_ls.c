@@ -35,7 +35,7 @@ t_file			*ft_file_new()
 	return (file);
 }
 
-static void		ft_filelist_init(t_ls *ls)
+void		ft_filelist_init(t_ls *ls)
 {
 	t_file		*file;
 
