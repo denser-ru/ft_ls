@@ -19,8 +19,15 @@ static void	ft_sort_files_t_name_r(t_ls *ls, t_file *f, char *name)
 	int			len;
 
 	len = ft_strlen(name);
-	i = ft_strncmp(name, f->next->adr, len <= f->next->size[5] ? len : f->next->size[5]);
-	if (i < 0 || (i == 0 && len < f->next->size[5]))
+	while (f->next != ls->curfile && ls->curfile->ctime == f->next->ctime)
+	{
+		i = ft_strncmp(name, f->next->adr, \
+				len <= f->next->size[5] ? len : f->next->size[5]);
+		if (i > 0 || (i == 0 && len > f->next->size[5]))
+			break ;
+		f = f->next;
+	}
+	if (f->next != ls->curfile)
 	{
 		ls->curfile->prev->next = ls->curfile->next;
 		ls->endfile->prev = ls->curfile->prev;
@@ -31,7 +38,7 @@ static void	ft_sort_files_t_name_r(t_ls *ls, t_file *f, char *name)
 	}
 }
 
-void	ft_sort_files_t_r(t_ls *ls, char *name)
+void		ft_sort_files_t_r(t_ls *ls, char *name)
 {
 	time_t		curtime;
 	t_file		*f;
@@ -41,11 +48,11 @@ void	ft_sort_files_t_r(t_ls *ls, char *name)
 	f = ls->filelist;
 	while (f->next != ls->curfile)
 	{
-		if (ls->curfile->ctime >= f->next->ctime)
-			break;
+		if (ls->curfile->ctime <= f->next->ctime)
+			break ;
 		f = f->next;
 	}
-	if (f->next != ls->curfile && ls->curfile->ctime > f->next->ctime)
+	if (f->next != ls->curfile && ls->curfile->ctime < f->next->ctime)
 	{
 		ls->curfile->prev->next = ls->curfile->next;
 		ls->endfile->prev = ls->curfile->prev;
@@ -65,8 +72,15 @@ static void	ft_sort_files_t_name(t_ls *ls, t_file *f, char *name)
 	int			len;
 
 	len = ft_strlen(name);
-	i = ft_strncmp(name, f->next->adr, len <= f->next->size[5] ? len : f->next->size[5]);
-	if (i < 0 || (i == 0 && len < f->next->size[5]))
+	while (f->next != ls->curfile && ls->curfile->ctime == f->next->ctime)
+	{
+		i = ft_strncmp(name, f->next->adr, \
+					len <= f->next->size[5] ? len : f->next->size[5]);
+		if (i < 0 || (i == 0 && len < f->next->size[5]))
+			break ;
+		f = f->next;
+	}
+	if (f->next != ls->curfile)
 	{
 		ls->curfile->prev->next = ls->curfile->next;
 		ls->endfile->prev = ls->curfile->prev;
@@ -77,7 +91,7 @@ static void	ft_sort_files_t_name(t_ls *ls, t_file *f, char *name)
 	}
 }
 
-void	ft_sort_files_t(t_ls *ls, char *name)
+void		ft_sort_files_t(t_ls *ls, char *name)
 {
 	time_t		curtime;
 	t_file		*f;
@@ -88,7 +102,7 @@ void	ft_sort_files_t(t_ls *ls, char *name)
 	while (f->next != ls->curfile)
 	{
 		if (ls->curfile->ctime >= f->next->ctime)
-			break;
+			break ;
 		f = f->next;
 	}
 	if (f->next != ls->curfile && ls->curfile->ctime > f->next->ctime)

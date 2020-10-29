@@ -85,12 +85,12 @@ static void		ft_read_func_sort(t_ls *ls)
 {
 	if ((ls->fl & LS_T) && (ls->fl & LS_R))
 	{
-		ls->sort_files = ft_sort_files_t;
-		ls->sort_dirs = ft_sort_dirs;
+		ls->sort_files = ft_sort_files_t_r;
+		ls->sort_dirs = ft_sort_dirs_r;
 	}
 	else if (ls->fl & LS_T)
 	{
-		ls->sort_files = ft_sort_files_t_r;
+		ls->sort_files = ft_sort_files_t;
 		ls->sort_dirs = ft_sort_dirs;
 	}
 	else if (ls->fl & LS_R)
