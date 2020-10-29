@@ -67,6 +67,14 @@ typedef struct			s_file
 	struct s_file		*next;
 }						t_file;
 
+typedef struct			s_direct
+{
+	void				*content;
+	size_t				content_size;
+	t_file				*file;
+	struct s_direct		*next;
+}						t_direct;
+
 typedef struct			s_ls
 {
 	t_list				*dirlist;
