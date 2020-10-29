@@ -69,9 +69,9 @@ typedef struct			s_file
 
 typedef struct			s_direct
 {
+	t_file				*file;
 	void				*content;
 	size_t				content_size;
-	t_file				*file;
 	struct s_direct		*next;
 }						t_direct;
 
@@ -103,6 +103,8 @@ int 					ft_sort_dirs(t_ls *ls);
 int 					ft_sort_dirs_r(t_ls *ls);
 void					ft_sort_files(t_ls *ls, char *name);
 void					ft_sort_files_r(t_ls *ls, char *name);
+void					ft_sort_files_t(t_ls *ls, char *name);
+void					ft_sort_files_t_r(t_ls *ls, char *name);
 void					ft_get_spot(t_ls *ls, char *name);
 void					ft_ls_rec(t_ls *ls);
 void					ft_ls_l(t_ls *ls);
@@ -129,5 +131,7 @@ t_dirent				*ft_get_dirp(t_dirent *dirp, DIR *dir,
 void					ft_void_func(void);
 int						ft_void_func_dir(void);
 void					ft_print_dirlist(t_ls *ls, int one);
+
+
 
 #endif

@@ -81,6 +81,30 @@ void			ft_freemem(t_ls *ls, t_list **list)
 	free(ls);
 }
 
+static void		ft_read_func_sort(t_ls *ls)
+{
+	if ((ls->fl & LS_T) && (ls->fl & LS_R))
+	{
+		ls->sort_files = ft_sort_files_t;
+		ls->sort_dirs = ft_sort_dirs;
+	}
+	else if (ls->fl & LS_T)
+	{
+		ls->sort_files = ft_sort_files_t_r;
+		ls->sort_dirs = ft_sort_dirs;
+	}
+	else if (ls->fl & LS_R)
+	{
+		ls->sort_files = ft_sort_files_r;
+		ls->sort_dirs = ft_sort_dirs_r;
+	}
+	else
+	{
+		ls->sort_files = ft_sort_files;
+		ls->sort_dirs = ft_sort_dirs;
+	}
+}
+
 void			ft_read_func(t_ls *ls)
 {
 	if (ls->fl & LS_L)
@@ -92,16 +116,7 @@ void			ft_read_func(t_ls *ls)
 		ls->sort_files = ft_void_func;
 		ls->sort_dirs = ft_void_func_dir;
 	}
-	if (ls->fl & LS_R)
-	{
-		ls->sort_files = ft_sort_files_r;
-		ls->sort_dirs = ft_sort_dirs_r;
-	}
-	else
-	{
-		ls->sort_files = ft_sort_files;
-		ls->sort_dirs = ft_sort_dirs;
-	}
+	ft_read_func_sort(ls);
 	if (ls->fl & LS_RR)
 		ft_ls_rec(ls);
 	else
