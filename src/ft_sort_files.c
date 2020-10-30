@@ -114,6 +114,7 @@ void	ft_sort_files(t_ls *ls, char *name)
 	}
 }
 
+/*
 void	ft_swap_dirs(t_ls *ls, t_list **curdir)
 {
 	t_list	*next;
@@ -171,3 +172,4 @@ int 	ft_sort_dirs(t_ls *ls)
 	}
 	return (0);
 }
+ */

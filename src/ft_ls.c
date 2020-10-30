@@ -14,8 +14,8 @@
 
 static void		*ft_dirlist_init(t_ls *ls, int size, char *fname)
 {
-	t_list	*dirlist;
-	char	*rootdir_name;
+	t_direct	*dirlist;
+	char		*rootdir_name;
 
 	rootdir_name = fname;
 	if (rootdir_name[size - 1] == '/' && size > 1 && rootdir_name[size] != '\0')
@@ -86,22 +86,22 @@ static void		ft_read_func_sort(t_ls *ls)
 	if ((ls->fl & LS_T) && (ls->fl & LS_R))
 	{
 		ls->sort_files = ft_sort_files_t_r;
-		ls->sort_dirs = ft_sort_dirs_r;
+//		ls->sort_dirs = ft_sort_dirs_r;
 	}
 	else if (ls->fl & LS_T)
 	{
 		ls->sort_files = ft_sort_files_t;
-		ls->sort_dirs = ft_sort_dirs;
+//		ls->sort_dirs = ft_sort_dirs;
 	}
 	else if (ls->fl & LS_R)
 	{
 		ls->sort_files = ft_sort_files_r;
-		ls->sort_dirs = ft_sort_dirs_r;
+//		ls->sort_dirs = ft_sort_dirs_r;
 	}
 	else
 	{
 		ls->sort_files = ft_sort_files;
-		ls->sort_dirs = ft_sort_dirs;
+//		ls->sort_dirs = ft_sort_dirs;
 	}
 }
 
@@ -131,6 +131,6 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 			ft_ls_init(ls, fname);
 		ft_read_func(ls);
 		//ft_del_filelist(&(ls->filelist));
-		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
+//		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	}
 }
