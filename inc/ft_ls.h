@@ -69,9 +69,8 @@ typedef struct			s_file
 
 typedef struct			s_direct
 {
+	char				*dname;
 	t_file				*file;
-	void				*content;
-	size_t				content_size;
 	struct s_direct		*next;
 }						t_direct;
 
@@ -132,10 +131,9 @@ void					ft_void_func(void);
 int						ft_void_func_dir(void);
 void					ft_print_dirlist(t_ls *ls, int one);
 
-t_direct				*ft_direct_new(void const *content, \
-										size_t content_size, t_file *file);
-t_direct				*ft_direct_pushb(t_direct **root, void *content, \
-											size_t content_size, t_file *file);
+t_direct				*ft_direct_new(char *dname, t_file *file);
+void					ft_direct_pushb(t_direct **root, char *dname, \
+												t_file *file);
 
 
 #endif

@@ -85,7 +85,8 @@ void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir,
 		lstat(ls->fname, &stat);
 		if (dirlist && (stat.st_mode & S_IFDIR) &&
 				ft_strcmp(dirp->d_name, ".") && ft_strcmp(dirp->d_name, ".."))
-			ft_lstpushb(dirlist, ls->fname, ft_strlen(ls->fname));
+			ft_direct_pushb(dirlist, ls->fname, NULL);
+//			ft_lstpushb(dirlist, ls->fname, ft_strlen(ls->fname));
 		ft_get_stat(ls, &stat);
 		ft_get_spot(ls, dirp->d_name);
 	}
@@ -106,9 +107,9 @@ void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir,
 		ls->curfile->adr = ls->i;
 		ft_get_fname(ls, dirp, ls->fname);
 		lstat(ls->fname, &stat);
-		if (dirlist && (stat.st_mode & S_IFDIR) && \
-				ft_strcmp(dirp->d_name, ".") && ft_strcmp(dirp->d_name, ".."))
-			ft_lstpushb(dirlist, ls->fname, ft_strlen(ls->fname));
+		if (dirlist && (stat.st_mode & S_IFDIR) && ft_strcmp(dirp->d_name, ".") && ft_strcmp(dirp->d_name, ".."))
+			ft_direct_pushb(dirlist, ls->fname, NULL);
+//			ft_lstpushb(dirlist, ls->fname, ft_strlen(ls->fname));
 		ft_get_stat(ls, &stat);
 		ft_get_spot(ls, dirp->d_name);
 	}

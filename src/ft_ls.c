@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
+/*
 static void		*ft_dirlist_init(t_ls *ls, int size, char *fname)
 {
 	t_direct	*dirlist;
@@ -24,7 +24,7 @@ static void		*ft_dirlist_init(t_ls *ls, int size, char *fname)
 	ls->curdir = dirlist;
 	return (dirlist);
 }
-
+*/
 t_file			*ft_file_new()
 {
 	t_file		*file;
@@ -65,7 +65,8 @@ void		ft_filelist_init(t_ls *ls)
 
 static void		ft_ls_init(t_ls *ls, char *fname)
 {
-	ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
+//	ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
+	ls->curdir = ft_direct_new(NULL, NULL);
 	ls->bufdir = (void*)malloc(sizeof(void) * BUF);
 	ls->buffile = (void*)malloc(sizeof(void) * BUF);
 	ls->i = ls->buffile;
@@ -129,6 +130,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 	{
 		if (!(ls->bufdir))
 			ft_ls_init(ls, fname);
+		ls->curdir->dname = fname;
 		ft_read_func(ls);
 		//ft_del_filelist(&(ls->filelist));
 //		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);

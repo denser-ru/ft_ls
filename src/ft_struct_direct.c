@@ -12,47 +12,37 @@
 
 #include "ft_ls.h"
 
-t_direct	*ft_direct_new(void const *content, size_t content_size, t_file *file)
+t_direct	*ft_direct_new(char *dname, t_file *file)
 {
 	t_direct	*dir;
 
 	if (!(dir = (t_direct *)malloc(sizeof(t_direct))))
 		print_error(NULL, 1);
-	if (!content)
-	{
-		dir->content = NULL;
-		dir->content_size = 0;
-	}
+	if (!dname)
+		dir->dname = NULL;
 	else
 	{
-		if (!(dir->content = malloc(content_size)))
-		{
-			free(dir);
-			return (NULL);
-		}
-		ft_memcpy(dir->content, content, content_size);
-		dir->content_size = content_size;
+		if (!(dir->dname = ft_strdup(dname)))
+			print_error(NULL, 1);
 	}
 	dir->file = file;
 	dir->next = NULL;
 	return (dir);
-
 }
 
-t_direct	*ft_direct_pushb(t_direct **root, void *content, size_t content_size, t_file *file)
+void	ft_direct_pushb(t_direct **root, char *dname, t_file *file)
 {
 	t_direct	*new;
 	t_direct	*cur;
 
 	cur = *root;
 	if (*root == NULL)
-		*root = ft_direct_new(content, content_size, file);
+		*root = ft_direct_new(dname, file);
 	else
 	{
-		new = ft_direct_new(content, content_size, file);
+		new = ft_direct_new(dname, file);
 		while (cur->next)
 			cur = cur->next;
 		cur->next = new;
 	}
-	return (*root);
 }
