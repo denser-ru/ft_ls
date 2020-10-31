@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_file_t.c                                   :+:      :+:    :+:   */
+/*   ft_sort_files_t.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsinged <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -93,11 +93,9 @@ static void	ft_sort_files_t_name(t_ls *ls, t_file *f, char *name)
 
 void		ft_sort_files_t(t_ls *ls, char *name)
 {
-	time_t		curtime;
 	t_file		*f;
 	t_file		*c;
 
-	curtime = ls->curfile->ctime;
 	f = ls->filelist;
 	while (f->next != ls->curfile)
 	{
@@ -117,3 +115,4 @@ void		ft_sort_files_t(t_ls *ls, char *name)
 	else if (f->next != ls->curfile && ls->curfile->ctime == f->next->ctime)
 		ft_sort_files_t_name(ls, f, name);
 }
+

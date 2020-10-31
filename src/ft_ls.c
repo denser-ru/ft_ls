@@ -63,7 +63,7 @@ void		ft_filelist_init(t_ls *ls)
 	ft_next_curfile(ls);
 }
 
-static void		ft_ls_init(t_ls *ls, char *fname)
+static void		ft_ls_init(t_ls *ls)
 {
 //	ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	ls->curdir = ft_direct_new(NULL, NULL);
@@ -97,12 +97,12 @@ static void		ft_read_func_sort(t_ls *ls)
 	else if (ls->fl & LS_R)
 	{
 		ls->sort_files = ft_sort_files_r;
-//		ls->sort_dirs = ft_sort_dirs_r;
+		ls->sort_dirs = ft_sort_dirs_r;
 	}
 	else
 	{
 		ls->sort_files = ft_sort_files;
-//		ls->sort_dirs = ft_sort_dirs;
+		ls->sort_dirs = ft_sort_dirs;
 	}
 }
 
@@ -115,7 +115,7 @@ void			ft_read_func(t_ls *ls)
 	if (ls->fl & LS_UU)
 	{
 		ls->sort_files = ft_void_func;
-		ls->sort_dirs = ft_void_func_dir;
+//		ls->sort_dirs = ft_void_func_dir;
 	}
 	ft_read_func_sort(ls);
 	if (ls->fl & LS_RR)
@@ -129,7 +129,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 	if (d && fname && *fname)
 	{
 		if (!(ls->bufdir))
-			ft_ls_init(ls, fname);
+			ft_ls_init(ls);
 		ls->curdir->dname = fname;
 		ft_read_func(ls);
 		//ft_del_filelist(&(ls->filelist));

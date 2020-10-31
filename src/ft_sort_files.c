@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
+/*
 void	ft_swap_files(t_ls *ls, t_file **curfile)
 {
 	t_file	*file;
@@ -37,7 +37,7 @@ void	ft_swap_files(t_ls *ls, t_file **curfile)
 	}
 	*curfile = ls->filelist;
 }
-
+*/
 //void	ft_sort_files(t_ls *ls)
 //{
 //	int		i;
@@ -98,9 +98,9 @@ void	ft_sort_files(t_ls *ls, char *name)
 	{
 		i = ft_strncmp(name, f->next->adr, len <= f->next->size[5] ? len : f->next->size[5]);
 		if (i < 0)
-			break;
+			break ;
 		else if (i == 0 && len < f->next->size[5])
-			break;
+			break ;
 		f = f->next;
 	}
 	if (f->next != ls->curfile)
@@ -112,6 +112,46 @@ void	ft_sort_files(t_ls *ls, char *name)
 		f->next = ls->curfile;
 		ls->curfile->next = c;
 	}
+}
+
+void	ft_sort_dirs_r(t_direct *d, t_direct *cur)
+{
+	t_direct	*c;
+
+	while (d->next != NULL)
+	{
+		if ((ft_strcmp(cur->dname, d->next->dname)) > 0)
+			break ;
+		d = d->next;
+	}
+	if (d->next != NULL)
+	{
+		c = d->next;
+		d->next = cur;
+		cur->next = c;
+	}
+	else
+		d->next = cur;
+}
+
+void	ft_sort_dirs(t_direct *d, t_direct *cur)
+{
+	t_direct	*c;
+
+	while (d->next != NULL)
+	{
+		if ((ft_strcmp(cur->dname, d->next->dname)) < 0)
+			break ;
+		d = d->next;
+	}
+	if (d->next != NULL)
+	{
+		c = d->next;
+		d->next = cur;
+		cur->next = c;
+	}
+	else
+		d->next = cur;
 }
 
 /*

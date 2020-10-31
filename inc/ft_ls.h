@@ -79,7 +79,7 @@ typedef struct			s_ls
 //	t_list				*dirlist;
 	t_file				*filelist;
 	void				(*ls_func)();
-	int					(*sort_dirs)();
+	void				(*sort_dirs)();
 	void 				(*sort_files)();
 	void				*bufdir;
 	void				*buffile;
@@ -94,12 +94,12 @@ typedef struct			s_ls
 }						t_ls;
 
 void					ft_ls(char *fname, char d, t_ls *ls);
-void					ft_read_dir_l(t_ls *ls, t_dirent	*dirp, DIR *dir,
-						t_list **dirlist);
-void					ft_read_dir(t_ls *ls, t_dirent	*dirp, DIR *dir,
-						t_list **dirlist);
-//int 					ft_sort_dirs(t_ls *ls);
-//int 					ft_sort_dirs_r(t_ls *ls);
+void					ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir, \
+											t_direct **dirlist);
+void					ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir, \
+											t_direct **dirlist);
+
+
 void					ft_sort_files(t_ls *ls, char *name);
 void					ft_sort_files_r(t_ls *ls, char *name);
 void					ft_sort_files_t(t_ls *ls, char *name);
@@ -132,8 +132,12 @@ int						ft_void_func_dir(void);
 void					ft_print_dirlist(t_ls *ls, int one);
 
 t_direct				*ft_direct_new(char *dname, t_file *file);
-void					ft_direct_pushb(t_direct **root, char *dname, \
-												t_file *file);
+void					ft_direct_pushb(t_direct **root, char *dname, t_ls *ls);
+
+void					ft_sort_dirs(t_direct *d, t_direct *cur);
+void					ft_sort_dirs_r(t_direct *d, t_direct *cur);
+void					ft_sort_dirs_t(t_direct *d, t_direct *cur);
+void					ft_sort_dirs_t_r(t_direct *d, t_direct *cur);
 
 
 #endif
