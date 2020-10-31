@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-// Created by amazing_alex on 27.10.2020.
-//
-
 #ifndef FT_LS_ERROR_H
 # define FT_LS_ERROR_H
 # include <errno.h>

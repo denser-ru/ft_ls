@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-
-# include "ft_ls_gsinged.h"
+#include "ft_ls_gsinged.h"
 
 int		ft_arg_sort_lexicographical_r_b(t_file *f)
 {
@@ -30,7 +27,7 @@ int		ft_arg_sort_lexicographical_r_b(t_file *f)
 	return (n);
 }
 
-int 	ft_arg_sort_lexicographical_r(t_file *f0)
+int		ft_arg_sort_lexicographical_r(t_file *f0)
 {
 	int		i;
 	t_file	*f;
@@ -70,7 +67,7 @@ int		ft_arg_sort_lexicographical_b(t_file *f)
 	return (n);
 }
 
-int 	ft_arg_sort_lexicographical(t_file *f0, unsigned long long r)
+int		ft_arg_sort_lexicographical(t_file *f0, unsigned long long r)
 {
 	int		i;
 	t_file	*f;

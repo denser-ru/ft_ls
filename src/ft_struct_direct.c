@@ -30,25 +30,20 @@ t_direct	*ft_direct_new(char *dname, t_file *file)
 	return (dir);
 }
 
-#include <stdio.h>
-void	ft_direct_pushb(t_direct **root, char *dname, t_ls *ls)
+void		ft_direct_pushb(t_direct **root, char *dname, t_ls *ls)
 {
 	t_direct	*new;
 	t_direct	dir;
 
 	if (*root == NULL)
 	{
-//		printf("NEW_DIR\n");
 		*root = ft_direct_new(dname, ls->curfile);
 	}
 	else
 	{
-//		printf("NEW_DIR_B\n");
 		new = ft_direct_new(dname, ls->curfile);
 		dir.next = *root;
 		ls->sort_dirs(&dir, new);
-
-//		ft_sort_dir(&dir, new);
 		*root = dir.next;
 	}
 }

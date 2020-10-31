@@ -12,7 +12,6 @@
 
 #include "ft_ls_gsinged.h"
 
-
 /*
  *
  * void	ft_ls(char *fname, char d, t_ls *ls);
@@ -38,7 +37,7 @@
  * ft_putendl("usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
  */
 
-void		ft_one_argument(char **argv, t_ls *ls)
+static void			ft_one_argument(char **argv, t_ls *ls)
 {
 	t_stat stat;
 
@@ -92,7 +91,7 @@ unsigned long long	flags(int *argc, char ***argv_orig, unsigned long long fl)
 		i++;
 	}
 	*argc -= i;
-	* argv_orig = argv + i;
+	*argv_orig = argv + i;
 	return (fl);
 }
 
@@ -113,7 +112,6 @@ int					main(int argc, char **argv)
 		ft_one_argument(argv, ls);
 	else
 		ft_arguments(argc, argv, ls);
-
 //	void			ft_freemem(t_ls *ls, t_list **list)
 //	ft_freemem(t_*ls, t_list **list);
 	return (0);

@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-# include "ft_ls_gsinged.h"
-#include <stdio.h>
+#include "ft_ls_gsinged.h"
 
 /*
  * size[0] - i in char **argv. argv[i].
@@ -80,19 +77,12 @@ void	ft_arg_put_b(t_file *fsix, t_ls *ls, int n, char d)
 		while (f->next)
 		{
 			ft_ls(f->adr, d, ls);
-
-//			ft_arg_print_test(f);
-//			тестово использовать вместо ft_ls - выводит fname
 			c = f;
 			f = f->next;
 			c->next = ls->filelist;
 			ls->filelist = c;
 		}
 		ft_ls(f->adr, d, ls);
-
-//		ft_arg_print_test(f);
-//		тестово использовать вместо ft_ls - выводит fname
-
 		f->next = ls->filelist;
 		ls->filelist = f;
 	}
@@ -116,5 +106,5 @@ void	ft_arguments(int argc, char **argv, t_ls *ls)
 	ft_arg_put_b(fsix, ls, 2, 1);
 }
 
-//../src/main.c ../libft ../src/ft_arguments.c
-//../src bcfb ../src/main.c src arcs ../libft ../src/ft_arguments.c
+/*../src/main.c ../libft ../src/ft_arguments.c */
+/*../src bcfb ../src/main.c src arcs ../libft ../src/ft_arguments.c */

@@ -115,4 +115,3 @@ void		ft_sort_files_t(t_ls *ls, char *name)
 	else if (f->next != ls->curfile && ls->curfile->ctime == f->next->ctime)
 		ft_sort_files_t_name(ls, f, name);
 }
-

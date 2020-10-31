@@ -10,18 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_ls_gsinged.h"
 
-
-
-# include "ft_ls_gsinged.h"
-
-void				print_ls_error_ls(char c)
+void			print_ls_error_ls(char c)
 {
 	ft_putstr("ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
 	ft_putendl("usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
-	exit (0);
+	exit(0);
 }
 
 static void		print_err_ls(char *fname)

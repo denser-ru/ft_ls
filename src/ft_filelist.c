@@ -12,55 +12,25 @@
 
 #include "ft_ls.h"
 
-void		ft_get_spot(t_ls *ls, char *name)
+void			ft_get_spot(t_ls *ls, char *name)
 {
-//	t_file	*spot;
-//	int		len;
-
 	ls->sort_files(ls, name);
 	ft_next_curfile(ls);
-	/*
-	len = ft_strlen(name);
-	spot = ls->filelist;
-	while (spot && spot->next && spot != ls->curfile && spot->next->adr)
-	{
-//		if (0 < ft_strncmp(name, spot->next->adr, len))
-		if (ls->sort_files(ls))
-			break ;
-		spot = spot->next;
-	}
-	if (spot->next == ls->endfile)
-		ft_add_file(ls);
-	else
-	{
-		if (spot->next)
-			ls->curfile->next = spot->next->next;
-		spot->next = ls->curfile;
-		//ls->curfile = ls->endfile;
-		ft_add_file(ls);
-	}
-	 */
 }
 
-
-static void	ft_arg_print_test(t_file *f)
+static void		ft_arg_print_test(t_file *f)
 {
-
-
 	while (f)
 	{
-
 		ft_putnbr(f->size[5]);
-
 		ft_putstr(f->adr);
-
 //		write(1, f->adr, f->size[5]);
 		ft_putendl("!");
-
 		f = f->next;
 	}
 }
 
+/*
 void			ft_add_file(t_ls *ls)
 {
 	t_file	*file;
@@ -95,6 +65,7 @@ void			ft_add_file(t_ls *ls)
 	ft_putendl("/end");
 
 }
+*/
 
 void			ft_next_curfile(t_ls *ls)
 {
