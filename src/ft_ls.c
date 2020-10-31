@@ -11,20 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-/*
-static void		*ft_dirlist_init(t_ls *ls, int size, char *fname)
-{
-	t_direct	*dirlist;
-	char		*rootdir_name;
 
-	rootdir_name = fname;
-	if (rootdir_name[size - 1] == '/' && size > 1 && rootdir_name[size] != '\0')
-		--size;
-	dirlist = ft_lstnew(rootdir_name, size);
-	ls->curdir = dirlist;
-	return (dirlist);
-}
-*/
 t_file			*ft_file_new()
 {
 	t_file		*file;
@@ -65,12 +52,10 @@ void		ft_filelist_init(t_ls *ls)
 
 static void		ft_ls_init(t_ls *ls)
 {
-//	ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	ls->curdir = ft_direct_new(NULL, NULL);
 	ls->bufdir = (void*)malloc(sizeof(void) * BUF);
 	ls->buffile = (void*)malloc(sizeof(void) * BUF);
 	ls->i = ls->buffile;
-	ft_filelist_init(ls);
 }
 
 void			ft_freemem(t_ls *ls, t_list **list)
@@ -87,12 +72,12 @@ static void		ft_read_func_sort(t_ls *ls)
 	if ((ls->fl & LS_T) && (ls->fl & LS_R))
 	{
 		ls->sort_files = ft_sort_files_t_r;
-//		ls->sort_dirs = ft_sort_dirs_r;
+		ls->sort_dirs = ft_sort_dirs_t_r;
 	}
 	else if (ls->fl & LS_T)
 	{
 		ls->sort_files = ft_sort_files_t;
-//		ls->sort_dirs = ft_sort_dirs;
+		ls->sort_dirs = ft_sort_dirs_t;
 	}
 	else if (ls->fl & LS_R)
 	{
@@ -118,20 +103,24 @@ void			ft_read_func(t_ls *ls)
 //		ls->sort_dirs = ft_void_func_dir;
 	}
 	ft_read_func_sort(ls);
-	if (ls->fl & LS_RR)
-		ft_ls_rec(ls);
-	else
-		ft_ls_l(ls);
 }
 
 void			ft_ls(char *fname, char d, t_ls *ls)
 {
-	if (d && fname && *fname)
+	if (!d)
+		ft_ls_file(fname, ls);
+	else if (d && fname && *fname)
 	{
+		if (d == 2)
+		{
+			ft_putstr(fname);
+			ft_putendl(":");
+		}
 		if (!(ls->bufdir))
 			ft_ls_init(ls);
 		ls->curdir->dname = fname;
 		ft_read_func(ls);
+		ft_ls_l(ls);
 		//ft_del_filelist(&(ls->filelist));
 //		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);
 	}

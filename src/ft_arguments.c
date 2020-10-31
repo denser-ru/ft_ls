@@ -103,7 +103,7 @@ void	ft_arguments(int argc, char **argv, t_ls *ls)
 	ft_arg_gl_sort(fsix, ls->fl);
 	ft_arg_print_f1(fsix[0].next);
 	ft_arg_put_b(fsix, ls, 1, 0);
-	ft_arg_put_b(fsix, ls, 2, 1);
+	ft_arg_put_b(fsix, ls, 2, 2);
 }
 
 /*../src/main.c ../libft ../src/ft_arguments.c */

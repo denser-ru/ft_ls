@@ -22,7 +22,8 @@ FTDIR   = ./libft/
 SRC = main.c ft_ls.c ft_file_u.c ft_filelist.c ft_print_dir.c ft_read_dir.c \
 		ft_filemode.c ft_ls_rec.c ft_print_error.c ft_arguments.c \
 		ft_arg_add_file.c ft_arg_sort.c ft_arg_sort_modified.c ft_sort_files.c \
-		ft_read_u.c ft_sort_files_t.c ft_struct_direct.c
+		ft_read_u.c ft_sort_files_t.c ft_struct_direct.c ft_sort_dirs_t.c \
+		ft_ls_file.c
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 LIBFT = $(FTDIR)libft.a
 
