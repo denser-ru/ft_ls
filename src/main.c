@@ -106,6 +106,7 @@ int					main(int argc, char **argv)
 		print_error(NULL, 1);
 	ft_bzero(ls, sizeof(t_ls));
 	ls->fl = fl;
+	ls->ltime = time(NULL);
 	if (argc == 0)
 		ft_ls(".", 1, ls);
 	else if (argc == 1)

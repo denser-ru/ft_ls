@@ -70,6 +70,8 @@ void		ft_get_ctime(t_ls *ls, t_stat *stat)
 	ls->curfile->ctime = stat->st_mtime;
 	size = ft_strlen(time);
 	ft_memcpy(ls->i, time, size);
+	if ((ls->curfile->ctime < ls->ltime - 15724800) || (ls->curfile->ctime > ls->ltime + 15724800))
+		ft_memcpy(ls->i + 11, time + 20, 5);
 	ls->i += ++size;
 	ls->curfile->size[4] = size;
 }

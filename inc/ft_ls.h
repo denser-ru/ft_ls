@@ -23,7 +23,6 @@
 # include <time.h>
 # include <grp.h>
 # include <pwd.h>
-# include <time.h>
 
 /*
 ** -a (LS_A) to display hidden files, current folder and previous folder,
@@ -91,6 +90,7 @@ typedef struct			s_ls
 	t_file				*curfile;
 	t_file				*endfile;
 	int					f_max_size[5];
+	time_t				ltime;
 }						t_ls;
 
 void					ft_ls(char *fname, char d, t_ls *ls);
