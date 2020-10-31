@@ -72,6 +72,8 @@ int				ft_print_mod(void **in, void **out)
 {
 	ft_memcpy(*in, *out, 11);
 	*in += 11;
+	ft_memset(*in, ' ', 1);
+	*in += 1;
 	*out += 11;
-	return (11);
+	return (11 + 1);
 }
