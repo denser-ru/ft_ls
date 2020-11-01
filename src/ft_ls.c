@@ -107,6 +107,9 @@ void			ft_read_func(t_ls *ls)
 
 void			ft_ls(char *fname, char d, t_ls *ls)
 {
+	ft_read_func(ls);
+	if (!(ls->bufdir))
+		ft_ls_init(ls);
 	if (!d)
 		ft_ls_file(fname, ls);
 	else if (d && fname && *fname)
@@ -116,10 +119,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 			ft_putstr(fname);
 			ft_putendl(":");
 		}
-		if (!(ls->bufdir))
-			ft_ls_init(ls);
 		ls->curdir->dname = fname;
-		ft_read_func(ls);
 		ft_ls_l(ls);
 		//ft_del_filelist(&(ls->filelist));
 //		ls->dirlist = ft_dirlist_init(ls, ft_strlen(fname), fname);

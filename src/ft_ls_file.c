@@ -12,10 +12,10 @@
 
 #include "ft_ls.h"
 
+
+
 void		ft_ls_file(char *fname, t_ls *ls)
 {
-	//test
-	*fname = '\0';
-	ls->fl = 0;
+	ft_read_file(fname, ls);
 }
 

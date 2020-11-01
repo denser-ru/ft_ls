@@ -17,8 +17,6 @@ void		ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname)
 	size_t	size;
 
 	ft_strcpy(fname, ls->curdir->dname);
-//	size = ls->curdir->content_size;
-//	ft_memcpy(fname, ls->curdir->content, size);
 	fname += ft_strlen(ls->curdir->dname);
 	if (*(fname - 1) != '/')
 		ft_memcpy(fname++, "/", 1);

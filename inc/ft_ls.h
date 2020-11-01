@@ -139,6 +139,7 @@ void					ft_sort_dirs_t(t_direct *d, t_direct *cur);
 void					ft_sort_dirs_t_r(t_direct *d, t_direct *cur);
 
 void					ft_ls_file(char *fname, t_ls *ls);
+void					ft_read_file(char *fname, t_ls *ls);
 
 
 #endif

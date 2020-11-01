@@ -42,7 +42,7 @@ void	ft_arg_add_file(t_file *f, int i, t_stat *stat, char **argv)
 	else
 	{
 		(f[0 + 3].next)->next = file;
-		f[0 + 3].next = (f[0 + 3].next)->next;
+		f[0 + 3].next = file;
 		f[0].size[0]++;
 	}
 }

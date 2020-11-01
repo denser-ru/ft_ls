@@ -40,6 +40,7 @@ void			ft_ls_rec(t_ls *ls)
 	t_direct	*dirlist;
 	t_direct	*curlist;
 
+	ft_putchar('\n');
 	dirp = NULL;
 	ft_strcpy(ls->fname, ls->curdir->dname);
 	dirlist = NULL;
@@ -51,7 +52,7 @@ void			ft_ls_rec(t_ls *ls)
 	curlist = dirlist;
 	while (curlist)
 	{
-		ft_putchar('\n');
+//		ft_putchar('\n');
 		ls->curdir = curlist;
 //		ls->curdir = curlist;
 		ft_ls_rec(ls);

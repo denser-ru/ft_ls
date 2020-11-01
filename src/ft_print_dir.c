@@ -85,7 +85,7 @@ void			ft_print_dir_l(t_ls *ls, t_file *file, int i)
 		i += file->size[5] + 1;
 		file = file->next;
 	}
-	if (in != ls->bufdir)
+	if (in != ls->bufdir && ls->i != NULL)
 	{
 		ft_putnstr("total ", 6);
 		ft_putnbr(ls->dirsize >> 10);
