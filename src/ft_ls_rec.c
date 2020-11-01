@@ -21,14 +21,19 @@ void			ft_ls_l(t_ls *ls)
 	dirp = NULL;
 	ft_strcpy(ls->fname, ls->curdir->dname);
 	dirlist = NULL;
-	dir = opendir(ls->fname);
-	ls->ls_func(ls, dirp, dir, (ls->fl & LS_RR ? &dirlist : NULL));
-	closedir(dir);
-	while (dirlist)
+	errno = 0;
+	if (!(dir = opendir(ls->fname)))
+		print_error_dir(ls->fname, 0);
+	else
 	{
-		ls->curdir = dirlist;
-		ft_ls_rec(ls);
-		dirlist = dirlist->next;
+		ls->ls_func(ls, dirp, dir, (ls->fl & LS_RR ? &dirlist : NULL));
+		closedir(dir);
+		while (dirlist)
+		{
+			ls->curdir = dirlist;
+			ft_ls_rec(ls);
+			dirlist = dirlist->next;
+		}
 	}
 //	ft_lstdel(&(ls->curdir), &ft_lstdelcontent);
 }
@@ -44,19 +49,22 @@ void			ft_ls_rec(t_ls *ls)
 	dirp = NULL;
 	ft_strcpy(ls->fname, ls->curdir->dname);
 	dirlist = NULL;
-	dir = opendir(ls->fname);
-	ft_putstr(ls->fname);
-	ft_putstr(":\n");
-	ls->ls_func(ls, dirp, dir, &dirlist);
-	closedir(dir);
-	curlist = dirlist;
-	while (curlist)
+	errno = 0;
+	if (!(dir = opendir(ls->fname)))
+		print_error_dir(ls->fname, 0);
+	else
 	{
-//		ft_putchar('\n');
-		ls->curdir = curlist;
-//		ls->curdir = curlist;
-		ft_ls_rec(ls);
-		curlist = curlist->next;
+		ft_putstr(ls->fname);
+		ft_putstr(":\n");
+		ls->ls_func(ls, dirp, dir, &dirlist);
+		closedir(dir);
+		curlist = dirlist;
+		while (curlist)
+		{
+			ls->curdir = curlist;
+			ft_ls_rec(ls);
+			curlist = curlist->next;
+		}
 	}
 //	ft_lstdel(&dirlist, &ft_lstdelcontent);
 }

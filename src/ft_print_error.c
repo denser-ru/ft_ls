@@ -17,7 +17,7 @@ void			print_ls_error_ls(char c)
 	ft_putstr("ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putendl("usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
+	ft_putendl("usage: ./ft_ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
 	exit(0);
 }
 
