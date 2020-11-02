@@ -14,31 +14,31 @@
 
 void			print_ls_error_ls(char c)
 {
-	ft_putstr("ls: illegal option -- ");
-	ft_putchar(c);
-	ft_putchar('\n');
-	ft_putendl("usage: ./ft_ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
+	ft_putstr_fd("ls: illegal option -- ", 2);
+	ft_putchar_fd(c,2);
+	ft_putchar_fd('\n', 2);
+	ft_putendl_fd("usage: ./ft_ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]", 2);
 	exit(0);
 }
 
 static void		print_err_ls(char *fname)
 {
-	ft_putstr("ls: ");
+	ft_putstr_fd("ls: ", 2);
 	if (fname)
 	{
-		ft_putstr(fname);
-		ft_putstr(": ");
+		ft_putstr_fd(fname, 2);
+		ft_putstr_fd(": ", 2);
 	}
-	ft_putstr(strerror(errno));
-	ft_putchar('\n');
+	ft_putstr_fd(strerror(errno), 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void			print_error_dir(char *fname, char print_fname)
 {
 	if (print_fname)
 	{
-		ft_putstr(fname);
-		ft_putendl(":");
+		ft_putstr_fd(fname, 2);
+		ft_putendl_fd(":", 2);
 	}
 	print_err_ls(fname);
 }

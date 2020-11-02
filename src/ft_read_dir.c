@@ -19,6 +19,8 @@ static void		ft_get_stat(t_ls *ls, t_stat *stat)
 	ft_get_pwd(ls, stat);
 	ft_get_size(ls, stat);
 	ft_get_ctime(ls, stat);
+	if (stat->st_mode & S_IFCHR)
+		ft_get_symlink(ls);
 }
 
 /*

@@ -46,13 +46,28 @@ static void		ft_get_gmode(t_ls *ls, t_stat *stat)
 	}
 }
 
+void 			ft_get_symlink(t_ls *ls)
+{
+	ssize_t		len;
+
+	if ((len = readlink(ls->fname, ls->bufdir, BUF)) == -1)
+		print_error(ls->fname, 0);
+	else
+	{
+		ft_memcpy(ls->i, " -> ", 4);
+		ft_memcpy(ls->i + 4, ls->bufdir, len);
+		ls->curfile->size[6] = len + 4;
+		ls->i += len + 4;
+	}
+}
+
 void			ft_get_mode(t_ls *ls, t_stat *stat)
 {
 	ft_memset(ls->i, '-', 10);
 	ft_memset(ls->i + 10, ' ', 1);
 	if (stat->st_mode & S_IFDIR)
 		ft_memset(ls->i, 'd', 1);
-	if (stat->st_mode & S_IFCHR)
+	else if (stat->st_mode & S_IFCHR)
 		ft_memset(ls->i, 'l', 1);
 	ft_get_umode(ls, stat);
 	ft_get_gmode(ls, stat);

@@ -59,7 +59,7 @@ typedef struct group	t_group;
 typedef struct			s_file
 {
 	void				*adr;
-	int					size[6];
+	int					size[7];
 	time_t				ctime;
 	mode_t				mode;
 	struct s_file		*prev;
@@ -140,6 +140,7 @@ void					ft_sort_dirs_t_r(t_direct *d, t_direct *cur);
 
 void					ft_ls_file(char *fname, t_ls *ls);
 void					ft_read_file(char *fname, t_ls *ls);
+void 					ft_get_symlink(t_ls *ls);
 
 
 #endif

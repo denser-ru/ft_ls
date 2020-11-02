@@ -92,6 +92,7 @@ unsigned long long	flags(int *argc, char ***argv_orig, unsigned long long fl)
 	}
 	*argc -= i;
 	*argv_orig = argv + i;
+	fl = fl | LS_ONE;
 	return (fl);
 }
 
