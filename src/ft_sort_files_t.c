@@ -23,7 +23,7 @@ static void	ft_sort_files_t_name_r(t_ls *ls, t_file *f, char *name)
 	{
 		i = ft_strncmp(name, f->next->adr, \
 				len <= f->next->size[5] ? len : f->next->size[5]);
-		if (i > 0 || (i == 0 && len < f->next->size[5]))
+		if (i > 0 || (i == 0 && len > f->next->size[5]))
 			break ;
 		f = f->next;
 	}
@@ -76,7 +76,7 @@ static void	ft_sort_files_t_name(t_ls *ls, t_file *f, char *name)
 	{
 		i = ft_strncmp(name, f->next->adr, \
 					len <= f->next->size[5] ? len : f->next->size[5]);
-		if (i < 0 || (i == 0 && len > f->next->size[5]))
+		if (i < 0 || (i == 0 && len < f->next->size[5]))
 			break ;
 		f = f->next;
 	}

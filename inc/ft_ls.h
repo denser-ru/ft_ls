@@ -75,7 +75,6 @@ typedef struct			s_direct
 
 typedef struct			s_ls
 {
-//	t_list				*dirlist;
 	t_file				*filelist;
 	void				(*ls_func)();
 	void				(*sort_dirs)();
@@ -94,6 +93,7 @@ typedef struct			s_ls
 }						t_ls;
 
 void					ft_ls(char *fname, char d, t_ls *ls);
+void					ft_freemem(t_ls **ls);
 void					ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir, \
 											t_direct **dirlist);
 void					ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir, \
@@ -126,12 +126,10 @@ void					ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname);
 void					ft_init_max_size(t_ls *ls, int i);
 t_dirent				*ft_get_dirp(t_dirent *dirp, DIR *dir,
 									unsigned long long fl);
-void					ft_void_func(void);
-int						ft_void_func_dir(void);
-void					ft_print_dirlist(t_ls *ls, int one);
 
 t_direct				*ft_direct_new(char *dname, t_file *file);
 void					ft_direct_pushb(t_direct **root, char *dname, t_ls *ls);
+void					ft_direct_del(t_direct **d);
 
 void					ft_sort_dirs(t_direct *d, t_direct *cur);
 void					ft_sort_dirs_r(t_direct *d, t_direct *cur);

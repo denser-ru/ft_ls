@@ -35,7 +35,7 @@ void			ft_ls_l(t_ls *ls)
 			dirlist = dirlist->next;
 		}
 	}
-//	ft_lstdel(&(ls->curdir), &ft_lstdelcontent);
+	ft_direct_del(&dirlist);
 }
 
 void			ft_ls_rec(t_ls *ls)
@@ -66,5 +66,5 @@ void			ft_ls_rec(t_ls *ls)
 			curlist = curlist->next;
 		}
 	}
-//	ft_lstdel(&dirlist, &ft_lstdelcontent);
+	ft_direct_del(&dirlist);
 }

@@ -113,7 +113,6 @@ int					main(int argc, char **argv)
 		ft_one_argument(argv, ls);
 	else
 		ft_arguments(argc, argv, ls);
-//	void			ft_freemem(t_ls *ls, t_list **list)
-//	ft_freemem(t_*ls, t_list **list);
+	ft_freemem(&ls);
 	return (0);
 }

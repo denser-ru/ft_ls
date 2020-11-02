@@ -47,3 +47,20 @@ void		ft_direct_pushb(t_direct **root, char *dname, t_ls *ls)
 		*root = dir.next;
 	}
 }
+
+void		ft_direct_del(t_direct **d)
+{
+	size_t		len;
+	if ((*d)->next)
+		ft_direct_del(&((*d)->next));
+	if (*d)
+	{
+		if ((*d)->dname)
+		{
+			ft_strclr((*d)->dname);
+			ft_strdel(&((*d)->dname));
+		}
+		free(*d);
+	}
+	*d = NULL;
+}

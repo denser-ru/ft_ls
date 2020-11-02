@@ -113,13 +113,3 @@ void			ft_print_dir(t_ls *ls, t_file *file, int i)
 	if (!one)
 		ft_putchar('\n');
 }
-
-void		ft_void_func(void)
-{
-
-}
-
-int		ft_void_func_dir(void)
-{
-	return (0);
-}

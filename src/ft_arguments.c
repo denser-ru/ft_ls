@@ -28,7 +28,7 @@ void	ft_get_stat_gs(char **argv, int i, t_file *f)
 		ft_arg_add_file(&(f[0]), i, &stat, argv);
 		(f[3].next)->size[1] = errno;
 	}
-	else if (stat.st_mode & S_IFDIR)
+	else if (S_ISDIR(stat.st_mode))
 		ft_arg_add_file(&(f[2]), i, &stat, argv);
 	else
 		ft_arg_add_file(&(f[1]), i, &stat, argv);

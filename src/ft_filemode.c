@@ -65,10 +65,18 @@ void			ft_get_mode(t_ls *ls, t_stat *stat)
 {
 	ft_memset(ls->i, '-', 10);
 	ft_memset(ls->i + 10, ' ', 1);
-	if (stat->st_mode & S_IFDIR)
+	if (S_ISDIR(stat->st_mode))
 		ft_memset(ls->i, 'd', 1);
-	else if (stat->st_mode & S_IFCHR)
+	else if (S_ISLNK(stat->st_mode))
 		ft_memset(ls->i, 'l', 1);
+	else if (S_ISSOCK(stat->st_mode))
+		ft_memset(ls->i, 's', 1);
+	else if (S_ISCHR(stat->st_mode))
+		ft_memset(ls->i, 'c', 1);
+	else if (S_ISBLK(stat->st_mode))
+		ft_memset(ls->i, 'b', 1);
+	else if (S_ISFIFO(stat->st_mode))
+		ft_memset(ls->i, 'p', 1);
 	ft_get_umode(ls, stat);
 	ft_get_gmode(ls, stat);
 	if (stat->st_mode & S_IROTH)

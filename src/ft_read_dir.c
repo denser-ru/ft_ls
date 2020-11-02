@@ -111,7 +111,7 @@ void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir, t_direct **dirlist)
 		else
 		{
 			ft_get_stat(ls, &stat);
-			if (dirlist && (stat.st_mode & S_IFDIR) &&
+			if (dirlist && S_ISDIR(stat.st_mode) &&
 				ft_strcmp(dirp->d_name, ".") && ft_strcmp(dirp->d_name, ".."))
 				ft_direct_pushb(dirlist, ls->fname, ls);
 
@@ -142,7 +142,7 @@ void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir, t_direct **dirlist)
 		else
 		{
 			ft_get_stat(ls, &stat);
-			if (dirlist && (stat.st_mode & S_IFDIR) &&
+			if (dirlist && S_ISDIR(stat.st_mode) &&
 				ft_strcmp(dirp->d_name, ".") && ft_strcmp(dirp->d_name, ".."))
 				ft_direct_pushb(dirlist, ls->fname, ls);
 

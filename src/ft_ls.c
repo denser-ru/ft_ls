@@ -58,13 +58,18 @@ static void		ft_ls_init(t_ls *ls)
 	ls->i = ls->buffile;
 }
 
-void			ft_freemem(t_ls *ls, t_list **list)
+void			ft_freemem(t_ls **ls)
 {
-	ft_del_filelist(&(ls->filelist));
-	ft_lstdel(list, ft_lstdelcontent);
-	free(ls->bufdir);
-	free(ls->buffile);
-	free(ls);
+	if (*ls)
+	{
+		ft_del_filelist(&((*ls)->filelist));
+		free((*ls)->bufdir);
+		(*ls)->bufdir = NULL;
+		free((*ls)->buffile);
+		(*ls)->buffile = NULL;
+		free(*ls);
+		*ls = NULL;
+	}
 }
 
 static void		ft_read_func_sort(t_ls *ls)
@@ -97,11 +102,6 @@ void			ft_read_func(t_ls *ls)
 			ls->ls_func = ft_read_dir_l;
 	else
 		ls->ls_func = ft_read_dir;
-	if (ls->fl & LS_UU)
-	{
-		ls->sort_files = ft_void_func;
-//		ls->sort_dirs = ft_void_func_dir;
-	}
 	ft_read_func_sort(ls);
 }
 

@@ -18,7 +18,7 @@ static void	ft_sort_dirs_t_r_name(t_direct *d, t_direct *cur)
 
 	while (d->next != NULL && cur->file->ctime == d->next->file->ctime)
 	{
-		if ((ft_strcmp(cur->dname, d->next->dname)) < 0)
+		if ((ft_strcmp(cur->dname, d->next->dname)) > 0)
 			break ;
 		d = d->next;
 	}
@@ -60,7 +60,7 @@ static void	ft_sort_dirs_t_name(t_direct *d, t_direct *cur)
 
 	while (d->next != NULL && cur->file->ctime == d->next->file->ctime)
 	{
-		if ((ft_strcmp(cur->dname, d->next->dname)) > 0)
+		if ((ft_strcmp(cur->dname, d->next->dname)) < 0)
 			break ;
 		d = d->next;
 	}
