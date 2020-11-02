@@ -35,6 +35,15 @@ static void		print_err_ls(char *fname)
 
 void			print_error_dir(char *fname, char print_fname)
 {
+	char	*s;
+
+	s = fname;
+	while (*s)
+	{
+		if (*s == '/')
+			fname = s + 1;
+		s++;
+	}
 	if (print_fname)
 	{
 		ft_putstr_fd(fname, 2);

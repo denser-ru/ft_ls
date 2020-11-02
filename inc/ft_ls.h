@@ -35,20 +35,20 @@
 ** -1 (LS_ONE) to display results on one column,
 */
 
-# define LS_A		1
-# define LS_L		2
-# define LS_RR		4
-# define LS_R		8
-# define LS_T		16
-# define LS_D		32
-# define LS_G		64
-# define LS_ONE		128
-# define LS_SS		256
-# define LS_S		512
-# define LS_UU		1024
-# define LS_I		2048
+# define LS_A		1U
+# define LS_L		2U
+# define LS_RR		4U
+# define LS_R		8U
+# define LS_T		16U
+# define LS_D		32U
+# define LS_G		64U
+# define LS_ONE		128U
+# define LS_SS		256U
+# define LS_S		512U
+# define LS_UU		1024U
+# define LS_I		2048U
 
-# define BUF		1048576
+# define BUF		1048576000U
 # define MAX_NAME	1024
 
 typedef struct stat		t_stat;

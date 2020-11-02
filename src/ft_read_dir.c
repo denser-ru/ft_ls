@@ -107,19 +107,22 @@ void			ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir, t_direct **dirlist)
 		ls->curfile->adr = ls->i;
 		ft_get_fname(ls, dirp, ls->fname);
 		if ((lstat(ls->fname, &stat)) == -1 && errno != 0)
-			print_error(ls->fname, 0);
+			print_error(dirp->d_name, 0);
 		else
 		{
+			ft_get_stat(ls, &stat);
 			if (dirlist && (stat.st_mode & S_IFDIR) &&
 				ft_strcmp(dirp->d_name, ".") && ft_strcmp(dirp->d_name, ".."))
 				ft_direct_pushb(dirlist, ls->fname, ls);
-			ft_get_stat(ls, &stat);
+
 			ft_get_spot(ls, dirp->d_name);
 		}
 		errno = 0;
 	}
 	if (!(errno))
 		ft_print_dir_l(ls, ls->filelist, 0);
+	else
+		print_error_dir(ls->curdir->dname, 0);
 }
 
 void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir, t_direct **dirlist)
@@ -135,17 +138,20 @@ void			ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir, t_direct **dirlist)
 		ls->curfile->adr = ls->i;
 		ft_get_fname(ls, dirp, ls->fname);
 		if ((lstat(ls->fname, &stat)) == -1 && errno != 0)
-			print_error(ls->fname, 0);
+			print_error(dirp->d_name, 0);
 		else
 		{
+			ft_get_stat(ls, &stat);
 			if (dirlist && (stat.st_mode & S_IFDIR) &&
 				ft_strcmp(dirp->d_name, ".") && ft_strcmp(dirp->d_name, ".."))
 				ft_direct_pushb(dirlist, ls->fname, ls);
-			ft_get_stat(ls, &stat);
+
 			ft_get_spot(ls, dirp->d_name);
 		}
 		errno = 0;
 	}
 	if (!(errno))
 		ft_print_dir(ls, ls->filelist, 0);
+	else
+		print_error_dir(ls->curdir->dname, 0);
 }

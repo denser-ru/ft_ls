@@ -23,7 +23,7 @@ void			ft_ls_l(t_ls *ls)
 	dirlist = NULL;
 	errno = 0;
 	if (!(dir = opendir(ls->fname)))
-		print_error_dir(ls->fname, 0);
+		print_error_dir(ls->curdir->dname, 0);
 	else
 	{
 		ls->ls_func(ls, dirp, dir, (ls->fl & LS_RR ? &dirlist : NULL));
@@ -49,13 +49,13 @@ void			ft_ls_rec(t_ls *ls)
 	dirp = NULL;
 	ft_strcpy(ls->fname, ls->curdir->dname);
 	dirlist = NULL;
+	ft_putstr(ls->fname);
+	ft_putstr(":\n");
 	errno = 0;
 	if (!(dir = opendir(ls->fname)))
-		print_error_dir(ls->fname, 0);
+		print_error_dir(ls->curdir->dname, 0);
 	else
 	{
-		ft_putstr(ls->fname);
-		ft_putstr(":\n");
 		ls->ls_func(ls, dirp, dir, &dirlist);
 		closedir(dir);
 		curlist = dirlist;
