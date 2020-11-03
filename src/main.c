@@ -57,7 +57,7 @@ unsigned long long	flags(int *argc, char ***argv_orig, unsigned long long fl)
 	i = 1;
 	argv = *argv_orig;
 	*(argv[0]) = '\0';
-	while (i < *argc && *(argv[i]) == '-')
+	while (i < *argc && *(argv[i]) == '-' && argv[i][1])
 	{
 		j = 1;
 		while (argv[i][j])
