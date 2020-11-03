@@ -78,7 +78,7 @@ typedef struct			s_ls
 	t_file				*filelist;
 	void				(*ls_func)();
 	void				(*sort_dirs)();
-	void 				(*sort_files)();
+	void				(*sort_files)();
 	void				*bufdir;
 	void				*buffile;
 	void				*i;
@@ -98,7 +98,6 @@ void					ft_read_dir_l(t_ls *ls, t_dirent *dirp, DIR *dir, \
 											t_direct **dirlist);
 void					ft_read_dir(t_ls *ls, t_dirent *dirp, DIR *dir, \
 											t_direct **dirlist);
-
 
 void					ft_sort_files(t_ls *ls, char *name);
 void					ft_sort_files_r(t_ls *ls, char *name);
@@ -139,7 +138,6 @@ void					ft_sort_dirs_t(t_direct *d, t_direct *cur);
 void					ft_sort_dirs_t_r(t_direct *d, t_direct *cur);
 
 void					ft_read_file(char *fname, t_ls *ls);
-void 					ft_get_symlink(t_ls *ls);
-
+void					ft_get_symlink(t_ls *ls);
 
 #endif

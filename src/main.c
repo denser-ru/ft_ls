@@ -12,31 +12,6 @@
 
 #include "ft_ls_gsinged.h"
 
-/*
- *
- * void	ft_ls(char *fname, char d, t_ls *ls);
- * fname - filename
- * d - является ли filename каталогом. 0 (нет) или 1 (да)
- * ls - структура ls
- * В ls->filelist есть уже листы
- *
- */
-
-/*static void	ft_ls(char *fname, char d, t_ls *ls)
-{
-
-}*/
-
-/*
- * t_file
- * size[5] - size filename
- */
-
-/*
- * отредактировать ошибку в ft_print_error
- * ft_putendl("usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]");
- */
-
 static void			ft_one_argument(char **argv, t_ls *ls)
 {
 	t_stat stat;
