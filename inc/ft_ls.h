@@ -131,6 +131,7 @@ t_dirent				*ft_get_dirp(t_dirent *dirp, DIR *dir,
 t_direct				*ft_direct_new(char *dname, t_file *file);
 void					ft_direct_pushb(t_direct **root, char *dname, t_ls *ls);
 void					ft_direct_del(t_direct **d);
+void					ft_direct_del_cur(t_direct **d);
 
 void					ft_sort_dirs(t_direct *d, t_direct *cur);
 void					ft_sort_dirs_r(t_direct *d, t_direct *cur);

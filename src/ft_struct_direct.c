@@ -48,6 +48,15 @@ void		ft_direct_pushb(t_direct **root, char *dname, t_ls *ls)
 	}
 }
 
+void		ft_direct_del_cur(t_direct **d)
+{
+	if (*d)
+	{
+		free(*d);
+	}
+	*d = NULL;
+}
+
 void		ft_direct_del(t_direct **d)
 {
 	if (*d)
@@ -57,7 +66,9 @@ void		ft_direct_del(t_direct **d)
 		if ((*d)->dname)
 		{
 			ft_strclr((*d)->dname);
-			ft_strdel(&((*d)->dname));
+			if ((*d)->dname)
+				free((*d)->dname);
+			(*d)->dname = NULL;
 		}
 		free(*d);
 	}

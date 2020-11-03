@@ -28,6 +28,7 @@ void			ft_ls_l(t_ls *ls)
 	{
 		ls->ls_func(ls, dirp, dir, (ls->fl & LS_RR ? &dirlist : NULL));
 		closedir(dir);
+		ft_direct_del_cur(&(ls->curdir));
 		while (dirlist)
 		{
 			ls->curdir = dirlist;
