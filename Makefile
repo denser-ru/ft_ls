@@ -29,7 +29,7 @@ LIBFT = $(FTDIR)libft.a
 
 .PHONY: all clean fclean count
 
-all: obj $(LIBFT) $(NAME)
+all: $(NAME)
 
 obj:
 	mkdir -p $(OBJDIR)
@@ -40,7 +40,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 $(LIBFT):
 	make -C $(FTDIR)
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): obj $(LIBFT) $(OBJ)
 	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 
 count:

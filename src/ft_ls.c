@@ -14,7 +14,6 @@
 
 static void		ft_ls_init(t_ls *ls)
 {
-	ls->curdir = ft_direct_new(NULL, NULL);
 	ls->bufdir = (void*)malloc(sizeof(void) * BUF);
 	ls->buffile = (void*)malloc(sizeof(void) * BUF);
 	ls->i = ls->buffile;
@@ -73,12 +72,14 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 	ft_read_func(ls);
 	if (!(ls->bufdir))
 		ft_ls_init(ls);
+	ls->curdir = ft_direct_new(NULL, NULL);
 	if (!d)
 		ft_read_file(fname, ls);
 	else if (d && fname && *fname)
 	{
 		if (d == 2)
 		{
+			ft_putchar('\n');
 			ft_putstr(fname);
 			ft_putendl(":");
 		}
