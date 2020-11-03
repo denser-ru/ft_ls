@@ -77,9 +77,11 @@ void		ft_next_curfile(t_ls *ls)
 
 void		ft_del_filelist(t_file **file)
 {
-	if ((*file)->next)
-		ft_del_filelist(&((*file)->next));
 	if (*file)
+	{
+		if ((*file)->next)
+			ft_del_filelist(&((*file)->next));
 		free(*file);
+	}
 	*file = NULL;
 }

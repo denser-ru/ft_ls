@@ -12,20 +12,27 @@
 
 #include "ft_ls_gsinged.h"
 
-static void		ft_get_stat_gs(char **argv, int i, t_file *f)
+static void		ft_get_stat_gs(char **argv, int i, t_file *f, t_ls *ls)
 {
-	t_stat	stat;
+	t_stat	st;
 
 	errno = 0;
-	if ((lstat(argv[i], &stat)) == -1)
+	if ((lstat(argv[i], &st)) == -1)
 	{
-		ft_arg_add_file(&(f[0]), i, &stat, argv);
+		ft_arg_add_file(&(f[0]), i, &st, argv);
 		(f[3].next)->size[1] = errno;
 	}
-	else if (S_ISDIR(stat.st_mode))
-		ft_arg_add_file(&(f[2]), i, &stat, argv);
+	else if (S_ISDIR(st.st_mode))
+		ft_arg_add_file(&(f[2]), i, &st, argv);
+	else if (S_ISLNK(st.st_mode) && !(ls->fl & LS_L))
+	{
+		if (ft_get_stat_link(argv[i]))
+			ft_arg_add_file(&(f[2]), i, &st, argv);
+		else
+			ft_arg_add_file(&(f[1]), i, &st, argv);
+	}
 	else
-		ft_arg_add_file(&(f[1]), i, &stat, argv);
+		ft_arg_add_file(&(f[1]), i, &st, argv);
 }
 
 static void		ft_arg_gl_sort(t_file *f, unsigned long long fl)
@@ -84,7 +91,7 @@ void			ft_arguments(int argc, char **argv, t_ls *ls)
 	i = 0;
 	while (i < argc)
 	{
-		ft_get_stat_gs(argv, i, fsix);
+		ft_get_stat_gs(argv, i, fsix, ls);
 		i++;
 	}
 	ft_arg_gl_sort(fsix, ls->fl);

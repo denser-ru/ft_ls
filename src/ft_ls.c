@@ -73,6 +73,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 	if (!(ls->bufdir))
 		ft_ls_init(ls);
 	ls->curdir = ft_direct_new(NULL, NULL);
+	ft_strcpy(ls->fname, fname);
 	if (!d)
 		ft_read_file(fname, ls);
 	else if (d && fname && *fname)

@@ -19,7 +19,7 @@ static void		ft_get_stat(t_ls *ls, t_stat *stat)
 	ft_get_pwd(ls, stat);
 	ft_get_size(ls, stat);
 	ft_get_ctime(ls, stat);
-	if (stat->st_mode & S_IFCHR)
+	if (S_ISLNK(stat->st_mode))
 		ft_get_symlink(ls);
 }
 
@@ -45,6 +45,7 @@ void			ft_read_file(char *fname, t_ls *ls)
 		ft_print_dir_l(ls, ls->filelist, 0);
 	else
 		ft_print_dir(ls, ls->filelist, 0);
+	ft_direct_del_cur(&(ls->curdir));
 }
 
 static void		ft_ifdir(t_ls *ls, t_stat stat, t_direct **dirl, t_dirent *dirp)
