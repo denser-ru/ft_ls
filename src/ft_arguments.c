@@ -75,6 +75,8 @@ static void		ft_arg_put_b(t_file *fsix, t_ls *ls, int n, char d)
 			f = f->next;
 			c->next = ls->filelist;
 			ls->filelist = c;
+			if (d)
+				ft_putchar('\n');
 		}
 		ft_ls(f->adr, d, ls);
 		f->next = ls->filelist;
@@ -97,7 +99,7 @@ void			ft_arguments(int argc, char **argv, t_ls *ls)
 	ft_arg_gl_sort(fsix, ls->fl);
 	ft_arg_print_f1(fsix[0].next);
 	ft_arg_put_b(fsix, ls, 1, 0);
-//	if (fsix[1].size[0] && fsix[2].size[0])
-//		ft_putchar('\n');
+	if (fsix[1].size[0] && fsix[2].size[0])
+		ft_putchar('\n');
 	ft_arg_put_b(fsix, ls, 2, 2);
 }
