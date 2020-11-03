@@ -12,7 +12,7 @@
 
 #include "ft_ls_gsinged.h"
 
-/*
+
 static void			ft_one_argument(char **argv, t_ls *ls)
 {
 	t_stat stat;
@@ -22,10 +22,17 @@ static void			ft_one_argument(char **argv, t_ls *ls)
 		print_error(*argv, 1);
 	if (S_ISDIR(stat.st_mode))
 		ft_ls(*argv, 1, ls);
+	else if (S_ISLNK(stat.st_mode) && !(ls->fl & LS_L))
+	{
+		if (ft_get_stat_link(*argv))
+			ft_ls(*argv, 1, ls);
+		else
+			ft_ls(*argv, 0, ls);
+	}
 	else
 		ft_ls(*argv, 0, ls);
 }
- */
+
 
 static int			flags_f(char c, unsigned long long *fl)
 {
@@ -86,8 +93,8 @@ int					main(int argc, char **argv)
 	ls->ltime = time(NULL);
 	if (argc == 0)
 		ft_ls(".", 1, ls);
-//	else if (argc == 1)
-//		ft_one_argument(argv, ls);
+	else if (argc == 1)
+		ft_one_argument(argv, ls);
 	else
 		ft_arguments(argc, argv, ls);
 	ft_freemem(&ls);
