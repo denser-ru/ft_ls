@@ -46,7 +46,19 @@ static void		ft_get_gmode(t_ls *ls, t_stat *stat)
 	}
 }
 
-void 			ft_get_symlink(t_ls *ls)
+static void		ft_get_omode(t_ls *ls, t_stat *stat)
+{
+	if (stat->st_mode & S_IROTH)
+		ft_memset(ls->i + 7, 'r', 1);
+	if (stat->st_mode & S_IWOTH)
+		ft_memset(ls->i + 8, 'w', 1);
+	if (stat->st_mode & S_IXOTH)
+		ft_memset(ls->i + 9, 'x', 1);
+	if (stat->st_mode & S_ISVTX)
+		ft_memset(ls->i + 9, 't', 1);
+}
+
+void			ft_get_symlink(t_ls *ls)
 {
 	ssize_t		len;
 
@@ -79,24 +91,7 @@ void			ft_get_mode(t_ls *ls, t_stat *stat)
 		ft_memset(ls->i, 'p', 1);
 	ft_get_umode(ls, stat);
 	ft_get_gmode(ls, stat);
-	if (stat->st_mode & S_IROTH)
-		ft_memset(ls->i + 7, 'r', 1);
-	if (stat->st_mode & S_IWOTH)
-		ft_memset(ls->i + 8, 'w', 1);
-	if (stat->st_mode & S_IXOTH)
-		ft_memset(ls->i + 9, 'x', 1);
-	if (stat->st_mode & S_ISVTX)
-		ft_memset(ls->i + 9, 't', 1);
+	ft_get_omode(ls, stat);
 	ls->i += 11;
 	ls->curfile->mode = stat->st_mode;
-}
-
-int				ft_print_mod(void **in, void **out)
-{
-	ft_memcpy(*in, *out, 11);
-	*in += 11;
-	ft_memset(*in, ' ', 1);
-	*in += 1;
-	*out += 11;
-	return (11 + 1);
 }

@@ -12,13 +12,51 @@
 
 #include "ft_ls.h"
 
-void			ft_get_spot(t_ls *ls, char *name)
+void		ft_get_spot(t_ls *ls, char *name)
 {
 	ls->sort_files(ls, name);
 	ft_next_curfile(ls);
 }
 
-void			ft_next_curfile(t_ls *ls)
+void		ft_filelist_init(t_ls *ls)
+{
+	t_file		*file;
+
+	if (!(ls->filelist))
+		ls->filelist = ft_file_new();
+	else
+	{
+		file = ls->filelist->next;
+		ft_bzero(ls->filelist, sizeof(t_file));
+		ls->filelist->next = file;
+	}
+	if (ls->filelist->next)
+	{
+		ls->endfile = ls->filelist->next;
+		file = ls->endfile->next;
+		ft_bzero(ls->endfile, sizeof(t_file));
+		ls->endfile->next = file;
+	}
+	else
+	{
+		ls->endfile = ft_file_new();
+		ls->filelist->next = ls->endfile;
+	}
+	ls->endfile->prev = ls->filelist;
+	ft_next_curfile(ls);
+}
+
+t_file		*ft_file_new(void)
+{
+	t_file		*file;
+
+	if (!(file = (t_file *)malloc(sizeof(t_file))))
+		print_error(NULL, 1);
+	ft_bzero(file, sizeof(t_file));
+	return (file);
+}
+
+void		ft_next_curfile(t_ls *ls)
 {
 	t_file		*file;
 
@@ -37,7 +75,7 @@ void			ft_next_curfile(t_ls *ls)
 	ls->curfile = file;
 }
 
-void			ft_del_filelist(t_file **file)
+void		ft_del_filelist(t_file **file)
 {
 	if ((*file)->next)
 		ft_del_filelist(&((*file)->next));

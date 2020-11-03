@@ -50,7 +50,6 @@ void		ft_direct_pushb(t_direct **root, char *dname, t_ls *ls)
 
 void		ft_direct_del(t_direct **d)
 {
-	size_t		len;
 	if ((*d)->next)
 		ft_direct_del(&((*d)->next));
 	if (*d)

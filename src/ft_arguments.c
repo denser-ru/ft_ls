@@ -12,13 +12,7 @@
 
 #include "ft_ls_gsinged.h"
 
-/*
- * size[0] - i in char **argv. argv[i].
- * size[1] - number errno
- *
- */
-
-void	ft_get_stat_gs(char **argv, int i, t_file *f)
+static void		ft_get_stat_gs(char **argv, int i, t_file *f)
 {
 	t_stat	stat;
 
@@ -34,7 +28,7 @@ void	ft_get_stat_gs(char **argv, int i, t_file *f)
 		ft_arg_add_file(&(f[1]), i, &stat, argv);
 }
 
-void	ft_arg_gl_sort(t_file *f, unsigned long long fl)
+static void		ft_arg_gl_sort(t_file *f, unsigned long long fl)
 {
 	ft_arg_sort_lexicographical(&(f[0]), 0);
 	ft_arg_sort_lexicographical(&(f[1]), fl);
@@ -46,7 +40,7 @@ void	ft_arg_gl_sort(t_file *f, unsigned long long fl)
 	}
 }
 
-void	ft_arg_print_f1(t_file *f)
+static void		ft_arg_print_f1(t_file *f)
 {
 	while (f)
 	{
@@ -59,14 +53,7 @@ void	ft_arg_print_f1(t_file *f)
 	}
 }
 
-void	ft_arg_print_test(t_file *f)
-{
-		ft_putstr(f->adr);
-		ft_putchar(' ');
-		ft_putstr(ctime(&f->ctime));
-}
-
-void	ft_arg_put_b(t_file *fsix, t_ls *ls, int n, char d)
+static void		ft_arg_put_b(t_file *fsix, t_ls *ls, int n, char d)
 {
 	t_file		*f;
 	t_file		*c;
@@ -88,7 +75,7 @@ void	ft_arg_put_b(t_file *fsix, t_ls *ls, int n, char d)
 	}
 }
 
-void	ft_arguments(int argc, char **argv, t_ls *ls)
+void			ft_arguments(int argc, char **argv, t_ls *ls)
 {
 	int		i;
 	t_file	fsix[6];
@@ -107,6 +94,3 @@ void	ft_arguments(int argc, char **argv, t_ls *ls)
 		ft_putchar('\n');
 	ft_arg_put_b(fsix, ls, 2, 2);
 }
-
-/*../src/main.c ../libft ../src/ft_arguments.c */
-/*../src bcfb ../src/main.c src arcs ../libft ../src/ft_arguments.c */

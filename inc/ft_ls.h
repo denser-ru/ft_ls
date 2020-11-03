@@ -119,6 +119,7 @@ void					ft_get_size(t_ls *ls, t_stat *stat);
 void					ft_get_ctime(t_ls *ls, t_stat *stat);
 
 int						ft_print_mod(void **in, void **out);
+int						ft_print_name(void **in, void **out, t_file *file);
 void					ft_print_dir_l(t_ls *ls, t_file	*file, int i);
 void					ft_print_dir(t_ls *ls, t_file	*file, int i);
 
@@ -136,7 +137,6 @@ void					ft_sort_dirs_r(t_direct *d, t_direct *cur);
 void					ft_sort_dirs_t(t_direct *d, t_direct *cur);
 void					ft_sort_dirs_t_r(t_direct *d, t_direct *cur);
 
-void					ft_ls_file(char *fname, t_ls *ls);
 void					ft_read_file(char *fname, t_ls *ls);
 void 					ft_get_symlink(t_ls *ls);
 

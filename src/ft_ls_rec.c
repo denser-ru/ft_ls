@@ -38,6 +38,13 @@ void			ft_ls_l(t_ls *ls)
 	ft_direct_del(&dirlist);
 }
 
+static void		ft_ls_rec_b(t_ls *ls, t_direct **dirlist)
+{
+	*dirlist = NULL;
+	ft_putstr(ls->fname);
+	ft_putstr(":\n");
+}
+
 void			ft_ls_rec(t_ls *ls)
 {
 	DIR			*dir;
@@ -48,9 +55,7 @@ void			ft_ls_rec(t_ls *ls)
 	ft_putchar('\n');
 	dirp = NULL;
 	ft_strcpy(ls->fname, ls->curdir->dname);
-	dirlist = NULL;
-	ft_putstr(ls->fname);
-	ft_putstr(":\n");
+	ft_ls_rec_b(ls, &dirlist);
 	errno = 0;
 	if (!(dir = opendir(ls->fname)))
 		print_error_dir(ls->curdir->dname, 0);

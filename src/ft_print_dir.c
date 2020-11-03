@@ -64,16 +64,6 @@ int				ft_print_time(void **in, void **out)
 	return (17 - 4);
 }
 
-int 			ft_print_name(void **in, void **out, t_file *file)
-{
-	ft_memcpy(*in, file->adr, file->size[5]);
-	*in += file->size[5];
-	ft_memcpy(*in, *out, file->size[6]);
-	*in += file->size[6];
-	ft_memcpy((*in)++, "\n", 1);
-	return (file->size[5] + file->size[6] + 1);
-}
-
 void			ft_print_dir_l(t_ls *ls, t_file *file, int i)
 {
 	void	*in;
