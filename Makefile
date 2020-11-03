@@ -23,7 +23,7 @@ SRC = main.c ft_ls.c ft_file_u.c ft_filelist.c ft_print_dir.c ft_read_dir.c \
 		ft_filemode.c ft_ls_rec.c ft_print_error.c ft_arguments.c \
 		ft_arg_add_file.c ft_arg_sort.c ft_arg_sort_modified.c ft_sort_files.c \
 		ft_read_u.c ft_sort_files_t.c ft_struct_direct.c ft_sort_dirs_t.c \
-		ft_ls_file.c
+		ft_print_dir_b.c
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 LIBFT = $(FTDIR)libft.a
 
@@ -47,11 +47,11 @@ count:
 	wc ./src/*.c ./inc/*.h
 
 clean:
-	rm -f $(OBJDIR)*.o
-	make -C $(FTDIR) clean
+	rm -rf $(OBJDIR)
+	make -sC $(FTDIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(FTDIR) fclean
+	make -sC $(FTDIR) fclean
 
 re: fclean all
