@@ -19,12 +19,15 @@ static void		ft_get_umode(t_ls *ls, t_stat *stat)
 	if (stat->st_mode & S_IWUSR)
 		ft_memset(ls->i + 2, 'w', 1);
 	if (stat->st_mode & S_ISUID)
-		ft_memset(ls->i + 3, 'S', 1);
-	if (stat->st_mode & S_IXUSR)
 	{
-		if (stat->st_mode & S_ISUID)
+		if (stat->st_mode & S_IXUSR)
 			ft_memset(ls->i + 3, 's', 1);
 		else
+			ft_memset(ls->i + 3, 'S', 1);
+	}
+	else
+	{
+		if (stat->st_mode & S_IXUSR)
 			ft_memset(ls->i + 3, 'x', 1);
 	}
 }
@@ -36,12 +39,15 @@ static void		ft_get_gmode(t_ls *ls, t_stat *stat)
 	if (stat->st_mode & S_IWGRP)
 		ft_memset(ls->i + 5, 'w', 1);
 	if (stat->st_mode & S_ISGID)
-		ft_memset(ls->i + 6, 'S', 1);
-	if (stat->st_mode & S_IXGRP)
 	{
-		if (stat->st_mode & S_ISGID)
+		if (stat->st_mode & S_IXGRP)
 			ft_memset(ls->i + 6, 's', 1);
 		else
+			ft_memset(ls->i + 6, 'S', 1);
+	}
+	else
+	{
+		if (stat->st_mode & S_IXGRP)
 			ft_memset(ls->i + 6, 'x', 1);
 	}
 }
@@ -52,10 +58,18 @@ static void		ft_get_omode(t_ls *ls, t_stat *stat)
 		ft_memset(ls->i + 7, 'r', 1);
 	if (stat->st_mode & S_IWOTH)
 		ft_memset(ls->i + 8, 'w', 1);
-	if (stat->st_mode & S_IXOTH)
-		ft_memset(ls->i + 9, 'x', 1);
 	if (stat->st_mode & S_ISVTX)
-		ft_memset(ls->i + 9, 't', 1);
+	{
+		if (stat->st_mode & S_IXOTH)
+			ft_memset(ls->i + 9, 't', 1);
+		else
+			ft_memset(ls->i + 9, 'T', 1);
+	}
+	else
+	{
+		if (stat->st_mode & S_IXOTH)
+			ft_memset(ls->i + 9, 'x', 1);
+	}
 }
 
 void			ft_get_symlink(t_ls *ls)
