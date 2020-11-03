@@ -18,7 +18,7 @@ void			print_ls_error_ls(char c)
 	ft_putchar_fd(c, 2);
 	ft_putchar_fd('\n', 2);
 	ft_putendl_fd("usage: ./ft_ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%%] [file ...]", 2);
-	exit(0);
+	exit(1);
 }
 
 static void		print_err_ls(char *fname)
@@ -57,5 +57,5 @@ void			print_error(char *fname, char exit_err)
 	if (errno != 0)
 		print_err_ls(fname);
 	if (exit_err)
-		exit(0);
+		exit(1);
 }
