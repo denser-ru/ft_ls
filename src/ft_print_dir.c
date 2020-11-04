@@ -12,6 +12,16 @@
 
 #include "ft_ls.h"
 
+static int		ft_print_size2(t_ls *ls, void **in, void **out, t_file *file)
+{
+	ft_memset((*in)++, ',', 1);
+	ft_memset(*in, ' ', ls->f_max_size[5] - file->size[7] + 1);
+	*in += ls->f_max_size[5] - file->size[7] + 1;
+	ft_memcpy(*in, *out, file->size[7]);
+	*in += file->size[7];
+	*out += file->size[7];
+}
+
 static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 {
 	ft_memset(*in, ' ', ls->f_max_size[3] - file->size[3]);
@@ -20,14 +30,7 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	*in += file->size[3];
 	*out += file->size[3];
 	if (ls->f_max_size[5] > 0)
-	{
-		ft_memset((*in)++, ',', 1);
-		ft_memset(*in, ' ', ls->f_max_size[5] - file->size[7] + 1);
-		*in += ls->f_max_size[5] - file->size[7] + 1;
-		ft_memcpy(*in, *out, file->size[7]);
-		*in += file->size[7];
-		*out += file->size[7];
-	}
+		ft_print_size2(ls, in, out, file);
 	ft_memcpy(*in, " ", 1);
 	(*in)++;
 	return (1 + ls->f_max_size[3] + (ls->f_max_size[5] > 0 ? ls->f_max_size[5] + 2 : 0));
@@ -62,15 +65,6 @@ static int		ft_print_pwd(t_ls *ls, void **in, void **out, t_file *file)
 	ft_memset(*in, ' ', 1);
 	*in += 1;
 	return (ls->f_max_size[1] + ls->f_max_size[2] + 2 + 2);
-}
-
-int				ft_print_time(void **in, void **out, t_file *file)
-{
-	ft_memcpy(*in, *out, file->size[4]);
-	*in += file->size[4];
-	*out += file->size[4];
-	ft_memset((*in)++, ' ', 1);
-	return (file->size[4] + 1);
 }
 
 void			ft_print_dir_l(t_ls *ls, t_file *file, int i)

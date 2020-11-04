@@ -121,6 +121,7 @@ int						ft_print_mod(void **in, void **out);
 int						ft_print_name(void **in, void **out, t_file *file);
 void					ft_print_dir_l(t_ls *ls, t_file	*file, int i);
 void					ft_print_dir(t_ls *ls, t_file	*file, int i);
+int						ft_print_time(void **in, void **out, t_file *file);
 
 void					ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname);
 void					ft_init_max_size(t_ls *ls, int i);

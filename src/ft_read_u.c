@@ -12,6 +12,15 @@
 
 #include "ft_ls.h"
 
+int				ft_print_time(void **in, void **out, t_file *file)
+{
+	ft_memcpy(*in, *out, file->size[4]);
+	*in += file->size[4];
+	*out += file->size[4];
+	ft_memset((*in)++, ' ', 1);
+	return (file->size[4] + 1);
+}
+
 void		ft_get_fname(t_ls *ls, t_dirent *dirp, char *fname)
 {
 	size_t	size;
