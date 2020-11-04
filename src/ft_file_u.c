@@ -39,7 +39,10 @@ void		ft_get_pwd(t_ls *ls, t_stat *stat)
 	ls->curfile->size[1] = size;
 	if (ls->f_max_size[1] < size)
 		ls->f_max_size[1] = size;
-	name = getgrgid(stat->st_gid)->gr_name;
+	if(!(getgrgid(stat->st_uid)))
+		name = ft_itoa(stat->st_uid);
+	else
+		name = getgrgid(stat->st_gid)->gr_name;
 	size = ft_strlen(name);
 	ft_memcpy(ls->i, name, size);
 	ls->i += size;
