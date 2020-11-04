@@ -64,13 +64,13 @@ static int		ft_print_pwd(t_ls *ls, void **in, void **out, t_file *file)
 	return (ls->f_max_size[1] + ls->f_max_size[2] + 2 + 2);
 }
 
-int				ft_print_time(void **in, void **out)
+int				ft_print_time(void **in, void **out, t_file *file)
 {
-	ft_memcpy(*in, *out + 4, 16 - 4);
-	*in += 16 - 4;
-	*out += 26;
+	ft_memcpy(*in, *out, file->size[4]);
+	*in += file->size[4];
+	*out += file->size[4];
 	ft_memset((*in)++, ' ', 1);
-	return (17 - 4);
+	return (file->size[4] + 1);
 }
 
 void			ft_print_dir_l(t_ls *ls, t_file *file, int i)
@@ -87,7 +87,7 @@ void			ft_print_dir_l(t_ls *ls, t_file *file, int i)
 		i += ft_print_nlink(ls, &in, &out, file);
 		i += ft_print_pwd(ls, &in, &out, file);
 		i += ft_print_size(ls, &in, &out, file);
-		i += ft_print_time(&in, &out);
+		i += ft_print_time(&in, &out, file);
 		i += ft_print_name(&in, &out, file);
 		file = file->next;
 	}

@@ -85,18 +85,51 @@ void		ft_get_size(t_ls *ls, t_stat *stat, int size, int size2)
 	ls->dirsize += stat->st_blocks << 10;
 }
 
+static	char	*ft_time_b(char *str, int *size, t_ls *ls)
+{
+	int		i;
+
+	i = 0;
+	while (*str == ' ')
+		str++;
+	while (*str != '\n')
+	{
+		i++;
+		str++;
+	}
+	str -= i;
+	ft_memset(ls->i + 7, ' ', 1);
+	ft_memcpy(ls->i + 8, str, i);
+	*size = 8 + i;
+	return (str);
+}
+
 void		ft_get_ctime(t_ls *ls, t_stat *stat)
 {
+
 	int		size;
 	char	*time;
 
 	time = ctime(&(stat->st_mtime));
 	ls->curfile->ctime = stat->st_mtime;
+	time += 4;
 	size = ft_strlen(time);
-	ft_memcpy(ls->i, time, size);
-	if ((ls->curfile->ctime < ls->ltime - 15724800) || (ls->curfile->ctime > \
-								ls->ltime + 15724800))
-		ft_memcpy(ls->i + 11, time + 19, 5);
+	ft_memcpy(ls->i, time, 7);
+	if ((ls->curfile->ctime < ls->ltime - 15724800) || (ls->curfile->ctime > ls->ltime + 15724800))
+	{
+		if (size > 21)
+			ft_time_b(time + 15, &size, ls);
+		else
+		{
+			ft_memcpy(ls->i + 7, time + 15, 5);
+			size = 12;
+		}
+	}
+	else
+	{
+		ft_memcpy(ls->i + 7, time + 7, 5);
+		size = 12;
+	}
 	ls->i += ++size;
 	ls->curfile->size[4] = size;
 }

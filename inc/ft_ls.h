@@ -59,7 +59,7 @@ typedef struct group	t_group;
 typedef struct			s_file
 {
 	void				*adr;
-	int					size[9];
+	int					size[8];
 	time_t				ctime;
 	mode_t				mode;
 	struct s_file		*prev;
