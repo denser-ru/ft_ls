@@ -78,7 +78,7 @@ static void		ft_arg_put_b(t_file *fsix, t_ls *ls, int n, char d)
 			if (d)
 				ft_putchar('\n');
 		}
-		ft_ls(f->adr, d, ls);
+		ft_ls(f->adr, (d == 0 ? 4 : d), ls);
 		f->next = ls->filelist;
 		ls->filelist = f;
 	}

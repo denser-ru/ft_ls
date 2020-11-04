@@ -23,13 +23,16 @@ static void		ft_get_stat(t_ls *ls, t_stat *stat)
 		ft_get_symlink(ls);
 }
 
-void			ft_read_file(char *fname, t_ls *ls)
+void			ft_read_file(char *fname, t_ls *ls, char d)
 {
 	t_stat	stat;
 	size_t	size;
 
-	ft_filelist_init(ls);
-	ls->i = ls->buffile;
+	if (!ls->curfile)
+	{
+		ft_filelist_init(ls);
+		ls->i = ls->buffile;
+	}
 	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;
 	ls->curfile->adr = ls->i;
@@ -40,11 +43,14 @@ void			ft_read_file(char *fname, t_ls *ls)
 	lstat(fname, &stat);
 	ft_get_stat(ls, &stat);
 	ft_get_spot(ls, fname);
-	ls->i = NULL;
-	if (ls->fl & LS_L)
-		ft_print_dir_l(ls, ls->filelist, 0);
-	else
-		ft_print_dir(ls, ls->filelist, 0);
+//	ls->i = NULL;
+	if (d == 4)
+	{
+		if (ls->fl & LS_L)
+			ft_print_dir_l(ls, ls->filelist, 0);
+		else
+			ft_print_dir(ls, ls->filelist, 0);
+	}
 	ft_direct_del_cur(&(ls->curdir));
 }
 
