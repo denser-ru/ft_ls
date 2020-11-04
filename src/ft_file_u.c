@@ -29,7 +29,10 @@ void		ft_get_pwd(t_ls *ls, t_stat *stat)
 	int		size;
 	char	*name;
 
-	name = getpwuid(stat->st_uid)->pw_name;
+	if(!(getpwuid(stat->st_uid)))
+		name = ft_itoa(stat->st_uid);
+	else
+		name = getpwuid(stat->st_uid)->pw_name;
 	size = ft_strlen(name);
 	ft_memcpy(ls->i, name, size);
 	ls->i += size;
