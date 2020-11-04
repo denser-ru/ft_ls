@@ -17,7 +17,7 @@ static void		ft_get_stat(t_ls *ls, t_stat *stat)
 	ft_get_mode(ls, stat);
 	ft_get_nlink(ls, stat);
 	ft_get_pwd(ls, stat);
-	ft_get_size(ls, stat);
+	ft_get_size(ls, stat, 0, 0);
 	ft_get_ctime(ls, stat);
 	if (S_ISLNK(stat->st_mode))
 		ft_get_symlink(ls);

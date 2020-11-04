@@ -59,7 +59,7 @@ typedef struct group	t_group;
 typedef struct			s_file
 {
 	void				*adr;
-	int					size[7];
+	int					size[9];
 	time_t				ctime;
 	mode_t				mode;
 	struct s_file		*prev;
@@ -88,7 +88,7 @@ typedef struct			s_ls
 	t_direct			*curdir;
 	t_file				*curfile;
 	t_file				*endfile;
-	int					f_max_size[5];
+	int					f_max_size[6];
 	time_t				ltime;
 }						t_ls;
 
@@ -114,7 +114,7 @@ void					ft_del_filelist(t_file **file);
 void					ft_get_mode(t_ls *ls, t_stat *stat);
 void					ft_get_nlink(t_ls *ls, t_stat *stat);
 void					ft_get_pwd(t_ls *ls, t_stat *stat);
-void					ft_get_size(t_ls *ls, t_stat *stat);
+void					ft_get_size(t_ls *ls, t_stat *stat, int size, int size2);
 void					ft_get_ctime(t_ls *ls, t_stat *stat);
 
 int						ft_print_mod(void **in, void **out);
