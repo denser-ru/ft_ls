@@ -18,6 +18,7 @@ t_direct	*ft_direct_new(char *dname, t_file *file)
 
 	if (!(dir = (t_direct *)malloc(sizeof(t_direct))))
 		print_error(NULL, 1);
+	ft_bzero(dir, sizeof(t_direct));
 	if (!dname)
 		dir->dname = NULL;
 	else

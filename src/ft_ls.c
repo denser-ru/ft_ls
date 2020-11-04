@@ -23,7 +23,6 @@ void			ft_freemem(t_ls **ls)
 {
 	if (*ls)
 	{
-		ft_direct_del(&((*ls)->curdir));
 		ft_del_filelist(&((*ls)->filelist));
 		free((*ls)->bufdir);
 		(*ls)->bufdir = NULL;

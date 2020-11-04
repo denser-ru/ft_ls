@@ -17,6 +17,7 @@ void			ft_ls_l(t_ls *ls)
 	DIR			*dir;
 	t_dirent	*dirp;
 	t_direct	*dirlist;
+	t_direct	*curlist;
 
 	dirp = NULL;
 	ft_strcpy(ls->fname, ls->curdir->dname);
@@ -29,11 +30,12 @@ void			ft_ls_l(t_ls *ls)
 		ls->ls_func(ls, dirp, dir, (ls->fl & LS_RR ? &dirlist : NULL));
 		closedir(dir);
 		ft_direct_del_cur(&(ls->curdir));
-		while (dirlist)
+		curlist = dirlist;
+		while (curlist)
 		{
-			ls->curdir = dirlist;
+			ls->curdir = curlist;
 			ft_ls_rec(ls);
-			dirlist = dirlist->next;
+			curlist = curlist->next;
 		}
 	}
 	ft_direct_del(&dirlist);
