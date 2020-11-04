@@ -70,7 +70,7 @@ size_t 		ft_itoa_mem_2d(t_ls *ls, t_stat *stat, int *size2)
 void		ft_get_size(t_ls *ls, t_stat *stat, int size, int size2)
 {
 	ls->curfile->mode = stat->st_mode;
-	if (S_ISCHR(stat->st_mode))
+	if (S_ISCHR(stat->st_mode) || S_ISBLK(stat->st_mode))
 		size = ft_itoa_mem_2d(ls, stat, &size2);
 	else
 		size = ft_itoa_mem_d(ls->bufdir, stat->st_size);
@@ -130,6 +130,6 @@ void		ft_get_ctime(t_ls *ls, t_stat *stat)
 		ft_memcpy(ls->i + 7, time + 7, 5);
 		size = 12;
 	}
-	ls->i += ++size;
+	ls->i += size;
 	ls->curfile->size[4] = size;
 }
