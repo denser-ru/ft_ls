@@ -39,8 +39,8 @@ void		ft_get_pwd(t_ls *ls, t_stat *stat)
 	ls->curfile->size[1] = size;
 	if (ls->f_max_size[1] < size)
 		ls->f_max_size[1] = size;
-	if(!(getgrgid(stat->st_uid)))
-		name = ft_itoa(stat->st_uid);
+	if(!(getgrgid(stat->st_gid)))
+		name = ft_itoa(stat->st_gid);
 	else
 		name = getgrgid(stat->st_gid)->gr_name;
 	size = ft_strlen(name);

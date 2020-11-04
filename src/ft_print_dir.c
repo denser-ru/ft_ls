@@ -19,7 +19,7 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	ft_memcpy(*in, *out, file->size[3]);
 	*in += file->size[3];
 	*out += file->size[3];
-	if (S_ISCHR(file->mode) || S_ISBLK(file->mode))
+	if (ls->f_max_size[5] > 0)
 	{
 		ft_memset((*in)++, ',', 1);
 		ft_memset(*in, ' ', ls->f_max_size[5] - file->size[7] + 1);
@@ -30,7 +30,7 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	}
 	ft_memcpy(*in, " ", 1);
 	(*in)++;
-	return (ls->f_max_size[3] + ls->f_max_size[5] + ((S_ISCHR(file->mode) || S_ISBLK(file->mode)) ? 2 : 1));
+	return (1 + ls->f_max_size[3] + (ls->f_max_size[5] > 0 ? ls->f_max_size[5] + 2 : 0));
 }
 
 static int		ft_print_nlink(t_ls *ls, void **in, void **out, t_file *file)
