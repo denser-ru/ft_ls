@@ -48,7 +48,8 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	(*in)++;
 	if (file->size[7] > ls->f_max_size[5])
 		i = file->size[7] - ls->f_max_size[5];
-	return (i + ls->f_max_size[3] + (file->size[7] > 0 ? ls->f_max_size[5] + 3 : 1));
+	return (i + ls->f_max_size[3] + (file->size[7] > 0 ?
+		ls->f_max_size[5] + 3 : 1));
 }
 
 static int		ft_print_nlink(t_ls *ls, void **in, void **out, t_file *file)

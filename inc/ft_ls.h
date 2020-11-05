@@ -115,7 +115,8 @@ void					ft_del_filelist(t_file **file);
 void					ft_get_mode(t_ls *ls, t_stat *stat);
 void					ft_get_nlink(t_ls *ls, t_stat *stat);
 void					ft_get_pwd(t_ls *ls, t_stat *stat);
-void					ft_get_size(t_ls *ls, t_stat *stat, int size, int size2);
+void					ft_get_size(t_ls *ls, t_stat *stat,
+										int size, int size2);
 void					ft_get_ctime(t_ls *ls, t_stat *stat);
 
 int						ft_print_mod(void **in, void **out);
