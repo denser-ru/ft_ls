@@ -59,10 +59,12 @@ size_t 		ft_itoa_mem_2d(t_ls *ls, t_stat *stat, int *size2)
 	if (!size)
 		ft_memset(ls->bufdir, '0', ++size);
 	*size2 = ft_itoa_mem_d(ls->bufdir + size, minor(stat->st_rdev));
+	if (minor(stat->st_rdev) > 255)
+		*size2 = ft_itoa_mem_x(ls->bufdir + size, minor(stat->st_rdev));
 	if (!(*size2))
 		ft_memset(ls->bufdir + size, '0', ++(*size2));
 	ls->curfile->size[7] = *size2;
-	if (ls->f_max_size[5] < *size2)
+	if (ls->f_max_size[5] < *size2 && minor(stat->st_rdev) <= 255)
 		ls->f_max_size[5] = *size2;
 	return (size);
 }

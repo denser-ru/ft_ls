@@ -15,8 +15,16 @@
 static void		ft_print_size2(t_ls *ls, void **in, void **out, t_file *file)
 {
 	ft_memset((*in)++, ',', 1);
-	ft_memset(*in, ' ', ls->f_max_size[5] - file->size[7] + 1);
-	*in += ls->f_max_size[5] - file->size[7] + 1;
+	if (file->size[7] <= ls->f_max_size[5])
+	{
+		ft_memset(*in, ' ', ls->f_max_size[5] - file->size[7] + 1);
+		*in += ls->f_max_size[5] - file->size[7] + 1;
+	}
+	else
+	{
+		ft_memset(*in, ' ', 1);
+		*in += 1;
+	}
 	ft_memcpy(*in, *out, file->size[7]);
 	*in += file->size[7];
 	*out += file->size[7];
@@ -29,7 +37,7 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	i = 0;
 	if (!(file->size[7] > 0) && ls->f_max_size[5] > 0)
 		i = ls->f_max_size[5] +	2;
-	ft_memset(*in, ' ', ls->f_max_size[3] + i - file->size[3]);
+		ft_memset(*in, ' ', ls->f_max_size[3] + i - file->size[3]);
 	*in += ls->f_max_size[3] + i - file->size[3];
 	ft_memcpy(*in, *out, file->size[3]);
 	*in += file->size[3];
@@ -38,6 +46,8 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 		ft_print_size2(ls, in, out, file);
 	ft_memcpy(*in, " ", 1);
 	(*in)++;
+	if (file->size[7] > ls->f_max_size[5])
+		i = file->size[7] - ls->f_max_size[5];
 	return (i + ls->f_max_size[3] + (file->size[7] > 0 ? ls->f_max_size[5] + 3 : 1));
 }
 
