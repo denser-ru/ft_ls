@@ -38,7 +38,6 @@ static void		ft_get_stat_gs(char **argv, int i, t_file *f, t_ls *ls)
 static void		ft_arg_gl_sort(t_file *f, unsigned long long fl)
 {
 	ft_arg_sort_lexicographical(&(f[0]), 0);
-	ft_arg_sort_lexicographical(&(f[1]), fl);
 	ft_arg_sort_lexicographical(&(f[2]), fl);
 	if (fl & LS_T)
 	{
