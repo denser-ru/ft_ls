@@ -23,7 +23,6 @@
 # include <time.h>
 # include <grp.h>
 # include <pwd.h>
-#include <sys/sysmacros.h>
 
 /*
 ** -a (LS_A) to display hidden files, current folder and previous folder,

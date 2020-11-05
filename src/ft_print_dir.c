@@ -34,11 +34,11 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	ft_memcpy(*in, *out, file->size[3]);
 	*in += file->size[3];
 	*out += file->size[3];
-	if (ls->f_max_size[5] > 0)
+	if (file->size[7] > 0)
 		ft_print_size2(ls, in, out, file);
 	ft_memcpy(*in, " ", 1);
 	(*in)++;
-	return (i + 1 + ls->f_max_size[3] + (ls->f_max_size[5] > 0 ? ls->f_max_size[5] + 2 : 0));
+	return (i + ls->f_max_size[3] + (file->size[7] > 0 ? ls->f_max_size[5] + 3 : 1));
 }
 
 static int		ft_print_nlink(t_ls *ls, void **in, void **out, t_file *file)
