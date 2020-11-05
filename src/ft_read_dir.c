@@ -23,10 +23,9 @@ static void		ft_get_stat(t_ls *ls, t_stat *stat)
 		ft_get_symlink(ls);
 }
 
-void			ft_read_file(char *fname, t_ls *ls, char d)
+void			ft_read_file(char *fname, t_ls *ls, char d, size_t size)
 {
 	t_stat	stat;
-	size_t	size;
 
 	if (!ls->curfile)
 	{
@@ -34,7 +33,6 @@ void			ft_read_file(char *fname, t_ls *ls, char d)
 		ls->i = ls->buffile;
 		ft_init_max_size(ls, 0);
 	}
-	ls->dirsize = 0;
 	ls->curfile->adr = ls->i;
 	size = ft_strlen(fname);
 	ft_memcpy(ls->i, fname, size);

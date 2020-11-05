@@ -76,7 +76,7 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 	ls->curdir = ft_direct_new(NULL, NULL);
 	ft_strcpy(ls->fname, fname);
 	if (d == 0 || d == 4)
-		ft_read_file(fname, ls, d);
+		ft_read_file(fname, ls, d, 0);
 	else if (d && fname && *fname)
 	{
 		if (d == 2)

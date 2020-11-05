@@ -72,7 +72,6 @@ static	char	*ft_time_b(char *str, int *size, t_ls *ls)
 
 void			ft_get_ctime(t_ls *ls, t_stat *stat)
 {
-
 	int		size;
 	char	*time;
 
@@ -81,15 +80,13 @@ void			ft_get_ctime(t_ls *ls, t_stat *stat)
 	time += 4;
 	size = ft_strlen(time);
 	ft_memcpy(ls->i, time, 7);
-	if ((ls->curfile->ctime < ls->ltime - 15724800) || (ls->curfile->ctime > ls->ltime + 15724800))
+	if ((ls->curfile->ctime < ls->ltime - 15724800) || \
+					(ls->curfile->ctime > ls->ltime + 15724800))
 	{
 		if (size > 21)
 			ft_time_b(time + 15, &size, ls);
-		else
-		{
+		else if ((size = 12))
 			ft_memcpy(ls->i + 7, time + 15, 5);
-			size = 12;
-		}
 	}
 	else
 	{
