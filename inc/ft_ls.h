@@ -49,7 +49,7 @@
 # define LS_I		2048U
 # define LS_MINUS	4096U
 
-# define BUF		1048576000U
+# define BUF		104857600U
 # define MAX_NAME	1024
 
 typedef struct stat		t_stat;
