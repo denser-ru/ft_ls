@@ -68,9 +68,11 @@ void			ft_read_func(t_ls *ls)
 
 void			ft_ls(char *fname, char d, t_ls *ls)
 {
-	ft_read_func(ls);
 	if (!(ls->bufdir))
+	{
+		ft_read_func(ls);
 		ft_ls_init(ls);
+	}
 	ls->curdir = ft_direct_new(NULL, NULL);
 	ft_strcpy(ls->fname, fname);
 	if (d == 0 || d == 4)
