@@ -27,10 +27,10 @@ static void			ft_one_argument(char **argv, t_ls *ls)
 		if (ft_get_stat_link(*argv))
 			ft_ls(*argv, 1, ls);
 		else
-			ft_ls(*argv, 0, ls);
+			ft_ls(*argv, 4, ls);
 	}
 	else
-		ft_ls(*argv, 0, ls);
+		ft_ls(*argv, 4, ls);
 }
 
 
