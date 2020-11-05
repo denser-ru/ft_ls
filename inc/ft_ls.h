@@ -47,6 +47,7 @@
 # define LS_S		512U
 # define LS_UU		1024U
 # define LS_I		2048U
+# define LS_MINUS	4096U
 
 # define BUF		1048576000U
 # define MAX_NAME	1024

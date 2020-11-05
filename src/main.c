@@ -34,9 +34,13 @@ static void			ft_one_argument(char **argv, t_ls *ls)
 }
 
 
-static int			flags_f(char c, unsigned long long *fl)
+static void			flags_f(char c, unsigned long long *fl)
 {
-	if (c == 'a')
+	if (*fl & LS_MINUS)
+		print_ls_error_ls('-');
+	else if (c == '-')
+		*fl = *fl | LS_MINUS;
+	else if (c == 'a')
 		*fl = *fl | LS_A;
 	else if (c == 'l')
 		*(fl) = *fl | LS_L;
@@ -54,7 +58,6 @@ static int			flags_f(char c, unsigned long long *fl)
 		*(fl) = *fl | LS_I;
 	else
 		print_ls_error_ls(c);
-	return (0);
 }
 
 unsigned long long	flags(int *argc, char ***argv_orig, unsigned long long fl)
@@ -66,7 +69,7 @@ unsigned long long	flags(int *argc, char ***argv_orig, unsigned long long fl)
 	i = 1;
 	argv = *argv_orig;
 	*(argv[0]) = '\0';
-	while (i < *argc && *(argv[i]) == '-' && argv[i][1])
+	while (i < *argc && *(argv[i]) == '-' && argv[i][1] && !(fl & LS_MINUS))
 	{
 		j = 1;
 		while (argv[i][j])
