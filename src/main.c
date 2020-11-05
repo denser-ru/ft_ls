@@ -48,12 +48,8 @@ static void			flags_f(char c, unsigned long long *fl)
 		*(fl) = *fl | LS_R;
 	else if (c == 't')
 		*(fl) = *fl | LS_T;
-	else if (c == 'U')
-		*(fl) = *fl | LS_UU;
 	else if (c == '1')
 		*(fl) = *fl | LS_ONE;
-	else if (c == 'i')
-		*(fl) = *fl | LS_I;
 	else
 		print_ls_error_ls(c);
 }
