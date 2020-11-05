@@ -36,8 +36,8 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 
 	i = 0;
 	if (!(file->size[7] > 0) && ls->f_max_size[5] > 0)
-		i = ls->f_max_size[5] +	2;
-		ft_memset(*in, ' ', ls->f_max_size[3] + i - file->size[3]);
+		i = ls->f_max_size[5] + 2;
+	ft_memset(*in, ' ', ls->f_max_size[3] + i - file->size[3]);
 	*in += ls->f_max_size[3] + i - file->size[3];
 	ft_memcpy(*in, *out, file->size[3]);
 	*in += file->size[3];

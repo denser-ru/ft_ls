@@ -40,11 +40,9 @@ static void	ft_sort_files_t_name_r(t_ls *ls, t_file *f, char *name)
 
 void		ft_sort_files_t_r(t_ls *ls, char *name)
 {
-//	time_t		curtime;
 	t_file		*f;
 	t_file		*c;
 
-//	curtime = ls->curfile->ctime;
 	f = ls->filelist;
 	while (f->next != ls->curfile)
 	{

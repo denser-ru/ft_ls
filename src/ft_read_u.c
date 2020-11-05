@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-int				ft_print_time(void **in, void **out, t_file *file)
+int			ft_print_time(void **in, void **out, t_file *file)
 {
 	ft_memcpy(*in, *out, file->size[4]);
 	*in += file->size[4];

@@ -81,7 +81,6 @@ void			ft_ls(char *fname, char d, t_ls *ls)
 	{
 		if (d == 2)
 		{
-//			ft_putchar('\n');
 			ft_putstr(fname);
 			ft_putendl(":");
 		}

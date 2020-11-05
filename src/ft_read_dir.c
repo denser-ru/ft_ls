@@ -43,7 +43,6 @@ void			ft_read_file(char *fname, t_ls *ls, char d)
 	lstat(fname, &stat);
 	ft_get_stat(ls, &stat);
 	ft_get_spot(ls, fname);
-
 	if (d == 4)
 	{
 		ls->i = NULL;

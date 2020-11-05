@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void		ft_get_nlink(t_ls *ls, t_stat *stat)
+void			ft_get_nlink(t_ls *ls, t_stat *stat)
 {
 	int		size;
 
@@ -24,12 +24,12 @@ void		ft_get_nlink(t_ls *ls, t_stat *stat)
 		ls->f_max_size[0] = size;
 }
 
-void		ft_get_pwd(t_ls *ls, t_stat *stat)
+void			ft_get_pwd(t_ls *ls, t_stat *stat)
 {
 	int		size;
 	char	*name;
 
-	if(!(getpwuid(stat->st_uid)))
+	if (!(getpwuid(stat->st_uid)))
 		name = ft_itoa(stat->st_uid);
 	else
 		name = getpwuid(stat->st_uid)->pw_name;
@@ -39,7 +39,7 @@ void		ft_get_pwd(t_ls *ls, t_stat *stat)
 	ls->curfile->size[1] = size;
 	if (ls->f_max_size[1] < size)
 		ls->f_max_size[1] = size;
-	if(!(getgrgid(stat->st_gid)))
+	if (!(getgrgid(stat->st_gid)))
 		name = ft_itoa(stat->st_gid);
 	else
 		name = getgrgid(stat->st_gid)->gr_name;
@@ -49,43 +49,6 @@ void		ft_get_pwd(t_ls *ls, t_stat *stat)
 	ls->curfile->size[2] = size;
 	if (ls->f_max_size[2] < size)
 		ls->f_max_size[2] = size;
-}
-
-size_t 		ft_itoa_mem_2d(t_ls *ls, t_stat *stat, int *size2)
-{
-	int 	size;
-
-	size = ft_itoa_mem_d(ls->bufdir, major(stat->st_rdev));
-	if (!size)
-		ft_memset(ls->bufdir, '0', ++size);
-	*size2 = ft_itoa_mem_d(ls->bufdir + size, minor(stat->st_rdev));
-	if (minor(stat->st_rdev) > 255)
-		*size2 = ft_itoa_mem_x(ls->bufdir + size, minor(stat->st_rdev));
-	if (!(*size2))
-		ft_memset(ls->bufdir + size, '0', ++(*size2));
-	ls->curfile->size[7] = *size2;
-	if (ls->f_max_size[5] < *size2 && minor(stat->st_rdev) <= 255)
-		ls->f_max_size[5] = *size2;
-	return (size);
-}
-
-void		ft_get_size(t_ls *ls, t_stat *stat, int size, int size2)
-{
-	ls->curfile->mode = (S_ISCHR(stat->st_mode)
-			|| S_ISBLK(stat->st_mode));
-	if (ls->curfile->mode)
-		size = ft_itoa_mem_2d(ls, stat, &size2);
-	else
-		size = ft_itoa_mem_d(ls->bufdir, stat->st_size);
-	if (!size)
-		ft_memset(ls->i, '0', ++size);
-	else
-		ft_memcpy(ls->i, ls->bufdir, size + size2);
-	ls->i += size + size2;
-	ls->curfile->size[3] = size;
-	if (ls->f_max_size[3] < size)
-		ls->f_max_size[3] = size;
-	ls->dirsize += stat->st_blocks << 10;
 }
 
 static	char	*ft_time_b(char *str, int *size, t_ls *ls)
@@ -107,7 +70,7 @@ static	char	*ft_time_b(char *str, int *size, t_ls *ls)
 	return (str);
 }
 
-void		ft_get_ctime(t_ls *ls, t_stat *stat)
+void			ft_get_ctime(t_ls *ls, t_stat *stat)
 {
 
 	int		size;

@@ -12,7 +12,6 @@
 
 #include "ft_ls_gsinged.h"
 
-
 static void			ft_one_argument(char **argv, t_ls *ls)
 {
 	t_stat stat;
@@ -32,7 +31,6 @@ static void			ft_one_argument(char **argv, t_ls *ls)
 	else
 		ft_ls(*argv, 4, ls);
 }
-
 
 static void			flags_f(char c, unsigned long long *fl)
 {

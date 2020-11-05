@@ -111,7 +111,6 @@ t_file					*ft_file_new();
 void					ft_filelist_init(t_ls *ls);
 void					ft_next_curfile(t_ls *ls);
 void					ft_del_filelist(t_file **file);
-int						ft_itoa_mem_x(void *dest, unsigned int nb);
 
 void					ft_get_mode(t_ls *ls, t_stat *stat);
 void					ft_get_nlink(t_ls *ls, t_stat *stat);
