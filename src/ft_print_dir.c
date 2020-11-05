@@ -6,13 +6,13 @@
 /*   By: cayako <cayako@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 20:52:08 by cayako            #+#    #+#             */
-/*   Updated: 2020/10/21 20:52:11 by cayako           ###   ########.fr       */
+/*   Updated: 2020/11/05 15:54:32 by cayako           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int		ft_print_size2(t_ls *ls, void **in, void **out, t_file *file)
+static void		ft_print_size2(t_ls *ls, void **in, void **out, t_file *file)
 {
 	ft_memset((*in)++, ',', 1);
 	ft_memset(*in, ' ', ls->f_max_size[5] - file->size[7] + 1);

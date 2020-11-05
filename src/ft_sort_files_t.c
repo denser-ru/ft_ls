@@ -6,7 +6,7 @@
 /*   By: gsinged <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 21:31:43 by gsinged           #+#    #+#             */
-/*   Updated: 2020/10/28 21:31:45 by gsinged          ###   ########.fr       */
+/*   Updated: 2020/11/05 15:55:04 by cayako           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static void	ft_sort_files_t_name_r(t_ls *ls, t_file *f, char *name)
 
 void		ft_sort_files_t_r(t_ls *ls, char *name)
 {
-	time_t		curtime;
+//	time_t		curtime;
 	t_file		*f;
 	t_file		*c;
 
-	curtime = ls->curfile->ctime;
+//	curtime = ls->curfile->ctime;
 	f = ls->filelist;
 	while (f->next != ls->curfile)
 	{

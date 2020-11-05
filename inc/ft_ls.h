@@ -6,7 +6,7 @@
 /*   By: cayako <cayako@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 22:02:57 by cayako            #+#    #+#             */
-/*   Updated: 2020/10/21 22:03:01 by cayako           ###   ########.fr       */
+/*   Updated: 2020/11/05 15:52:23 by cayako           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <time.h>
 # include <grp.h>
 # include <pwd.h>
+# include <sys/sysmacros.h> 
 
 /*
 ** -a (LS_A) to display hidden files, current folder and previous folder,
