@@ -43,9 +43,10 @@ void			ft_read_file(char *fname, t_ls *ls, char d)
 	lstat(fname, &stat);
 	ft_get_stat(ls, &stat);
 	ft_get_spot(ls, fname);
-//	ls->i = NULL;
+
 	if (d == 4)
 	{
+		ls->i = NULL;
 		if (ls->fl & LS_L)
 			ft_print_dir_l(ls, ls->filelist, 0);
 		else
