@@ -32,8 +32,8 @@ void			ft_read_file(char *fname, t_ls *ls, char d)
 	{
 		ft_filelist_init(ls);
 		ls->i = ls->buffile;
+		ft_init_max_size(ls, 0);
 	}
-	ft_init_max_size(ls, 0);
 	ls->dirsize = 0;
 	ls->curfile->adr = ls->i;
 	size = ft_strlen(fname);
