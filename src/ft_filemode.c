@@ -6,7 +6,7 @@
 /*   By: cayako <cayako@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 20:51:00 by cayako            #+#    #+#             */
-/*   Updated: 2020/10/21 20:51:02 by cayako           ###   ########.fr       */
+/*   Updated: 2020/11/05 13:24:41 by cayako           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ void			ft_get_mode(t_ls *ls, t_stat *stat)
 	ft_get_gmode(ls, stat);
 	ft_get_omode(ls, stat);
 	ls->i += 11;
-	ls->curfile->mode = stat->st_mode;
+	ls->curfile->mode = S_ISBLK(stat->st_mode) || S_ISCHR(stat->st_mode);
 }

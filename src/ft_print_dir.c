@@ -6,7 +6,7 @@
 /*   By: cayako <cayako@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 20:52:08 by cayako            #+#    #+#             */
-/*   Updated: 2020/10/21 20:52:11 by cayako           ###   ########.fr       */
+/*   Updated: 2020/11/05 14:04:22 by cayako           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 {
-	ft_memset(*in, ' ', ls->f_max_size[3] - file->size[3]);
-	*in += ls->f_max_size[3] - file->size[3];
+	int		i;
+
+	i = 0;
+	if (!(file->size[7] > 0) && ls->f_max_size[5] > 0)
+		i = ls->f_max_size[5] +	2;
+	ft_memset(*in, ' ', ls->f_max_size[3] + i - file->size[3]);
+	*in += ls->f_max_size[3] + i - file->size[3];
 	ft_memcpy(*in, *out, file->size[3]);
 	*in += file->size[3];
 	*out += file->size[3];
-	if (ls->f_max_size[5] > 0)
+	if (file->size[7] > 0)
 	{
 		ft_memset((*in)++, ',', 1);
 		ft_memset(*in, ' ', ls->f_max_size[5] - file->size[7] + 1);
@@ -30,7 +35,7 @@ static int		ft_print_size(t_ls *ls, void **in, void **out, t_file *file)
 	}
 	ft_memcpy(*in, " ", 1);
 	(*in)++;
-	return (1 + ls->f_max_size[3] + (ls->f_max_size[5] > 0 ? ls->f_max_size[5] + 2 : 0));
+	return (i + 1 + ls->f_max_size[3] + (ls->f_max_size[5] > 0 ? ls->f_max_size[5] + 2 : 0));
 }
 
 static int		ft_print_nlink(t_ls *ls, void **in, void **out, t_file *file)
