@@ -24,7 +24,10 @@ void			ft_ls_l(t_ls *ls)
 	dirlist = NULL;
 	errno = 0;
 	if (!(dir = opendir(ls->fname)))
+	{
 		print_error_dir(ls->curdir->dname, 0);
+		ft_direct_del_cur(&(ls->curdir));
+	}
 	else
 	{
 		ls->ls_func(ls, dirp, dir, (ls->fl & LS_RR ? &dirlist : NULL));
